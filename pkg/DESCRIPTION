@@ -1,0 +1,14 @@
+Package: biclust
+Version: 0.1
+Date: 2007-04-27
+Author: Sebastian Kaiser
+Maintainer: Sebastian Kaiser <Sebastian.Kaiser@stat.uni-muenchen.de>
+Title: BiCluster Algorithms
+Depends: 
+Imports: 
+Suggests: 
+Description: 
+License: GPL-2
+SaveImage: no
+LazyLoad: yes
+Packaged: ; kaiser

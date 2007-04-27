@@ -1,0 +1,30 @@
+citHeader("To cite package biclust in publications use:")
+
+## desc <- packageDescription("biclust")
+## year <- sub(".*(20[[:digit:]]{2}).*", "\\1", desc$Date)
+## vers <- paste("R package version", desc$Version)
+
+## citEntry(entry="Manual",
+##          title = "biclust: BiCluster Algorithms",
+##          author = person(first="Sebastian", last="Kaiser"),
+## 	 year = year,
+##          note = vers,
+	 
+## 	 textVersion =
+##            paste("Sebastian Kaiser (", year,
+##                  "). biclust: BiCluster Algorithms. ",
+##                  vers, ".", sep=""))
+
+
+citEntry(entry="Article",
+         author = "Sebastian Kaiser",
+         title = "A Toolbox for BiCluster Analysis",
+         journal = "",
+         year = 2007,
+         note = "Not Published",
+
+         textVersion = paste("Sebastian Kaiser.",
+         "A Toolbox for BiCluster Analysis.",
+         ",2007.",
+         "Not Published."))
+

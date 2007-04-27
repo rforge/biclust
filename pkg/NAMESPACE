@@ -1,0 +1,26 @@
+useDynLib(biclust)
+
+import()
+
+
+exportPattern()
+
+export(
+       cbimax,
+       bimax,
+       )
+
+
+exportClasses(
+              
+              ) 
+
+exportMethods(
+              
+              )
+
+
+S3method()
+S3method()
+
+
