@@ -1,3 +1,9 @@
+#
+#  Copyright (C) 2007 Sebastian Kaiser
+#  Cheng, Y. & Church, G. Biclustering of expression data. Proc Int Conf Intell Syst Mol Biol, ncbi.nlm.nih.gov, 2000
+#
+
+
 ##Hilfsfunktionen um den von CC benutzten Score zu berechnen
 
 ccscore<-function(mat)
