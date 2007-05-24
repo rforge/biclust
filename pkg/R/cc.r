@@ -4,7 +4,7 @@
 #
 
 
-##Hilfsfunktionen um den von CC benutzten Score zu berechnen
+##Some helper funktions to calculate the CC score for node deletion
 
 ccscore<-function(mat)
 {
@@ -17,6 +17,14 @@ rowscore<-function(mat)
 score<-rowSums((mat-rowMeans(mat)-matrix(colMeans(mat),nrow=nrow(mat),ncol=ncol(mat),byrow=TRUE)+mean(mat))^2)/ncol(mat)
 score
 }
+
+colscore<-function(mat,logr,logc)
+{
+score<-colSums((mat-rowMeans(mat)-matrix(colMeans(mat),nrow=nrow(mat),ncol=ncol(mat),byrow=TRUE)+mean(mat))^2)/nrow(mat)
+score
+}
+
+##Some helper funktions to calculate the CC score for node addition and inverse node addition
 
 addrowscore<-function(mat,logr,logc)
 {
@@ -35,13 +43,9 @@ addcolscore<-function(mat,logr,logc)
 score<-colSums((mat-rowMeans(mat[,logc])-matrix(colMeans(mat[logr,]),nrow=nrow(mat),ncol=ncol(mat),byrow=TRUE)+mean(mat[logr,logc]))^2)/nrow(mat[logr,logc])
 score
 }
-colscore<-function(mat,logr,logc)
-{
-score<-colSums((mat-rowMeans(mat)-matrix(colMeans(mat),nrow=nrow(mat),ncol=ncol(mat),byrow=TRUE)+mean(mat))^2)/nrow(mat)
-score
-}
 
-# Algorithmus 1 aus CC: Single Node Deletion
+
+# algorithm 1 from CC: Single Node Deletion
 
 cc1<-function(mat,logr,logc,delta=1.5)
 {
@@ -60,7 +64,7 @@ ifelse(sum(logr)>1 & sum(logc)>1,ret<-list(logr,logc),ret<-list(0,warning(paste(
 ret
 }
 
-# Algorithmus 2 aus CC: Multiple Node Deletion
+# algorithm 2 from CC: Multiple Node Deletion
 cc2<-function(mat,logr,logc,delta,alpha=1.5)
 {
 mdi<-1
@@ -89,7 +93,7 @@ ret<-list(logr,logc)
 ret
 }
 
-# Algorithmus 3 aus CC:  Node Addition
+# algorithm 3 from CC:  Node Addition
 cc3<-function(mat,logr,logc)
 {
 br<-1
@@ -140,6 +144,9 @@ ret<-cc3(mat,step2[[1]],step2[[2]])
 }
 ret
 }
+
+
+## Algorithm to find the number biggest bicluster.
 
 ccbiclust<-function(mat,delta,alpha=1.5,number=100)
 {

@@ -3,7 +3,8 @@
 #  Murali, T. & Kasif, S. Extracting conserved gene expression motifs from gene expression data Proc. Pacific Symp. Biocomputing, sullivan.bu.edu, 2003
 #
 
-
+## algorithm to find the biggest bicluster (directly programmed FindMotif algorithm of the paper) 
+ 
 bigxmotif<-function(mat,ns,nd,sd,alpha)
 {
 #Preprocess Data step not yet implemented
@@ -45,6 +46,9 @@ erg<-list(gen*1,co*1)
 erg
 }
 
+
+## algorithm which stores all find motifs not only the biggest
+
 storexmotif<-function(mat,ns,nd,sd,alpha)
 {
 #Preprocess Data step not yet implemented
@@ -83,4 +87,35 @@ erg<-list(xstore,ystore)
 erg
 
 
+}
+
+
+## algorithm to find number biggest bicluster (Stops if all genes are in one bicluster or if no bicluster is found)
+
+xmotifbiclust<-function(mat,ns,nd,sd,alpha,number)
+{
+x<-matrix(0,nrow=nrow(mat),ncol=number)
+y<-matrix(0,nrow=number,ncol=ncol(mat))
+matstore<-mat
+logr<-rep(TRUE,nrow(mat))
+for(i in 1:number)
+{
+erg<-bigxmotif(mat,ns,nd,sd,alpha)
+if(sum(erg[[1]])==0)
+{break
+}
+else{
+x[logr,i]<-erg[[1]]*1
+print('hallo1')
+y[i,]<-erg[[2]]*1
+print('hallo2')
+logr[logr][erg[[1]]]<-FALSE
+print('logr')
+mat<-matstore[logr,]
+print('hallo4')
+if(nrow(mat)<2)
+{break}
+}
+}
+ret<-list(matstore,nrow(mat),ncol(mat),2,2,x,y,0,number,0)
 }

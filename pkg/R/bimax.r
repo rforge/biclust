@@ -3,7 +3,7 @@
 #
 #  Prelic, A.; Bleuler, S.; Zimmermann, P.; Wille, A. & , P. A systematic comparison and evaluation of biclustering methods for gene expression data Bioinformatics, Oxford Univ Press, 2006
 #
-# Aufruf der Funktion mittels der .C Funktion
+# Calling the C Code from the bimax.c file.
 
 cbimax<- function(logicalmatrix,minr=2,minc=2,number=100,er=0)
    .C("bimax",
