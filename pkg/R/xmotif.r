@@ -42,7 +42,7 @@ co<-cij
 }
 
 }
-erg<-list(gen*1,co*1)
+erg<-list(gen,co)
 erg
 }
 
@@ -94,8 +94,9 @@ erg
 
 xmotifbiclust<-function(mat,ns,nd,sd,alpha,number)
 {
-x<-matrix(0,nrow=nrow(mat),ncol=number)
-y<-matrix(0,nrow=number,ncol=ncol(mat))
+MYCALL <- match.call()
+x<-matrix(FALSE,nrow=nrow(mat),ncol=number)
+y<-matrix(FALSE,nrow=number,ncol=ncol(mat))
 matstore<-mat
 logr<-rep(TRUE,nrow(mat))
 for(i in 1:number)
@@ -105,17 +106,13 @@ if(sum(erg[[1]])==0)
 {break
 }
 else{
-x[logr,i]<-erg[[1]]*1
-print('hallo1')
-y[i,]<-erg[[2]]*1
-print('hallo2')
+x[logr,i]<-erg[[1]]
+y[i,]<-erg[[2]]
 logr[logr][erg[[1]]]<-FALSE
-print('logr')
 mat<-matstore[logr,]
-print('hallo4')
 if(nrow(mat)<2)
 {break}
 }
 }
-ret<-list(matstore,nrow(mat),ncol(mat),2,2,x,y,0,number,0)
+ret<-list(MYCALL,x,y,number,2,2,warnings())
 }

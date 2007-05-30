@@ -150,10 +150,11 @@ ret
 
 ccbiclust<-function(mat,delta,alpha=1.5,number=100)
 {
+MYCALL <- match.call()
 ma<-max(mat)
 mi<-min(mat)
-x<-matrix(0,nrow=nrow(mat),ncol=number)
-y<-matrix(0,nrow=number,ncol=ncol(mat))
+x<-matrix(FALSE,nrow=nrow(mat),ncol=number)
+y<-matrix(FALSE,nrow=number,ncol=ncol(mat))
 for(i in 1:number)
 {
 erg<-bigcc(mat,delta,alpha)
@@ -161,10 +162,10 @@ if(sum(erg[[1]])==0)
 {break
 }
 else{
-x[,i]<-erg[[1]]*1
-y[i,]<-erg[[2]]*1
+x[,i]<-erg[[1]]
+y[i,]<-erg[[2]]
 mat[erg[[1]],erg[[2]]]<-runif(sum(erg[[1]])*sum(erg[[2]]),mi,ma)
 }
 }
-ret<-list(mat,nrow(mat),ncol(mat),2,2,x,y,0,number,0)
+ret<-list(MYCALL,x,y,number,2,2,warnings())
 }     

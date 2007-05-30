@@ -21,10 +21,12 @@ cbimax<- function(logicalmatrix,minr=2,minc=2,number=100,er=0)
   
 
 bimax<- function(logicalmatrix,...){
+MYCALL<-match.call()
 ausgabe<-cbimax(logicalmatrix,...)
 if (ausgabe[[10]]==1)
 {warning("Too many biclusters found change number or minimal dimension of expected bicluster!")
 ausgabe}
-else
-ausgabe
+
+
+list(MYCALL,ausgabe[[6]],ausgabe[[7]],ausgabe[[9]],ausgabe[[4]],ausgabe[[5]],warnings())
 }
