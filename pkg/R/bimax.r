@@ -28,5 +28,5 @@ if (ausgabe[[10]]==1)
 ausgabe}
 
 
-list(MYCALL,ausgabe[[6]],ausgabe[[7]],ausgabe[[9]],ausgabe[[4]],ausgabe[[5]],warnings())
+list(MYCALL,ausgabe[[6]],ausgabe[[7]],ausgabe[[9]],warnings())
 }

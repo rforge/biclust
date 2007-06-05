@@ -114,5 +114,5 @@ if(nrow(mat)<2)
 {break}
 }
 }
-ret<-list(MYCALL,x,y,number,2,2,warnings())
+ret<-list(MYCALL,x,y,number,warnings())
 }
