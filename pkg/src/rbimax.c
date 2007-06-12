@@ -260,6 +260,7 @@ void  writeBicluster(long  firstRow, long  lastRow, cs_t  columnSet, int * x, in
   biclusterCounter++;
   if (biclusterCounter>a) {
       *er = 1;
+      biclusterCounter = 0;
       return;}
   printf("\n%ld\n", biclusterCounter);
   for (i = firstRow; i <= lastRow; i++)
