@@ -4,6 +4,7 @@
 ##### Two-way Analysis #####
 ## Requires data matrix ’M’ and factor ’group’ for supervised analysis
 ## Unsupervised analysis
+testplaid<-function(M,group){
 set.seed(1)
 unsup <- plaid(M, back.fit = 2, shuffle = 3, fit.model = ~m + a + b,
 search.model = ~m, row.release = 0.7, col.release = 0.7,
@@ -27,3 +28,4 @@ iter.startup = 5, iter.layer = 30)
 ##### Summary Method #####
 ## To print the summary which is printed when a model is fitted
 summary(plaid.object)
+}
