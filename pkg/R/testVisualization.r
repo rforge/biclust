@@ -2,6 +2,7 @@
 #Very simple example of biclustering methods with heamap and bubble visualization
 
 #Synthetic matrix
+testVisualization<-function(){
 A=matrix(rnorm(5000,0,0.1),100,50)
 A[11:20,11:20]=A[11:20,11:20]+rnorm(100,3,0.1)
 
@@ -66,3 +67,4 @@ bubbleplot(A,row1=pRows, col1=pCols, row2=sRows, col2=sCols, showLabels=T)
 bubbleplot(A,row1=pRows, col1=pCols, row2=sRows, col2=sCols, projection="cmdscale")
 bubbleplot(A,row1=cRows, col1=cCols, row2=pRows, col2=pCols)
 bubbleplot(A,row1=cRows, col1=cCols)
+}

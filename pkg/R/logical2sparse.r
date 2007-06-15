@@ -11,7 +11,7 @@ logical2sparse=function(bicluster)
 logical2sparse=function(bicluster)
   {
   ret=vector("list",length(bicluster))
-  for(i in 1:length(bicluster)
+  for(i in 1:length(bicluster))
     {
     ret[[i]]=list(rows=row(as.matrix(bicluster[[1]]))[bicluster[[1]]==TRUE],
             cols=row(as.matrix(bicluster[[2]]))[bicluster[[2]]==TRUE]   )
