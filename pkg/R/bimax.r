@@ -20,7 +20,7 @@ cbimax<- function(logicalmatrix,minr=2,minc=2,number=100,er=0)
 
   
 
-bimax<- function(logicalmatrix,...){
+bimaxbiclust<- function(logicalmatrix,...){
 MYCALL<-match.call()
 ausgabe<-cbimax(logicalmatrix,...)
 if (ausgabe[[10]]==1)
@@ -28,5 +28,5 @@ if (ausgabe[[10]]==1)
 ausgabe}
 
 
-list(MYCALL,ausgabe[[6]],ausgabe[[7]],ausgabe[[9]],warnings())
+BiclustResult(MYCALL,ausgabe[[6]],ausgabe[[7]],ausgabe[[9]],warnings())
 }

@@ -114,5 +114,5 @@ if(nrow(mat)<2)
 {break}
 }
 }
-ret<-list(MYCALL,x,y,number,warnings())
+ret<-BiclustResult(MYCALL,x,y,number,warnings())
 }
