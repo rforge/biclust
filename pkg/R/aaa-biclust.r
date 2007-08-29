@@ -17,10 +17,10 @@ setClass('BiclustResult',
            RowxNumber = 'matrix',
            ColxNumber = 'matrix',
            Number = 'numeric',
-           Warnings = 'list'))
+           Warnings = 'ANY'))
 
 BiclustResult <- function(mycall, a, b, c, d) {
-  return(new('BiclustResult', mycall=mycall, a=a, b=b, c=c, d=d))
+  return(new('BiclustResult', MYCALL=mycall, RowxNumber=a, ColxNumber=b, Number=c, Warnings=d))
 }
 
 
@@ -48,9 +48,9 @@ Xmotifs <- function() {
 setClass('CC',
          contains = 'Biclust',
          prototype = prototype(
-           biclustFunction = function(mat,delta,alpha,number){ccbiclust((mat,delta,alpha,number)}))
+           biclustFunction = function(mat,delta,alpha,number){ccbiclust(mat,delta,alpha,number)}))
          
-Xmotifs <- function() {
+CC <- function() {
   return(new('CC'))
 }
   
