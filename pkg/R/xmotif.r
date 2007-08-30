@@ -114,5 +114,5 @@ if(nrow(mat)<2)
 {break}
 }
 }
-return(BiclustResult(MYCALL,x,y,number,warnings()))
+return(BiclustResult(MYCALL,x,y,number))
 }

@@ -6,7 +6,7 @@ setClass('biclustMethod',
 
 setGeneric('biclust', function(method, ...){standardGeneric('biclust')})
 
-setMethod('biclust', 'biclust',
+setMethod('biclust', 'biclustMethod',
 function(method, ...) {
   return(method@biclustFunction(...))
 })
@@ -23,49 +23,47 @@ function(method, ...) {
     biclust(method, ...)
 })
 
-### -> REST UMBENENNEN
 
-setClass('BiclustResult',
+setClass('biclust',
          representation = representation(
            MYCALL = 'call',
            RowxNumber = 'matrix',
            ColxNumber = 'matrix',
-           Number = 'numeric',
-           Warnings = 'ANY'))
+           Number = 'numeric'))
 
-BiclustResult <- function(mycall, a, b, c, d) {
-  return(new('BiclustResult', MYCALL=mycall, RowxNumber=a, ColxNumber=b, Number=c, Warnings=d))
+BiclustResult <- function(mycall, a, b, c) {
+  return(new('biclust', MYCALL=mycall, RowxNumber=a, ColxNumber=b, Number=c))
 }
 
 
 
-setClass('Bimax',
-         contains = 'Biclust',
+setClass('BCBimax',
+         contains = 'biclustMethod',
          prototype = prototype(
            biclustFunction = function(logicalmatrix,...){bimaxbiclust(logicalmatrix,...)}))
 
-Bimax <- function() {
-  return(new('Bimax'))
+BCBimax <- function() {
+  return(new('BCBimax'))
 }
          
 
 
-setClass('Xmotifs',
-         contains = 'Biclust',
+setClass('BCXmotifs',
+         contains = 'biclustMethod',
          prototype = prototype(
            biclustFunction = function(mat,ns,nd,sd,alpha,number){xmotifbiclust(mat,ns,nd,sd,alpha,number)}))
          
-Xmotifs <- function() {
-  return(new('Xmotifs'))
+BCXmotifs <- function() {
+  return(new('BCXmotifs'))
 }
 
-setClass('CC',
-         contains = 'Biclust',
+setClass('BCCC',
+         contains = 'biclustMethod',
          prototype = prototype(
            biclustFunction = function(mat,delta,alpha,number){ccbiclust(mat,delta,alpha,number)}))
          
-CC <- function() {
-  return(new('CC'))
+BCCC <- function() {
+  return(new('BCCC'))
 }
   
 
