@@ -1,15 +1,29 @@
 
 
-setClass('Biclust',
+setClass('biclustMethod',
          representation = representation('VIRTUAL',
-           biclustFunction = 'function'))
+         biclustFunction = 'function'))
 
-setGeneric('biclust', function(biclust, ...){standardGeneric('biclust')})
-setMethod('biclust', 'Biclust',
-function(biclust, ...) {
-  return(biclust@biclustFunction(...))
+setGeneric('biclust', function(method, ...){standardGeneric('biclust')})
+
+setMethod('biclust', 'biclust',
+function(method, ...) {
+  return(method@biclustFunction(...))
 })
 
+setMethod('biclust', 'function',
+function(method, ...) {
+    method <- method()
+    biclust(method, ...)
+})
+
+setMethod('biclust', 'character',
+function(method, ...) {
+    method <- get(method[1], mode="function")
+    biclust(method, ...)
+})
+
+### -> REST UMBENENNEN
 
 setClass('BiclustResult',
          representation = representation(
