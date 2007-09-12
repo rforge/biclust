@@ -1,9 +1,7 @@
 \name{spectral}
 \alias{spectral}
-\alias{svd}
-\alias{eigenvalues}
-\alias{normalization}
-\alias{k-means}
+\alias{spectral biclustering}
+\alias{Kluger biclustering}
 
 \title{Spectral Biclustering}
 \description{ Spectral Biclustering as described in
@@ -13,11 +11,14 @@
   of svd decomposing in eigenvectors, applied to genes (rows) and conditions
   (columns).}
 \usage{
-spectral(mat,...)
+%spectral(mat,...)
+spectral(mat,normalization="log", numberOfEigenvalues=3, 
+            minGenes=2, minConditions=2, withinVar=1)
+
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{mat}{The data mat where biclusters have to be found}
+  \item{mat}{The data matrix where biclusters have to be found}
   \item{normalization}{Normalization method to apply to mat. Three methods are
                      allowed as described by Kluger et al.:
                            "log" Logarithmic normalization. NOTE: if this
@@ -28,7 +29,7 @@ spectral(mat,...)
                            "irrc"  Independent Rescaling of Rows and Columns
                            "bistochastization" Bistochastization
                    Default is "log", as recommended by Kluger et al.}
-  \item{numberOfEigenValues}{the number of eigenValues considered to find
+  \item{numberOfEigenvalues}{the number of eigenValues considered to find
                    biclusters. Each row (gene) eigenVector will be combined
                    with all column (condition) eigenVectors for the first
                    numberOfEigenValues eigenvalues. Note that a high number could increase
@@ -41,7 +42,7 @@ spectral(mat,...)
                will not consider smaller biclusters. Default 2.}
   \item{minConditions}{minimum number of genes that biclusters must have. The algorithm
                will not consider smaller biclusters. Default 2.}
-  \item{withinVariation}{maximum within variation allowed. Since spectral biclustering
+  \item{withinVar}{maximum within variation allowed. Since spectral biclustering
           outputs a checkerboard structure despite of relvance of individual cells, a
           filtering of only relevant cells is necessary. Default 1.
           NOTE: Maybe it's better just to return the checkerboards and let the user
@@ -59,10 +60,7 @@ spectral(mat,...)
     journal = {Genome Research},
     year = {2003},
     volume = {13},
-    pages = {703--716},
-    comment = {Spectral biclustering algorithm. Multiplicative model based in the
-  	use of eigenvalues and checkerboard structure in the data},
-    keywords = {biclustering, biclustering algorithm, spectral},
+    pages = {703--716}
   }
 }
 \author{
@@ -70,12 +68,12 @@ spectral(mat,...)
   \email{rodri@usal.es}
   }
 
-\seealso{Maybe it's interesting to make public some of the submethods that
-  use spectral biclustering, as normalization methods or iterative k-means}
+%\seealso{Maybe it's interesting to make public some of the submethods that
+%  use spectral biclustering, as normalization methods or iterative k-means}
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+%---- Should be DIRECTLY executable !! ----
+%-- ==>  Define data, use random,
+%--	or do  help(data=index)  for the standard data sets.
   #Random 100x50 matrix with a single, up-regulated 10x10 bicluster
   s2=matrix(rnorm(5000),100,50)
   s2[11:20,11:20]=rnorm(100,3,0.3)
@@ -84,7 +82,5 @@ spectral(mat,...)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{bicluster}
-\keyword{spectral}
-\keyword{eigenvalue}
-\keyword{svd}
+\keyword{cluster}
+\keyword{multivariate}

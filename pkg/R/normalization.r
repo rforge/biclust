@@ -1,6 +1,25 @@
 # Independent rescaling of rows and columns as described in:
 #
 # Kluger, Y.; Basri, R.; Chang, J.T. & Gerstein, M., 
+normalization=function(mat, type="irrc", error=0.000000001, maxit=1000)
+  {
+  if(type=="irrc")
+    {
+    irrc(mat)
+    }
+  else
+    {
+    if(type=="bistochastization")
+      {
+      bistochastization(mat, error, maxit)
+      }
+    else if(type=="logt")
+      {
+      logt(mat)
+      }
+    }
+  }
+
 # Spectral Biclustering of Microarray Data: Coclustering Genes and Conditions
 # Genome Research 2003. 
 #
@@ -11,8 +30,6 @@ irrc=function(A)
   {
   R=apply(A,1,sum)^(-.5)
   C=apply(A,2,sum)^(-.5)
-  print(apply(A,1,sum))
-  print(R)
   An=t(t(R*A)*C)
   An
   }
@@ -64,6 +81,8 @@ bistochastization=function(A, error=0.000000001, maxit=1000)
 # Author: Rodrigo Santamaria (2007)
 logt=function(A)
   {
+  n=dim(A)[1]
+  m=dim(A)[2]
   L=log(A)
   Li=apply(L,1,sum)/m
   Lj=apply(L,2,sum)/n

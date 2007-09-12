@@ -20,7 +20,9 @@ postprocess=function(dec, maxeigen=3,minCG=2, maxCG, minCE=2, maxCE)
   {
   u=dec$u          #u are eigengenes, nxc (c=min(n,m), freedom degrees)
   v=dec$v       #v are eigenarrays, mxc
-
+  n=dim(u)[1]
+  m=dim(v)[1]
+  
   dev=NA
   max=min(n,m)
   if(maxeigen>max)

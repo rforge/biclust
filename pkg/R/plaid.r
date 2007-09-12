@@ -29,24 +29,31 @@ c("Rows", "Cols", "Df", "SS", "MS", "Convergence",
 ## Plaid model wrapper function - calls update function to fit layer
 plaid <- function(
 Z, # array (matrix) to be clustered
-row.classes = NULL, # optional class factor for rows (variable)
-col.classes = NULL, # optional class factor for columns (variable)
+#row.classes = NULL, # optional class factor for rows (variable)
+#col.classes = NULL, # optional class factor for columns (variable)
 cluster = "b", # "r", "c" or "b", to cluster rows, columns or both
 fit.model = y ~ m + a + b, # model to fit to each layer (formula)
-search.model = NULL, # optional model to base search on (formula)
+#search.model = NULL, # optional model to base search on (formula)
 background = TRUE, # logical - whether or not to fit a background layer
-row.release = NULL, # row release criterion (scalar in range [0, 1])
-col.release = NULL, # column release criterion (scalar in range [0, 1])
+row.release = 0.7, # row release criterion (scalar in range [0, 1])
+col.release = 0.7, # column release criterion (scalar in range [0, 1])
 shuffle = 3, # no. of permuted layers to use in permutation test
 back.fit = 0, # no. of times to back fit after each layer
 max.layers = 20, # max no. of layers to include in the model
-fix.layers = NULL, # fixed no. of layers to include in the model
-start.method = "convert", # or "average" for starting values in supervised/3-way
-iter.startup = NULL, # no. of iterations to find starting values
-iter.layer = NULL, # no. of iterations to find a layer
-iter.supervised = NULL, # optional no. of supervised iterations
+#fix.layers = NULL, # fixed no. of layers to include in the model
+#start.method = "convert", # or "average" for starting values in supervised/3-way
+iter.startup = 5, # no. of iterations to find starting values
+iter.layer = 10, # no. of iterations to find a layer
+#iter.supervised = NULL, # optional no. of supervised iterations
 verbose = TRUE) # if "TRUE", prints extra information on progress
 {
+fix.layers=NULL
+start.method="convert"
+iter.supervised=NULL
+row.classes=NULL
+col.classes=NULL
+search.model=NULL
+
 if (is.null(iter.startup) | is.null(iter.layer))
 stop(message = "Please provide values for iter.startup and iter.layer.")
 if ((!is.null(row.classes) | !is.null(col.classes))
@@ -151,7 +158,13 @@ if (layer > background)
   #cols.released = cols.released[1:layer],
   #background = background))
 #  return(BiclustResult(match.call(),r[,1:layer],k[,1:layer],layer-1,last.warning))
-  return(BiclustResult(match.call(),r[,1:layer],k[,1:layer],layer-1))
+  if(layer<=1)          return(BiclustResult(match.call(),NULL,NULL,0))
+  else if(layer==2)     return(BiclustResult(match.call(),matrix(r[,2:layer],n,1),t(matrix(k[,2:layer],p,1)),1))
+  else                  return(BiclustResult(match.call(),r[,2:layer],t(k[,2:layer]),layer-1))
+
+# before conception for ColxNumber
+#  else if(layer==2)     return(BiclustResult(match.call(),matrix(r[,2:layer],n,1),matrix(k[,2:layer],p,1),1))
+#  else                  return(BiclustResult(match.call(),r[,2:layer],k[,2:layer],layer-1))
 }
 
 
