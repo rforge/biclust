@@ -1,3 +1,39 @@
+useDynLib(biclust)
+
+
 importFrom(grid, grid.lines, unit, gpar)
-export(drawHeatmap, bubbleplot, parallelCoordinates,
-  plaid, spectral, bimaxbiclust, xmotifbiclust, ccbiclust)
+
+
+export(
+	drawHeatmap, 
+	bubbleplot, 
+	parallelCoordinates,
+  	plaid, 
+	spectral, 
+	bimaxbiclust, 
+	xmotifbiclust, 
+	ccbiclust,
+	BiclustResult,
+	BCBimax,
+	BCCC,
+	BCXmotifs,
+	BCSpectral,
+	BCPlaid
+	)
+
+exportClasses(
+		BiclustMethod,
+		Biclust,
+		BCBimax,
+		BCCC,
+		BCXmotifs,
+		BCSpectral,
+		BCPlaid
+		)
+
+exportMethods(
+		biclust
+		)
+
+		
+		

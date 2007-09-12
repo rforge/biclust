@@ -1,10 +1,10 @@
-setClass('biclustMethod',
+setClass('BiclustMethod',
          representation = representation('VIRTUAL',
          biclustFunction = 'function'))
 
 setGeneric('biclust', function(method, ...){standardGeneric('biclust')})
 
-setMethod('biclust', 'biclustMethod',
+setMethod('biclust', 'BiclustMethod',
 function(method, ...) {
   return(method@biclustFunction(...))
 })
@@ -22,7 +22,7 @@ function(method, ...) {
 })
 
 
-setClass('biclust',
+setClass('Biclust',
          representation = representation(
            MYCALL = 'call',
            RowxNumber = 'matrix',
@@ -30,13 +30,13 @@ setClass('biclust',
            Number = 'numeric'))
 
 BiclustResult <- function(mycall, a, b, c) {
-  return(new('biclust', MYCALL=mycall, RowxNumber=a, ColxNumber=b, Number=c))
+  return(new('Biclust', MYCALL=mycall, RowxNumber=a, ColxNumber=b, Number=c))
 }
 
 
 
 setClass('BCBimax',
-         contains = 'biclustMethod',
+         contains = 'BiclustMethod',
          prototype = prototype(
            biclustFunction = function(logicalmatrix,...){bimaxbiclust(logicalmatrix,...)}))
 
@@ -47,7 +47,7 @@ BCBimax <- function() {
 
 
 setClass('BCXmotifs',
-         contains = 'biclustMethod',
+         contains = 'BiclustMethod',
          prototype = prototype(
            biclustFunction = function(mat,ns,nd,sd,alpha,number){xmotifbiclust(mat,ns,nd,sd,alpha,number)}))
          
@@ -56,7 +56,7 @@ BCXmotifs <- function() {
 }
 
 setClass('BCCC',
-         contains = 'biclustMethod',
+         contains = 'BiclustMethod',
          prototype = prototype(
            biclustFunction = function(mat,delta,alpha,number){ccbiclust(mat,delta,alpha,number)}))
          
@@ -65,7 +65,7 @@ BCCC <- function() {
 }
   
 setClass('BCSpectral',
-         contains = 'biclustMethod',
+         contains = 'BiclustMethod',
          prototype = prototype(
            biclustFunction = function(mat,normalization,numberOfEigenvalues,minGenes, minConditions, withinVar){spectral(mat,normalization="log", numberOfEigenvalues=3, 
             minGenes=2, minConditions=2, withinVar=1)}))
@@ -76,7 +76,7 @@ BCSpectral <- function() {
 
 
 setClass('BCPlaid',
-         contains = 'biclustMethod',
+         contains = 'BiclustMethod',
          prototype = prototype(
            biclustFunction = function(mat,back.fit,shuffle,fit.model, search.model, row.release,col.release,verbose,max.layers,iter.startup,iter.layer){
            plaid(mat, back.fit = 2, shuffle = 3, fit.model = ~m + a + b,
