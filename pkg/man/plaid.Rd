@@ -1,6 +1,7 @@
 \name{plaid}
 \alias{plaid}
 \alias{plaid model}
+\alias{BCPlaid}
 \alias{turner biclustering}
 
 \title{Plaid Model Biclustering}

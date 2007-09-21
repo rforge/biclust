@@ -1,5 +1,6 @@
 \name{spectral}
 \alias{spectral}
+\alias{BCSpectral}
 \alias{spectral biclustering}
 \alias{Kluger biclustering}
 

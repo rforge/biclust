@@ -5,6 +5,7 @@ Author: Sebastian Kaiser, Rodrigo Santamaria, Luis Quintales, Friedrich Leisch
 Maintainer: Sebastian Kaiser <Sebastian.Kaiser@stat.uni-muenchen.de>
 Title: BiCluster Algorithms
 Description: The main function biclust contains different algorithms to find bicluster in two dimensional data. Those algorithms are Cheng and Church, Spectral, Plaid Model, Xmotifs and Bimax Biclustering. Also other Algorithms like ISA, SAMBA Gibbs and so on are in procress. The package also delivers some additional methods for preprocessing (normalization and discretisation) real data. For summarizing and comparing the data some visualisation and validation methods are included.
+Depends: R (>= 1.8.0), grid
 License: GPL-2
 SaveImage: no
 LazyLoad: yes
