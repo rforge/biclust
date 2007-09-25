@@ -27,8 +27,8 @@ drawHeatmap(mat,bicResult=NULL,number=NA)
   }
 
 \seealso{
-  \item{\code{\link{parallelCoordinates}}} {for alternative representation of biclusters.}
   \item{\code{\link{bubbleplot}}}{ for simultaneous representation of biclusters.}
+  \item{\code{\link{parallelCoordinates}}}{for single representation of biclusters as lines of gene or condition profiles.}
   }
 \examples{
 %-- ==>  Define data, use random,

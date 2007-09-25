@@ -1,9 +1,10 @@
 \name{BCBimax}
 \title{The Bimax Bicluster algorithm}
 \alias{BCBimax}
-\alias{bimaxbiclust)
+\alias{bimaxbiclust}
+
 %- Also NEED an '\alias' for EACH other topic documented here.
-\description{perform Bimax bicluster algorithm}
+\description{Performs Bimax bicluster algorithm}
 \usage{
 biclust(BCBimax,logicalmatrix,minr=2,minc=2,number=100)
 biclust("BCBimax",logicalmatrix,minr=2,minc=2,number=100)
@@ -45,8 +46,11 @@ bimaxbiclust(logicalmatrix,minr=2,minc=2,number=100)
 
 \seealso{ biclust \code{\link{biclust}}}
 \examples{
-loma<-matrix(sample(c(0,1),1600,replace=TRUE),40,40)
-res<-biclust(BCBimax(),logicalmatrix=loma,minr=4,minc=4,number=10)
+%loma<-matrix(sample(c(0,1),1600,replace=TRUE),40,40)
+ test=matrix(rnorm(5000),100,50)
+ test[11:20,11:20]=rnorm(100,3,0.3)
+ loma=binarize(test,2)
+ res<-biclust(BCBimax(),logicalmatrix=loma,minr=4,minc=4,number=10)
 
 }
 

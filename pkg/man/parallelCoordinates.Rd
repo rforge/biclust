@@ -3,26 +3,21 @@
 \alias{parallel coordinates}
 
 \title{Parallel Coordinates}
-\description{ Represents expression levels through gene or condition profiles in
+\description{Represents expression levels through gene or condition profiles in
   a bicluster as lines.}
 \usage{
 parallelCoordinates(mat,bicResult,number, plotConditions=TRUE, absoluteLimits=TRUE)
 }
 \arguments{
-  \item{mat}{The data matrix of the bicluster to be drawn.}
-  \item{bicResult}{BiclustResult object with a bicluster result set.}
-  \item{number}{Bicluster to be drawn from the result set 'bicResult'.}
-  \item{plotConditions}{If 'TRUE', condition profiles are drawn, so each line represents
-    one of the conditions in the bicluster. Otherwise, gene profiles are drawn. Default 'TRUE'.}
-  \item{absoluteLimits}{If 'TRUE', absolute limits are used, so expression levels from the minimum to
-    the maximum of the complete data matrix are considered. Otherwise, minimum and maximum are
-    minimum and maximum expression levels grouped in the bicluster. Default 'TRUE'.}
+  \item{mat}{The data matrix of the bicluster to be drawn}
+  \item{bicResult}{BiclustResult object with a bicluster result set}
+  \item{number}{Bicluster to be drawn from the result set 'bicResult'}
+  \item{plotConditions}{If 'TRUE', condition profiles are drawn, so each line represents one of the conditions in the bicluster. Otherwise, gene profiles are drawn. Default 'TRUE'}
+  \item{absoluteLimits}{If 'TRUE', absolute limits are used, so expression levels from the minimum to the maximum of the complete data matrix are considered. Otherwise, minimum and maximum are minimum and maximum expression levels grouped in the bicluster. Default 'TRUE'}
   }
-%\details{}
-%\value{}
-%\references{}
 
-\author{
+
+ \author{                       
   Rodrigo Santamaria
   \email{rodri@usal.es}
   }
@@ -32,8 +27,6 @@ parallelCoordinates(mat,bicResult,number, plotConditions=TRUE, absoluteLimits=TR
   \item{\code{\link{bubbleplot}}}{ for simultaneous representation of biclusters.}
   }
 \examples{
-%-- ==>  Define data, use random,
-%--	or do  help(data=index)  for the standard data sets.
   #Random 100x50 matrix with a single, up-regulated 10x10 bicluster
   s2=matrix(rnorm(5000),100,50)
   s2[11:20,11:20]=rnorm(100,3,0.3)

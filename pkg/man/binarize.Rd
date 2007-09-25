@@ -1,14 +1,15 @@
 \name{binarize}
 \alias{binarize}
 \alias{binarizeByPercentage}
-\alias{denstityOnes}
+\alias{densityOnes}
+
 
 \title{Binarize}
 \description{ Methods to convert a real matrix to a binary matrix.}
 \usage{
 binarize(mat, threshold=NA)
 binarizeByPercentage(mat,percentage, error=0.2, gap=0.1)
-denstityOnes(mat)
+densityOnes(mat)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -22,7 +23,7 @@ denstityOnes(mat)
 \details{
    \item{binarize}{Returns a matrix binarize by input threshold, or by the median if no threshold is given.}
    \item{binarizeByPercentage}{Returns a matrix binarize by input percentage, given as desired density of ones against zeros.}
-   \item{densityOnes}{Returns the percentage of ones against zeros in binary matrix mat.}
+   \item{densityOnes}{Returns the percentage of ones against zeros in a logical matrix}
 }
 %\value{}
 %\references{}

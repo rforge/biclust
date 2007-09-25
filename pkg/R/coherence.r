@@ -161,10 +161,10 @@ variance=function(mat,rowOrColumn=1)
   }
 
 #Gives overall variance as mean of row and column variance() above
-overallVariance=function(mat1)
+overallVariance=function(mat)
   {
-  rv=variance(mat1)
-  cv=variance(mat1,2)
+  rv=variance(mat)
+  cv=variance(mat,2)
   n=dim(mat)[1]
   m=dim(mat)[2]
   
@@ -177,6 +177,101 @@ overallVariance=function(mat1)
 #[1/max,1] where 1 is achieved if they are never grouped and 1/max if they are
 #grouped in all the biclusters of the result set.
 
+  
+constantVariance=function(mat, resultSet, number, dimension="both")
+  {
+  rows=row(matrix(resultSet@RowxNumber[,number]))[resultSet@RowxNumber[,number]==T]
+  cols=row(matrix(resultSet@NumberxCol[number,]))[resultSet@NumberxCol[number,]==T]
+  A=mat[rows,cols]
+
+  if(dimension=="both")  
+    {
+    overallVariance(A)
+    }
+  else
+    {
+    if(dimension=="row")  variance(A,1)
+    else  if(dimension=="col")  variance(A,2)
+    }
+  }
+  
+additiveVariance=function(mat, resultSet, number, dimension="both")
+  {
+  if(dimension!="both" && dimension!="row" && dimension!="col")
+    {
+    stop("Argument dimension must be 'row', 'col' or 'both'")
+    }
+  rows=row(matrix(resultSet@RowxNumber[,number]))[resultSet@RowxNumber[,number]==T]
+  cols=row(matrix(resultSet@NumberxCol[number,]))[resultSet@NumberxCol[number,]==T]
+  A=mat[rows,cols]
+
+  if(dimension=="both")  
+    {
+    rv=variance(dif(A,2))
+    cv=variance(dif(A),2)
+    n=dim(A)[1]
+    m=dim(A)[2]
+  
+    (n*rv+m*cv)/(n+m)
+    }
+  else
+    {
+    if(dimension=="row")  variance(dif(A,2))
+    else  if(dimension=="col")  variance(dif(A),2)
+    }
+  }
+  
+multiplicativeVariance=function(mat, resultSet, number, dimension="both")
+  {
+  if(dimension!="both" && dimension!="row" && dimension!="col")
+    {
+    stop("Argument dimension must be 'row', 'col' or 'both'")
+    }
+  rows=row(matrix(resultSet@RowxNumber[,number]))[resultSet@RowxNumber[,number]==T]
+  cols=row(matrix(resultSet@NumberxCol[number,]))[resultSet@NumberxCol[number,]==T]
+  A=mat[rows,cols]
+
+  if(dimension=="both")  
+    {
+    rv=variance(div(A,2))
+    cv=variance(div(A),2)
+    n=dim(A)[1]
+    m=dim(A)[2]
+  
+    (n*rv+m*cv)/(n+m)
+    }
+  else
+    {
+    if(dimension=="row")  variance(div(A,2))
+    else  if(dimension=="col")  variance(div(A),2)
+    }
+  }
+
+signVariance=function(mat, resultSet, number, dimension="both")
+ {
+  if(dimension!="both" && dimension!="row" && dimension!="col")
+    {
+    stop("Argument dimension must be 'row', 'col' or 'both'")
+    }
+  rows=row(matrix(resultSet@RowxNumber[,number]))[resultSet@RowxNumber[,number]==T]
+  cols=row(matrix(resultSet@NumberxCol[number,]))[resultSet@NumberxCol[number,]==T]
+  A=mat[rows,cols]
+
+  if(dimension=="both")  
+    {
+    rv=variance(sig(A,2))
+    cv=variance(sig(A),2)
+    n=dim(A)[1]
+    m=dim(A)[2]
+  
+    (n*rv+m*cv)/(n+m)
+    }
+  else
+    {
+    if(dimension=="row")  variance(sig(A,2))
+    else  if(dimension=="col")  variance(sig(A),2)
+    }
+  }
   
  
 # Compute coherence measures for resultSet. resultSet must have a bicluster

@@ -1,7 +1,8 @@
 \name{BCCC}
 \title{The CC Bicluster algorithm}
 \alias{BCCC}
-\alias{bimaxbiclust)
+\alias{ccbiclust}
+
 %- Also NEED an '\alias' for EACH other topic documented here.
 \description{perform CC bicluster algorithm}
 \usage{

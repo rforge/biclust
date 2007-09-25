@@ -1,7 +1,8 @@
 \name{BCXmotifs}
 \title{The Xmotifs Bicluster algorithm}
 \alias{BCXmotifs}
-\alias{bimaxbiclust)
+\alias{xmotifbiclust}
+
 %- Also NEED an '\alias' for EACH other topic documented here.
 \description{perform Xmotifs bicluster algorithm}
 \usage{

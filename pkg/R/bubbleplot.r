@@ -12,7 +12,7 @@ bubbleplot=function(mat, bicResult1, bicResult2=NULL, bicResult3=NULL, projectio
     {
     lista=row(matrix(bicResult1@RowxNumber[,i]))[bicResult1@RowxNumber[,i]==T]
     row1[[i]]=lista
-    lista=row(matrix(bicResult1@ColxNumber[i,]))[bicResult1@ColxNumber[i,]==T]
+    lista=row(matrix(bicResult1@NumberxCol[i,]))[bicResult1@NumberxCol[i,]==T]
     col1[[i]]=lista
     }
     
@@ -27,7 +27,7 @@ bubbleplot=function(mat, bicResult1, bicResult2=NULL, bicResult3=NULL, projectio
       {
       lista=row(matrix(bicResult2@RowxNumber[,i]))[bicResult2@RowxNumber[,i]==T]
       row2[[i]]=lista
-      lista=row(matrix(bicResult2@ColxNumber[i,]))[bicResult2@ColxNumber[i,]==T]
+      lista=row(matrix(bicResult2@NumberxCol[i,]))[bicResult2@NumberxCol[i,]==T]
       col2[[i]]=lista
       }
     }
@@ -42,7 +42,7 @@ bubbleplot=function(mat, bicResult1, bicResult2=NULL, bicResult3=NULL, projectio
       {
       lista=row(matrix(bicResult3@RowxNumber[,i]))[bicResult3@RowxNumber[,i]==T]
       row3[[i]]=lista
-      lista=row(matrix(bicResult3@ColxNumber[i,]))[bicResult3@ColxNumber[i,]==T]
+      lista=row(matrix(bicResult3@NumberxCol[i,]))[bicResult3@NumberxCol[i,]==T]
       col3[[i]]=lista
       }
     }

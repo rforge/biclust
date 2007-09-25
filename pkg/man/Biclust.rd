@@ -1,13 +1,13 @@
 \name{Biclust-Class}
 \title{The Biclust Class}
-\alias{Biclust)
+\alias{Biclust}
 \alias{BiclustResult}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \description{Bicluster Result}
 
 \section{Objects from the Class}{
   Objects can be created by calls of the form
-  \code{new("Biclust", ...)} or \code{Biclustresult(MYCALL,RowxNumber,ColxNumber,Number)} 
+  \code{new("Biclust", ...)} or \code{Biclustresult(MYCALL,RowxNumber,NumberxCol,Number)} 
 }
 
 \section{Slots}{
@@ -20,8 +20,8 @@
     \item{\code{NumberxCol}:}{Logical Matrix wich contains 1 in [i,j] if Col j is in Bicluster i}
 
     \item{\code{Number}:}{Number of Bicluster}
-
-
+     }
+  }
 \author{Sebastian Kaiser 
 \email{sebastian.kaiser@stat.uni-muenchen.de}
 }

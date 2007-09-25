@@ -28,7 +28,7 @@ c("Rows", "Cols", "Df", "SS", "MS", "Convergence",
 })
 ## Plaid model wrapper function - calls update function to fit layer
 plaid <- function(
-Z, # array (matrix) to be clustered
+mat, # array (matrix) to be clustered
 #row.classes = NULL, # optional class factor for rows (variable)
 #col.classes = NULL, # optional class factor for columns (variable)
 cluster = "b", # "r", "c" or "b", to cluster rows, columns or both
@@ -53,7 +53,7 @@ iter.supervised=NULL
 row.classes=NULL
 col.classes=NULL
 search.model=NULL
-
+Z=mat
 if (is.null(iter.startup) | is.null(iter.layer))
 stop(message = "Please provide values for iter.startup and iter.layer.")
 if ((!is.null(row.classes) | !is.null(col.classes))
