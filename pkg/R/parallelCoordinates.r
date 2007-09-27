@@ -4,7 +4,7 @@ parallelCoordinates=function(mat, bicResult, number, plotConditions=TRUE, absolu
   m=dim(mat)[2]
     
   bicRows=row(matrix(bicResult@RowxNumber[,number]))[bicResult@RowxNumber[,number]==T]
-  bicCols=row(matrix(bicResult@ColxNumber[number,]))[bicResult@ColxNumber[number,]==T]
+  bicCols=row(matrix(bicResult@NumberxCol[number,]))[bicResult@NumberxCol[number,]==T]
 
 
   if(absoluteLimits)

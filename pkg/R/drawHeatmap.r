@@ -42,7 +42,7 @@ drawHeatmap=function(mat, bicResult=NULL, number=NA)
       par(mai=c(0,0,0,0),mar=c(0,0,0,0))
   
       bicRows=row(matrix(bicResult@RowxNumber[,number]))[bicResult@RowxNumber[,number]==T]
-      bicCols=row(matrix(bicResult@ColxNumber[number,]))[bicResult@ColxNumber[number,]==T]
+      bicCols=row(matrix(bicResult@NumberxCol[number,]))[bicResult@NumberxCol[number,]==T]
       image(1:m,1:n,
              t(mat[c(setdiff(c(1:n),bicRows), bicRows),
                 c(bicCols,setdiff(c(1:m),bicCols))]),
