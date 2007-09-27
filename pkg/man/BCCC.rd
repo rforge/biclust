@@ -1,49 +1,42 @@
 \name{BCCC}
 \title{The CC Bicluster algorithm}
 \alias{BCCC}
-\alias{ccbiclust}
 
 %- Also NEED an '\alias' for EACH other topic documented here.
-\description{perform CC bicluster algorithm}
+\description{This CC algorithm finds biclusters in a data matrix and is based on a framework by Cheng and Church.}
 \usage{
-biclust(BCCC,mat,delta,alpha=1.5,number=100)
-biclust("BCCC",mat,delta,alpha=1.5,number=100)
-biclust(BCCC(),mat,delta,alpha=1.5,number=100)
-ccbiclust(mat,delta,alpha=1.5,number=100)
+BCCC(x,delta,alpha=1.5,number=100)
+
+biclust(x,BCCC(),delta,alpha=1.5,number=100)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{mat}{Data Matrix}
-  \item{delta}{Maximum of accepted score}
-  \item{alpha}{Scaling Factor}
-  \item{number}{Number of Bicluster to be found}
+  \item{x:}{Data matrix.}
+  \item{delta:}{Maximum of accepted score.}
+  \item{alpha:}{Scaling factor.}
+  \item{number:}{Number of bicluster to be found.}
 }
 
 \value{
-  Returns a Biclust object.
+  Returns a object of class \code{Biclust}.
 }
 \author{Sebastian Kaiser 
 \email{sebastian.kaiser@stat.uni-muenchen.de}
 }
 
 \references{
-@ARTICLE{Cheng00,
-  author = {Yizong Cheng and George M. Church},
-  title = {Biclustering of Expression Data},
-  journal = {Proceedings of the Eighth International Conference on Intelligent
-	Systems for Molecular Biology},
-  year = {2000},
-  volume = {1},
-  pages = {93-103}
-}
+Cheng, Y. & Church, G.M. 
+Biclustering of Expression Data 
+Proceedings of the Eighth International Conference on Intelligent Systems for Molecular Biology, 
+2000, 1, 93-103
 
 
 }
 
-\seealso{ biclust \code{\link{biclust}}}
+\seealso{\code{\link{biclust}}}
 \examples{
 test<-matrix(rbinom(400,50,0.4),20,20)
-res<-biclust(BCCC(),test,delta=1.5,alpha=1,number=10)
+res<-biclust(test,BCCC(),delta=1.5,alpha=1,number=10)
 
 }
 

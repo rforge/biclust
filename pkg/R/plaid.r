@@ -158,9 +158,9 @@ if (layer > background)
   #cols.released = cols.released[1:layer],
   #background = background))
 #  return(BiclustResult(match.call(),r[,1:layer],k[,1:layer],layer-1,last.warning))
-  if(layer<=1)          return(BiclustResult(match.call(),NULL,NULL,0))
-  else if(layer==2)     return(BiclustResult(match.call(),matrix(r[,2:layer],n,1),t(matrix(k[,2:layer],p,1)),1))
-  else                  return(BiclustResult(match.call(),r[,2:layer],t(k[,2:layer]),layer-1))
+  if(layer<=1)          return(BiclustResult(as.list(match.call()),NULL,NULL,0))
+  else if(layer==2)     return(BiclustResult(as.list(match.call()),matrix(r[,2:layer],n,1),t(matrix(k[,2:layer],p,1)),1))
+  else                  return(BiclustResult(as.list(match.call()),r[,2:layer],t(k[,2:layer]),layer-1))
 
 # before conception for ColxNumber
 #  else if(layer==2)     return(BiclustResult(match.call(),matrix(r[,2:layer],n,1),matrix(k[,2:layer],p,1),1))

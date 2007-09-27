@@ -28,5 +28,5 @@ if (ausgabe[[10]]==1)
 ausgabe}
 
 
-return(BiclustResult(MYCALL,ausgabe[[6]],ausgabe[[7]],ausgabe[[9]]))
+return(BiclustResult(as.list(MYCALL),ausgabe[[6]],ausgabe[[7]],ausgabe[[9]]))
 }

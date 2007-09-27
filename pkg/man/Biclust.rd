@@ -1,9 +1,10 @@
-\name{Biclust-Class}
+\name{Biclust}
 \title{The Biclust Class}
 \alias{Biclust}
+\alias{Biclust-class}
 \alias{BiclustResult}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\description{Bicluster Result}
+\description{Biclust is the class structure for results of a bicluster algorithm. it contains all information needed for further processing.}
 
 \section{Objects from the Class}{
   Objects can be created by calls of the form
@@ -13,7 +14,7 @@
 \section{Slots}{
   Objects of class \code{Biclust} have the following slots:
   \describe{
-    \item{\code{Mycall}:}{Saves the original Call to retrieve Input Parameters}
+    \item{\code{Parameters}:}{Saves input Parameters in a list}
 
     \item{\code{RowxNumber}:}{Logical Matrix wich contains 1 in [i,j] if Row i is in Bicluster j}
     
@@ -27,7 +28,7 @@
 }
 
 \seealso{
-  \code{\link{biclust-method}}, \code{\link{BiclustMethod-class}}
+  \code{\link{biclust}}, \code{\link{BiclustMethod-class}}
 }
 \keyword{classes}
 \examples{

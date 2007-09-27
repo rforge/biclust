@@ -103,6 +103,6 @@ spectral=function(mat,normalization="log", numberOfEigenvalues=3,
         temp[scolsOK[[i]]]=T
         colxnumber[,i]=temp
         }
-      return(BiclustResult(match.call(),rowxnumber,t(colxnumber),length(srowsOK)))
+      return(BiclustResult(as.list(match.call()),rowxnumber,t(colxnumber),length(srowsOK)))
       }
   }
