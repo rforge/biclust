@@ -40,7 +40,7 @@ BiclustResult <- function(mypara, a, b, c) {
 setClass('BCBimax',
          contains = 'BiclustMethod',
          prototype = prototype(
-           biclustFunction = function(x,...){bimaxbiclust(x,...)}))
+           biclustFunction = function(x,minr,minc,number){bimaxbiclust(x,minr=2,minc=2,number=100)}))
 
 BCBimax <- function() {
   return(new('BCBimax'))
@@ -51,7 +51,7 @@ BCBimax <- function() {
 setClass('BCXmotifs',
          contains = 'BiclustMethod',
          prototype = prototype(
-           biclustFunction = function(x,...){xmotifbiclust(x,...)}))
+           biclustFunction = function(x,ns,nd,sd,alpha,number){xmotifbiclust(x,ns=10,nd=10,sd=5,alpha=0.05,number=100)}))
          
 BCXmotifs <- function() {
   return(new('BCXmotifs'))
@@ -60,7 +60,7 @@ BCXmotifs <- function() {
 setClass('BCCC',
          contains = 'BiclustMethod',
          prototype = prototype(
-           biclustFunction = function(x,...){ccbiclust(x,...)}))
+           biclustFunction = function(x,delta,alpha,number){ccbiclust(x,delta,alpha=1.5,number=100)}))
          
 BCCC <- function() {
   return(new('BCCC'))
@@ -69,7 +69,7 @@ BCCC <- function() {
 setClass('BCSpectral',
          contains = 'BiclustMethod',
          prototype = prototype(
-           biclustFunction = function(mat,normalization,numberOfEigenvalues,minGenes, minConditions, withinVar){spectral(mat,normalization="log", numberOfEigenvalues=3, 
+           biclustFunction = function(x,normalization,numberOfEigenvalues,minGenes, minConditions, withinVar){spectral(x,normalization="log", numberOfEigenvalues=3, 
             minGenes=2, minConditions=2, withinVar=1)}))
          
 BCSpectral <- function() {
@@ -80,8 +80,8 @@ BCSpectral <- function() {
 setClass('BCPlaid',
          contains = 'BiclustMethod',
          prototype = prototype(
-           biclustFunction = function(mat,back.fit,shuffle,fit.model, search.model, row.release,col.release,verbose,max.layers,iter.startup,iter.layer){
-           plaid(mat, back.fit = 2, shuffle = 3, fit.model = ~m + a + b,
+           biclustFunction = function(x,back.fit,shuffle,fit.model, search.model, row.release,col.release,verbose,max.layers,iter.startup,iter.layer){
+           plaid(x, back.fit = 2, shuffle = 3, fit.model = ~m + a + b,
                   search.model = ~m, row.release = 0.7, col.release = 0.7,
                   verbose = TRUE, max.layers = 10, iter.startup = 5,
                   iter.layer = 30)

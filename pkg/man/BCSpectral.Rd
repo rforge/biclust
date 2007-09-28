@@ -4,6 +4,7 @@
 \alias{spectral biclustering}
 \alias{Kluger biclustering}
 
+
 \title{The Spectral Bicluster algorithm}
 \description{ Performs Spectral Biclustering as described in
   'Spectral Biclustering of Microarray Data: Coclustering Genes and Conditions',
@@ -12,19 +13,13 @@
   of svd decomposing in eigenvectors, applied to genes (rows) and conditions
   (columns).}
 \usage{
-biclust(BCSpectral,mat,normalization="log", numberOfEigenvalues=3, 
-            minGenes=2, minConditions=2, withinVar=1)
-biclust("BCSpectral",mat,normalization="log", numberOfEigenvalues=3, 
-            minGenes=2, minConditions=2, withinVar=1)
-biclust(BCSpectral(),mat,normalization="log", numberOfEigenvalues=3, 
-            minGenes=2, minConditions=2, withinVar=1)
-spectral(mat,normalization="log", numberOfEigenvalues=3, 
+biclust(x,BCSpectral(),normalization="log", numberOfEigenvalues=3, 
             minGenes=2, minConditions=2, withinVar=1)
 
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{mat}{The data matrix where biclusters have to be found}
+  \item{x}{The data matrix where biclusters have to be found}
   \item{normalization}{Normalization method to apply to mat. Three methods are
                      allowed as described by Kluger et al.:
                            "log" Logarithmic normalization. NOTE: if this
@@ -56,7 +51,7 @@ spectral(mat,normalization="log", numberOfEigenvalues=3,
 }
 %\details{}
 \value{
-  Returns a BiclustResult object
+   Returns a object of class \code{Biclust}.
 }
 \references{
   @ARTICLE{Kluger2003,
@@ -88,11 +83,11 @@ spectral(mat,normalization="log", numberOfEigenvalues=3,
   #Random matrix with embedded bicluster  
   test=matrix(rnorm(5000),100,50)
   test[11:20,11:20]=rnorm(100,3,0.3)
-  res1<-biclust(BCSpectral(),test)
+  res1<-biclust(test,BCSpectral())
 
   #microarray matrix
   data(BicatYeast)
-  res2<-biclust(BCSpectral(),BicatYeast)
+  res2<-biclust(BicatYeast,BCSpectral())
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

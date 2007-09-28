@@ -3,7 +3,8 @@
 \alias{plaid}
 \alias{plaid model}
 \alias{BCPlaid}
-\alias{turner biclustering}
+\alias{turner biclustering}  
+
 
 
 \title{The Plaid Model Bicluster algorithm}
@@ -14,29 +15,14 @@
   This algorithm models data matrices to a sum of layers. The model is fitted
   to data through minimization of error. }
 \usage{
-biclust(BCPlaid,mat, cluster = "b", fit.model = y ~ m + a + b, 
+biclust(x,BCPlaid(), cluster = "b", fit.model = y ~ m + a + b, 
 background = TRUE, row.release = 0.7, col.release = 0.7, 
 shuffle = 3, back.fit = 0, max.layers = 20,
 iter.startup = 5, iter.layer = 10, verbose = TRUE)
-
-biclust("BCPlaid",mat, cluster = "b", fit.model = y ~ m + a + b, 
-background = TRUE, row.release = 0.7, col.release = 0.7, 
-shuffle = 3, back.fit = 0, max.layers = 20,
-iter.startup = 5, iter.layer = 10, verbose = TRUE)
-
-biclust(BCPlaid(),mat, cluster = "b", fit.model = y ~ m + a + b, 
-background = TRUE, row.release = 0.7, col.release = 0.7, 
-shuffle = 3, back.fit = 0, max.layers = 20,
-iter.startup = 5, iter.layer = 10, verbose = TRUE)
-
-plaid(mat, cluster = "b", fit.model = y ~ m + a + b, 
-background = TRUE, row.release = 0.7, col.release = 0.7, 
-shuffle = 3, back.fit = 0, max.layers = 20,
-iter.startup = 5, iter.layer = 10, verbose = TRUE) 
 }
 
 \arguments{
-  \item{mat}{The data matrix where biclusters have to be found}
+  \item{x}{The data matrix where biclusters have to be found}
   \item{cluster}{'r', 'c' or 'b', to cluster rows, columns or both (default 'b')}
   \item{fit.model}{Model (formula) to fit each layer. Usually, a linear model is used, that
    stimates three parameters: m (constant for all elements in the bicluster),
@@ -59,7 +45,7 @@ iter.startup = 5, iter.layer = 10, verbose = TRUE)
 }
 %\details{}
 \value{
-  Returns a Biclust object.
+   Returns a object of class \code{Biclust}.
 }
 \references{
 @ARTICLE{Turner2003,
@@ -99,12 +85,12 @@ iter.startup = 5, iter.layer = 10, verbose = TRUE)
   #Random matrix with embedded bicluster  
   test=matrix(rnorm(5000),100,50)
   test[11:20,11:20]=rnorm(100,3,0.3)
-  res<-biclust(BCPlaid(),test, back.fit = 2, shuffle = 3, fit.model = ~m + a + b,
+  res<-biclust(test,BCPlaid(), back.fit = 2, shuffle = 3, fit.model = ~m + a + b,
   iter.startup = 5, iter.layer = 30,  verbose = TRUE)
 
   #microarray matrix
   data(BicatYeast)
-  res<-biclust(BCPlaid,BicatYeast, back.fit = 2, shuffle = 3, fit.model = ~m + a + b,
+  res<-biclust(BicatYeast,BCPlaid(), back.fit = 2, shuffle = 3, fit.model = ~m + a + b,
   iter.startup = 5, iter.layer = 30,  verbose = TRUE)
   }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

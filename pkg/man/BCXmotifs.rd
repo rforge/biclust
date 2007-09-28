@@ -1,22 +1,21 @@
 \name{BCXmotifs}
 \title{The Xmotifs Bicluster algorithm}
 \alias{BCXmotifs}
+\alias{Xmotif}
 
 %- Also NEED an '\alias' for EACH other topic documented here.
 \description{This Xmotifs algorithm finds biclusters in a data matrix and is based on a framework by Murali and Kasif.}
 \usage{
-BCXmotifs(x,ns,nd,sd,alpha,number=100)
-
 biclust(x,BCXmotifs(),ns,nd,sd,alpha,number=100)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x:}{Data Matrix.}
-  \item{ns:}{Number of rows choosen.}
-  \item{nd:}{Number of repetitions.}
-  \item{sd:}{Sample size in repetitions.}
-  \item{alpha:}{Scaling factor for column result.}
-  \item{number:}{Number of bicluster to be found.}
+  \item{x}{Data Matrix.}
+  \item{ns}{Number of rows choosen.}
+  \item{nd}{Number of repetitions.}
+  \item{sd}{Sample size in repetitions.}
+  \item{alpha}{Scaling factor for column result.}
+  \item{number}{Number of bicluster to be found.}
 }
 
 \value{

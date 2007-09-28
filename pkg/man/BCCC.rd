@@ -1,20 +1,20 @@
 \name{BCCC}
 \title{The CC Bicluster algorithm}
 \alias{BCCC}
+\alias{CC}
+
 
 %- Also NEED an '\alias' for EACH other topic documented here.
 \description{This CC algorithm finds biclusters in a data matrix and is based on a framework by Cheng and Church.}
 \usage{
-BCCC(x,delta,alpha=1.5,number=100)
-
 biclust(x,BCCC(),delta,alpha=1.5,number=100)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x:}{Data matrix.}
-  \item{delta:}{Maximum of accepted score.}
-  \item{alpha:}{Scaling factor.}
-  \item{number:}{Number of bicluster to be found.}
+  \item{x}{Data matrix.}
+  \item{delta}{Maximum of accepted score.}
+  \item{alpha}{Scaling factor.}
+  \item{number}{Number of bicluster to be found.}
 }
 
 \value{

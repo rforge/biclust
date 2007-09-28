@@ -1,21 +1,21 @@
 \name{BCBimax}
 \title{The Bimax Bicluster algorithm}
 \alias{BCBimax}
+\alias{Bimax}
+
 
 
 %- Also NEED an '\alias' for EACH other topic documented here.
 \description{This Bimax algorithm finds biclusters in a logical matrix and is based on a framework by Prelic et. al.. }
 \usage{
-BCBimax(x,minr=2,minc=2,number=100)
-
 biclust(x,BCBimax(),minr=2,minc=2,number=100)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x:}{A logical matrix which represents the data.}
-  \item{minr:}{Minimum row size of resulting bicluster.}
-  \item{minc:}{Minimum column size of resulting bicluster.}
-  \item{number:}{number of Bicluster to be found.}
+  \item{x}{A logical matrix which represents the data.}
+  \item{minr}{Minimum row size of resulting bicluster.}
+  \item{minc}{Minimum column size of resulting bicluster.}
+  \item{number}{number of Bicluster to be found.}
 }
 
 \value{

@@ -12,6 +12,7 @@
 \item{x}{Data matrix.}
 \item{method}{An object of class \code{"BiclustMethod"}.}
 \item{\ldots}{Additional Parameters of the \code{"BiclustMethod"} }
+}
 
 \author{Sebastian Kaiser 
 \email{sebastian.kaiser@stat.uni-muenchen.de}

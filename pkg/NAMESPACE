@@ -8,8 +8,6 @@ export(
 	drawHeatmap, 
 	bubbleplot, 
 	parallelCoordinates,
-	plaid, 
-	spectral,
 	BiclustResult,
 	binarize,
 	binarizeByPercentage,
