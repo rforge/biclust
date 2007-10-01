@@ -80,14 +80,14 @@ spectral=function(x,normalization="log", numberOfEigenvalues=3,
     }
 
     print("Return")
-  ret=vector("list", length(srowsOK))
+    ret=vector("list", length(srowsOK))
   #print(cat("srows tiene de long ",length(srows), " y srowsOK ",length(srowsOK)))
     if(length(srowsOK)==0)
       {
       warning("No biclusters found")
       
-#      return(BiclustResult(match.call(),NA,NA,0))
-    return(NA)
+      return(BiclustResult(as.list(match.call()),matrix(NA,1,1),matrix(NA,1,1),0))
+#    return(NA)
       }
     else
       {
