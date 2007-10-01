@@ -3,8 +3,7 @@
 \alias{plaid}
 \alias{plaid model}
 \alias{BCPlaid}
-\alias{turner biclustering}  
-
+\alias{turner biclustering}
 
 
 \title{The Plaid Model Bicluster algorithm}
@@ -15,7 +14,7 @@
   This algorithm models data matrices to a sum of layers. The model is fitted
   to data through minimization of error. }
 \usage{
-biclust(x,BCPlaid(), cluster = "b", fit.model = y ~ m + a + b, 
+biclust(x, BCPlaid(), cluster = "b", fit.model = y ~ m + a + b, 
 background = TRUE, row.release = 0.7, col.release = 0.7, 
 shuffle = 3, back.fit = 0, max.layers = 20,
 iter.startup = 5, iter.layer = 10, verbose = TRUE)
@@ -45,24 +44,14 @@ iter.startup = 5, iter.layer = 10, verbose = TRUE)
 }
 %\details{}
 \value{
-   Returns a object of class \code{Biclust}.
+  Returns a Biclust object.
 }
 \references{
-@ARTICLE{Turner2003,
-  author = {Heather Turner and Trevor Bailey and Wojtek Krzanowski},
-  title = {Improved biclustering of microarray data demonstrated through systematic
-	performance tests},
-  journal = {Computational Statistics and Data Analysis},
-  year = {2003},
-  volume = {48},
-  pages = {235--254}
+  Heather Turner et al, "Improved biclustering of microarray data demonstrated through systematic
+	performance tests",Computational Statistics and Data Analysis, 2003, vol. 48, pages 235-254.
   }
   
-@TECHREPORT{Lazzeroni2002,
-  author = {L. Lazzeroni and A. Owen},
-  title = {Plaid Models for Gene Expression Data},
-  institution = {Standford University},
-  year = {2002}
+  Lazzeroni and Owen, "Plaid Models for Gene Expression Data", Standford University, 2002.
   }
 }
 
@@ -85,12 +74,12 @@ iter.startup = 5, iter.layer = 10, verbose = TRUE)
   #Random matrix with embedded bicluster  
   test=matrix(rnorm(5000),100,50)
   test[11:20,11:20]=rnorm(100,3,0.3)
-  res<-biclust(test,BCPlaid(), back.fit = 2, shuffle = 3, fit.model = ~m + a + b,
+  res<-biclust(test, BCPlaid(), back.fit = 2, shuffle = 3, fit.model = ~m + a + b,
   iter.startup = 5, iter.layer = 30,  verbose = TRUE)
 
   #microarray matrix
   data(BicatYeast)
-  res<-biclust(BicatYeast,BCPlaid(), back.fit = 2, shuffle = 3, fit.model = ~m + a + b,
+  res<-biclust(BicatYeast, BCPlaid(), back.fit = 2, shuffle = 3, fit.model = ~m + a + b,
   iter.startup = 5, iter.layer = 30,  verbose = TRUE)
   }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

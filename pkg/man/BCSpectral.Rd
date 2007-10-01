@@ -54,14 +54,8 @@ biclust(x,BCSpectral(),normalization="log", numberOfEigenvalues=3,
    Returns a object of class \code{Biclust}.
 }
 \references{
-  @ARTICLE{Kluger2003,
-    author = {Y. Kluger and R. Basri and J. T. Chang and M. Gerstein},
-    title = {Spectral Biclustering of Microarray Data: Coclustering Genes and
-  	Conditions},
-    journal = {Genome Research},
-    year = {2003},
-    volume = {13},
-    pages = {703--716}
+    Kluger et al., "Spectral Biclustering of Microarray Data: Coclustering Genes and
+  	Conditions", Genome Research, 2003, vol. 13, pages 703-716
   }
 }
 \author{

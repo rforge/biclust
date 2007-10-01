@@ -20,28 +20,13 @@ using 200 genes from Transcription Regulatory Network of Shen-Orr et al. (2002).
 %\value{}
 \references{
 
-@ARTICLE{Shen-Orr2002,
-  author = {Shai S. Shen-Orr and Ron Milo and Shmoolik Mangan and Uri Alon},
-  title = {Network motifs in the transcriptional regulation network of Escherichia
-	coli},
-  journal = {Nature Genetics},
-  year = {2002},
-  volume = {31},
-  pages = {64--68}
+  Shen-Orr et al., "Network motifs in the transcriptional regulation network of Escherichia coli",
+  Nature Genetics 2002, volume 31, pages 64-68.
   }
   
-  @ARTICLE{Bulcke2006,
-  author = {Tim Van den Bulcke and Koenraad Van Leemput and Bart Naudts and Piet
-	van Remortel and Hongwu Ma and Alain Verschoren and Bart De Moor
-	and Kathleen Marchal},
-  title = {SynTReN: a generator of synthetic gene expression data for design
-	and analysis of structure learning algorithms},
-  journal = {BMC Bioinformatics},
-  year = {2006},
-  volume = {7},
-  number = {43},
-  doi = {10.1186/1471-2105-7-43},
-  url = {http://www.biomedcentral.com/1471-2105/7/43}
+  Tim Van den Bulcke et al., "SynTReN: a generator of synthetic gene expression data for design
+	and analysis of structure learning algorithms", BMC Bioinformatics, 2006,
+  volume 7, number 43.
   }
 }
 

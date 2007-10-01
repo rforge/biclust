@@ -10,10 +10,6 @@
   by Eisen Lab.}
 \usage{
   data(EisenYeast)
-  #To use as matrix
-#  Aeisen=matrix(as.numeric(as.matrix(EisenYeast[,2:dim(EisenYeast)[2]])),dim(EisenYeast)[1],dim(EisenYeast)[2]-1)
-  Aeisen=EisenYeast[,2:dim(EisenYeast)[2]]
-#  Aeisen=as.matrix(EisenYeast[,2:dim(EisenYeast)[2]])
   }
 
 

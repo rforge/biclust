@@ -10,8 +10,6 @@
   extracted from BicAT example data set.}
 \usage{
   data(BicatYeast)
-  #To use as matrix
-  Abicat=as.matrix(BicatYeast[,2:dim(BicatYeast)[2]])
   }
 
 \format{
