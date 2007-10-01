@@ -28,11 +28,11 @@ setClass('Biclust',
          representation = representation(
            Parameters = 'list',
            RowxNumber = 'matrix',
-           ColxNumber = 'matrix',
+           NumberxCol = 'matrix',
            Number = 'numeric'))
 
 BiclustResult <- function(mypara, a, b, c) {
-  return(new('Biclust', Parameters=mypara, RowxNumber=a, ColxNumber=b, Number=c))
+  return(new('Biclust', Parameters=mypara, RowxNumber=a, NumberxCol=b, Number=c))
 }
 
 
@@ -82,7 +82,7 @@ setClass('BCPlaid',
          prototype = prototype(
            biclustFunction = function(x,back.fit,shuffle,fit.model, search.model, row.release,col.release,verbose,max.layers,iter.startup,iter.layer){
            plaid(x, back.fit = 2, shuffle = 3, fit.model = ~m + a + b,
-                  search.model = ~m, row.release = 0.7, col.release = 0.7,
+                  row.release = 0.7, col.release = 0.7,
                   verbose = TRUE, max.layers = 10, iter.startup = 5,
                   iter.layer = 30)
                   }))

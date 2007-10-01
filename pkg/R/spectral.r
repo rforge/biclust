@@ -1,13 +1,13 @@
-spectral=function(mat,normalization="log", numberOfEigenvalues=3, 
+spectral=function(x,normalization="log", numberOfEigenvalues=3, 
             minGenes=2, minConditions=2, withinVar=1)
   {
-  A=mat
+  A=x
   n=dim(A)[1]
   m=dim(A)[2]
   discardFirstEigenvalue=T
   
   #1) Normalization------
- # print("Normalization")
+  print("Normalization")
   if(normalization=="log")
     {
     if(min(A)<1)  A= A+1+(abs(min(A)))
@@ -28,16 +28,16 @@ spectral=function(mat,normalization="log", numberOfEigenvalues=3,
     }
     
   #2) SVD Decomposition
-#  print("SVD")
+  print("SVD")
   desc=svd(K)
 
-#  print("Clustering")
+  print("Clustering")
   #3) Vector processing: partitive clustering and reordering
   result=postprocess(desc,maxeigen=numberOfEigenvalues,minCG=2,
           maxCG=min(n/minGenes,100),minCE=2,maxCE=m/minConditions)
 
   #4) Taking biclusters of all possible eigenvector combinations
-#  print("Harvest")
+  print("Harvest")
   srows=list()
   scols=list()
   init=1
@@ -65,7 +65,7 @@ spectral=function(mat,normalization="log", numberOfEigenvalues=3,
   scolsOK=list()
   ss=c()
   ret=list()
-  
+  print("Filter")
   for(i in 1:length(srows))
     {
     ncols=length(scols[[i]])
@@ -79,6 +79,7 @@ spectral=function(mat,normalization="log", numberOfEigenvalues=3,
       }
     }
 
+    print("Return")
   ret=vector("list", length(srowsOK))
   #print(cat("srows tiene de long ",length(srows), " y srowsOK ",length(srowsOK)))
     if(length(srowsOK)==0)
@@ -95,11 +96,11 @@ spectral=function(mat,normalization="log", numberOfEigenvalues=3,
       
       for(i in 1:length(srowsOK))
         {
-        temp=rep(FALSE,dim(mat)[1])
+        temp=rep(FALSE,dim(A)[1])
         temp[srowsOK[[i]]]=T
         rowxnumber[,i]=temp
         
-        temp=rep(FALSE,dim(mat)[2])
+        temp=rep(FALSE,dim(A)[2])
         temp[scolsOK[[i]]]=T
         colxnumber[,i]=temp
         }
