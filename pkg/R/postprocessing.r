@@ -23,14 +23,14 @@ postprocess=function(dec, maxeigen=3,minCG=2, maxCG, minCE=2, maxCE)
   n=dim(u)[1]
   m=dim(v)[1]
   
-  dev=NA
+  dev=NULL
   max=min(n,m)
   if(maxeigen>max)
     {
     warning("Number of eigenvectors required exceeds freedom degrees")
-#    print("Coercing to maximum number of freedom degrees")
     maxeigen=max
     }
+    
   dev$eigengenecluster=matrix(NA,maxeigen,n)
   dev$eigenexprcluster=matrix(NA,maxeigen,m)
   dev$numgenes=c(1:maxeigen)

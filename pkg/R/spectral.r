@@ -7,7 +7,6 @@ spectral=function(x,normalization="log", numberOfEigenvalues=3,
   discardFirstEigenvalue=T
   
   #1) Normalization------
-  print("Normalization")
   if(normalization=="log")
     {
     if(min(A)<1)  A= A+1+(abs(min(A)))
@@ -26,25 +25,24 @@ spectral=function(x,normalization="log", numberOfEigenvalues=3,
     if(normalization=="irrc")                   K=irrc(Ab)
     else if(normalization=="bistochastization") K=bistochastization(Ab)
     }
+    drawHeatmap(K)
     
   #2) SVD Decomposition
-  print("SVD")
   desc=svd(K)
 
-  print("Clustering")
   #3) Vector processing: partitive clustering and reordering
   result=postprocess(desc,maxeigen=numberOfEigenvalues,minCG=2,
           maxCG=min(n/minGenes,100),minCE=2,maxCE=m/minConditions)
 
   #4) Taking biclusters of all possible eigenvector combinations
-  print("Harvest")
   srows=list()
   scols=list()
   init=1
   if(discardFirstEigenvalue) init=2
   for(k in init:numberOfEigenvalues) 
     {
-    for(l in k:numberOfEigenvalues)
+    init2=k
+    for(l in init2:numberOfEigenvalues)
       {
       numGenes=result$numgene[k]
       numExpr=result$numexpr[l]
@@ -65,7 +63,6 @@ spectral=function(x,normalization="log", numberOfEigenvalues=3,
   scolsOK=list()
   ss=c()
   ret=list()
-  print("Filter")
   for(i in 1:length(srows))
     {
     ncols=length(scols[[i]])
@@ -79,21 +76,16 @@ spectral=function(x,normalization="log", numberOfEigenvalues=3,
       }
     }
 
-    print("Return")
-    ret=vector("list", length(srowsOK))
-  #print(cat("srows tiene de long ",length(srows), " y srowsOK ",length(srowsOK)))
     if(length(srowsOK)==0)
       {
       warning("No biclusters found")
-      
       return(BiclustResult(as.list(match.call()),matrix(NA,1,1),matrix(NA,1,1),0))
-#    return(NA)
       }
     else
       {
       rowxnumber=matrix(F, nrow=dim(A)[1], ncol=length(srowsOK))
       colxnumber=matrix(F, nrow=dim(A)[2], ncol=length(srowsOK))
-      
+     
       for(i in 1:length(srowsOK))
         {
         temp=rep(FALSE,dim(A)[1])
