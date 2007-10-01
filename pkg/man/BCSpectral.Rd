@@ -66,18 +66,11 @@ biclust(x,BCSpectral(),normalization="log", numberOfEigenvalues=3,
 %\seealso{Maybe it's interesting to make public some of the submethods that
 %  use spectral biclustering, as normalization methods or iterative k-means}
 \examples{
-%---- Should be DIRECTLY executable !! ----
-%-- ==>  Define data, use random,
-%--	or do  help(data=index)  for the standard data sets.
-%  #Random 100x50 matrix with a single, up-regulated 10x10 bicluster
-%  s2=matrix(rnorm(5000),100,50)
-%  s2[11:20,11:20]=rnorm(100,3,0.3)
-%  bics<-spectral(s2)
-
   #Random matrix with embedded bicluster  
   test=matrix(rnorm(5000),100,50)
   test[11:20,11:20]=rnorm(100,3,0.3)
-  res1<-biclust(test,BCSpectral())
+  drawHeatmap(test)
+  res1<-biclust(test,BCSpectral(), numberOfEigenvalues=1)
 
   #microarray matrix
   data(BicatYeast)

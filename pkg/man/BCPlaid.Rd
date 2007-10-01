@@ -62,15 +62,6 @@ iter.startup = 5, iter.layer = 10, verbose = TRUE)
 
 %\seealso{}
 \examples{
-%-- ==>  Define data, use random,
-%--	or do  help(data=index)  for the standard data sets.
-%  #Random 100x50 matrix with a single, up-regulated 10x10 bicluster
-%  s2=matrix(rnorm(5000),100,50)
-%  s2[11:20,11:20]=rnorm(100,3,0.3)
-%  set.seed(1)
-%  bics <- plaid(s2, back.fit = 2, shuffle = 3, fit.model = ~m + a + b,
-%  iter.startup = 5, iter.layer = 30,  verbose = TRUE)
-
   #Random matrix with embedded bicluster  
   test=matrix(rnorm(5000),100,50)
   test[11:20,11:20]=rnorm(100,3,0.3)
