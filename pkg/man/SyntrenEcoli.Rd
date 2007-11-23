@@ -22,12 +22,12 @@ using 200 genes from Transcription Regulatory Network of Shen-Orr et al. (2002).
 
   Shen-Orr et al., "Network motifs in the transcriptional regulation network of Escherichia coli",
   Nature Genetics 2002, volume 31, pages 64-68.
-  }
+
   
   Tim Van den Bulcke et al., "SynTReN: a generator of synthetic gene expression data for design
 	and analysis of structure learning algorithms", BMC Bioinformatics, 2006,
   volume 7, number 43.
-  }
+
 }
 
 

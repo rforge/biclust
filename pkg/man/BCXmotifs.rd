@@ -6,7 +6,10 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \description{This Xmotifs algorithm finds biclusters in a data matrix and is based on a framework by Murali and Kasif.}
 \usage{
-biclust(x,BCXmotifs(),ns,nd,sd,alpha,number=100)
+
+\S4method{biclust}{matrix,Biclust-Method}(x,BCXmotifs(),ns,nd,sd,alpha,number=100)
+
+
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

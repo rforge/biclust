@@ -59,7 +59,7 @@ signVariance(mat, resultSet, number, dimension="both")
   #Simplified yeast microarray data
   data(BicatYeast)
   set.seed(1)
-  bics1 <- plaid(BicatYeast, back.fit = 2, shuffle = 3, fit.model = ~m + a + b,
+  bics1 <- biclust(BicatYeast,BCPlaid(), back.fit = 2, shuffle = 3, fit.model = ~m + a + b,
   row.release = 0.7, col.release = 0.7,
   verbose = FALSE, max.layers = 10, iter.startup = 5,
   iter.layer = 30)

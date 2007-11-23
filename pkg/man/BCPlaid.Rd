@@ -49,10 +49,10 @@ iter.startup = 5, iter.layer = 10, verbose = TRUE)
 \references{
   Heather Turner et al, "Improved biclustering of microarray data demonstrated through systematic
 	performance tests",Computational Statistics and Data Analysis, 2003, vol. 48, pages 235-254.
-  }
+
   
   Lazzeroni and Owen, "Plaid Models for Gene Expression Data", Standford University, 2002.
-  }
+
 }
 
 \author{
