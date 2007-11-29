@@ -3,6 +3,8 @@
 \alias{spectral}
 \alias{spectral biclustering}
 \alias{Kluger biclustering}
+\alias{BCSpectral-class}
+\alias{biclust,matrix,BCSpectral-method}
 
 
 \title{The Spectral Bicluster algorithm}
@@ -13,13 +15,14 @@
   of svd decomposing in eigenvectors, applied to genes (rows) and conditions
   (columns).}
 \usage{
-biclust(x,BCSpectral(),normalization="log", numberOfEigenvalues=3, 
+\S4method{biclust}{matrix,BCSpectral}(x,BCSpectral,normalization="log", numberOfEigenvalues=3, 
             minGenes=2, minConditions=2, withinVar=1)
 
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{The data matrix where biclusters have to be found}
+  \item{BCSpectral}{BiclustMethod}
   \item{normalization}{Normalization method to apply to mat. Three methods are
                      allowed as described by Kluger et al.:
                            "log" Logarithmic normalization. NOTE: if this
@@ -74,7 +77,7 @@ biclust(x,BCSpectral(),normalization="log", numberOfEigenvalues=3,
 
   #microarray matrix
   data(BicatYeast)
-  res2<-biclust(BicatYeast,BCSpectral())
+  res2<-biclust(BicatYeast,BCSpectral)
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

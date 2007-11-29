@@ -1,5 +1,6 @@
-\name{Biclust}
+\name{Biclust-class}
 \title{The Biclust Class}
+\docType{class}
 \alias{Biclust}
 \alias{Biclust-class}
 \alias{BiclustResult}

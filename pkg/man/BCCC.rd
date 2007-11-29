@@ -2,16 +2,18 @@
 \title{The CC Bicluster algorithm}
 \alias{BCCC}
 \alias{CC}
-
+\alias{BCCC-class}
+\alias{biclust,matrix,BCCC-method}
 
 %- Also NEED an '\alias' for EACH other topic documented here.
 \description{This CC algorithm finds biclusters in a data matrix and is based on a framework by Cheng and Church.}
 \usage{
-biclust(x,BCCC(),delta,alpha=1.5,number=100)
+\S4method{biclust}{matrix,BCCC}(x,BCCC,delta,alpha=1.5,number=100)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{Data matrix.}
+  \item{BCCC}{BiclustMethod}
   \item{delta}{Maximum of accepted score.}
   \item{alpha}{Scaling factor.}
   \item{number}{Number of bicluster to be found.}
@@ -36,7 +38,7 @@ Proceedings of the Eighth International Conference on Intelligent Systems for Mo
 \seealso{\code{\link{biclust}}}
 \examples{
 test<-matrix(rbinom(400,50,0.4),20,20)
-res<-biclust(test,BCCC(),delta=1.5,alpha=1,number=10)
+res<-biclust(test,BCCC,delta=1.5,alpha=1,number=10)
 
 }
 

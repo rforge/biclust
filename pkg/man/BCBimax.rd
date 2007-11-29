@@ -2,17 +2,20 @@
 \title{The Bimax Bicluster algorithm}
 \alias{BCBimax}
 \alias{Bimax}
+\alias{BCBimax-class}
+\alias{biclust,matrix,Bimax-method}
 
 
 
 %- Also NEED an '\alias' for EACH other topic documented here.
 \description{This Bimax algorithm finds biclusters in a logical matrix and is based on a framework by Prelic et. al.. }
 \usage{
-biclust(x,BCBimax(),minr=2,minc=2,number=100)
+\S4method{biclust}{matrix,Bimax}(x,BCBimax,minr=2,minc=2,number=100)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{A logical matrix which represents the data.}
+  \item{BCBimax}{BiclustMethod}
   \item{minr}{Minimum row size of resulting bicluster.}
   \item{minc}{Minimum column size of resulting bicluster.}
   \item{number}{number of Bicluster to be found.}
@@ -39,7 +42,7 @@ Oxford Univ Press, 2006, 22, 1122-1129
  test=matrix(rnorm(5000),100,50)
  test[11:20,11:20]=rnorm(100,3,0.3)
  loma=binarize(test,2)
- res<-biclust(x=test,BCBimax(),minr=4,minc=4,number=10)
+ res<-biclust(x=test,BCBimax,minr=4,minc=4,number=10)
 
 }
 
