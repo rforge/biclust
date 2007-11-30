@@ -3,6 +3,7 @@ useDynLib(biclust)
 import(methods)
 
 importFrom(grid, grid.lines, unit, gpar)
+importFrom(MASS, sammon, isoMDS, Shepard)
 
 
 export(
