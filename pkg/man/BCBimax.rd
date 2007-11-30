@@ -29,7 +29,7 @@
 }
 
 \references{
-Prelic, A.; Bleuler, S.; Zimmermann, P.; Wil, A.; Bühlmann, P.; Gruissem, W.; Hennig, L.; Thiele, L. & Zitzler, E. 
+Prelic, A.; Bleuler, S.; Zimmermann, P.; Wil, A.; Buhlmann, P.; Gruissem, W.; Hennig, L.; Thiele, L. & Zitzler, E. 
 A Systematic Comparison and Evaluation of Biclustering Methods for Gene Expression Data Bioinformatics,
 Oxford Univ Press, 2006, 22, 1122-1129
 }
