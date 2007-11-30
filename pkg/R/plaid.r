@@ -53,6 +53,7 @@ iter.supervised=NULL
 row.classes=NULL
 col.classes=NULL
 search.model=NULL
+revised.consistency=NULL
 Z=x
 if (is.null(iter.startup) | is.null(iter.layer))
 stop(message = "Please provide values for iter.startup and iter.layer.")
