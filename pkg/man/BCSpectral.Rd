@@ -9,20 +9,19 @@
 
 \title{The Spectral Bicluster algorithm}
 \description{ Performs Spectral Biclustering as described in
-  'Spectral Biclustering of Microarray Data: Coclustering Genes and Conditions',
   Kluger et al., 2003. Spectral biclustering supposed that normalized microarray
   data matrices have a checkerboard structure that can be discovered by the use
   of svd decomposing in eigenvectors, applied to genes (rows) and conditions
   (columns).}
 \usage{
-\S4method{biclust}{matrix,BCSpectral}(x,BCSpectral,normalization="log", numberOfEigenvalues=3, 
+\S4method{biclust}{matrix,BCSpectral}(x, method=BCSpectral(), normalization="log", numberOfEigenvalues=3, 
             minGenes=2, minConditions=2, withinVar=1)
 
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{The data matrix where biclusters have to be found}
-  \item{BCSpectral}{BiclustMethod}
+  \item{method}{Here BCSpectral, to perform Spectral algorithm}
   \item{normalization}{Normalization method to apply to mat. Three methods are
                      allowed as described by Kluger et al.:
                            "log" Logarithmic normalization. NOTE: if this
@@ -38,23 +37,23 @@
                    with all column (condition) eigenVectors for the first
                    numberOfEigenValues eigenvalues. Note that a high number could increase
                    dramatically time performance. Usually, only
-                   the very first eigenvectors are used. Default 3.
+                   the very first eigenvectors are used.
                     NOTE: with "irrc" and "bistochastization" methods, first
                     eigenvalue contains background (irrelevant) information, so
                     it is ignored.}
   \item{minGenes}{minimum number of genes that biclusters must have. The algorithm
-               will not consider smaller biclusters. Default 2.}
+               will not consider smaller biclusters.}
   \item{minConditions}{minimum number of genes that biclusters must have. The algorithm
-               will not consider smaller biclusters. Default 2.}
+               will not consider smaller biclusters.}
   \item{withinVar}{maximum within variation allowed. Since spectral biclustering
           outputs a checkerboard structure despite of relvance of individual cells, a
-          filtering of only relevant cells is necessary. Default 1.
+          filtering of only relevant cells is necessary.
           NOTE: Maybe it's better just to return the checkerboards and let the user
           apply her filters}
 }
 %\details{}
 \value{
-   Returns a object of class \code{Biclust}.
+   Returns an object of class \code{Biclust}.
 }
 \references{
     Kluger et al., "Spectral Biclustering of Microarray Data: Coclustering Genes and
@@ -70,14 +69,14 @@
 %  use spectral biclustering, as normalization methods or iterative k-means}
 \examples{
   #Random matrix with embedded bicluster  
-  test=matrix(rnorm(5000),100,50)
-  test[11:20,11:20]=rnorm(100,3,0.3)
+  test <- matrix(rnorm(5000),100,50)
+  test[11:20,11:20] <- rnorm(100,3,0.3)
   drawHeatmap(test)
-  res1<-biclust(test,BCSpectral(), numberOfEigenvalues=1)
+  res1 <- biclust(test, method=BCSpectral(), numberOfEigenvalues=1)
 
   #microarray matrix
   data(BicatYeast)
-  res2<-biclust(BicatYeast,BCSpectral)
+  res2 <- biclust(BicatYeast, method=BCSpectral())
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

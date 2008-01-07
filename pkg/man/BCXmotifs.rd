@@ -6,17 +6,17 @@
 \alias{biclust,matrix,BCXmotifs-method}
 
 %- Also NEED an '\alias' for EACH other topic documented here.
-\description{This Xmotifs algorithm finds biclusters in a data matrix and is based on a framework by Murali and Kasif.}
+\description{Performs XMotifs Biclustering based on the framework by Murali and Kasif (2003). Searches for a submatrix where each row as a similar motif through all columns.}
 \usage{
 
-\S4method{biclust}{matrix,BCXmotifs}(x,BCXmotifs,ns,nd,sd,alpha,number=100)
+\S4method{biclust}{matrix,BCXmotifs}(x, method=BCXmotifs(), ns=10, nd=10, sd=5, alpha=0.05, number=100)
 
 
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{Data Matrix.}
-  \item{BCXmotifs}{BiclustMethod}
+  \item{method}{Here BCXmotifs, to perform Xmotifs algorithm}
   \item{ns}{Number of rows choosen.}
   \item{nd}{Number of repetitions.}
   \item{sd}{Sample size in repetitions.}
@@ -25,7 +25,7 @@
 }
 
 \value{
-  Returns a object of class \code{Biclust}.
+  Returns an object of class \code{Biclust}.
 }
 
 \section{Extends}{
@@ -45,10 +45,10 @@ Pacific Symposium on Biocomputing, sullivan.bu.edu,
 
 }
 
-\seealso{ \code{\link{biclust}}}
+\seealso{ \code{\link{biclust}}, \code{\link{Biclust}}}
 \examples{
-test<-matrix( sample(1:10,400,replace=TRUE),20,20)
-res<-biclust(test,BCXmotifs,ns=10,nd=10,sd=5,alpha=0.05,number=10)
+test <- matrix( sample(1:10, 400, replace=TRUE), 20, 20)
+res <- biclust(test, method=BCXmotifs(), ns=10, nd=10, sd=5, alpha=0.05, number=10)
 
 }
 

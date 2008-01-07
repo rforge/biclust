@@ -4,10 +4,10 @@
 \alias{BiclustMethod}
 \alias{BiclustMethod-class}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\description{BiclustMethod is the virtual class structure algorithms have to inherit to run with \code{biclust()}. }
+\description{BiclustMethod is the virtual class structure for algorithms provided in the package. In order to use the \code{biclust()} function a algorithm has to have a class inherit from here.}
 
 \section{Algorithms}{
-  There are 5 classes inherit from BiclustMethod:
+  Currently 5 classes inherit from BiclustMethod:
   \code{\link{BCCC}}, \code{\link{BCXmotifs}}, \code{\link{BCPlaid}}, \code{\link{BCSpectral}}, \code{\link{BCBimax}}
   }
   
@@ -17,11 +17,7 @@
 }
 
 \seealso{
-  \code{\link{biclust}},\code{\link{Biclust-class}}, \code{\link{BCCC}}, \code{\link{BCXmotifs}}, \code{\link{BCPlaid}}, \code{\link{BCSpectral}}, \code{\link{BCBimax}}, \code{\link{BiclustMethod-class}}
+  \code{\link{biclust}}, \code{\link{Biclust-class}}, \code{\link{BCCC}}, \code{\link{BCXmotifs}}, \code{\link{BCPlaid}}, \code{\link{BCSpectral}}, \code{\link{BCBimax}}, \code{\link{BiclustMethod-class}}
 }
 \keyword{classes}
-\examples{
-## have a look at the defaults
-new("Biclust")
-
-}
+\examples{}

@@ -22,11 +22,11 @@ cbimax<- function(logicalmatrix,minr=2,minc=2,number=100,er=0)
 
 bimaxbiclust<- function(logicalmatrix,...){
 MYCALL<-match.call()
+print("Llamamos a bimax")
+flush.console()
 ausgabe<-cbimax(logicalmatrix,...)
 if (ausgabe[[10]]==1)
 {warning("Too many biclusters found change number or minimal dimension of expected bicluster!")
 ausgabe}
-
-
-return(BiclustResult(as.list(MYCALL),as.matrix(ausgabe[[6]]),as.matrix(ausgabe[[7]]),ausgabe[[9]]))
+return(BiclustResult(as.list(MYCALL),matrix(ausgabe[[6]],nrow=nrow(logicalmatrix),ncol=ausgabe[[9]]),matrix(ausgabe[[7]], nrow=ausgabe[[9]], ncol=ncol(logicalmatrix)),ausgabe[[9]]))
 }

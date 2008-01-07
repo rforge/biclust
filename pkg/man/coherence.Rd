@@ -12,14 +12,14 @@
   }
 
 \usage{
-constantVariance(mat, resultSet, number, dimension="both")
-additiveVariance(mat, resultSet, number, dimension="both")
-multiplicativeVariance(mat, resultSet, number, dimension="both")
-signVariance(mat, resultSet, number, dimension="both")
+constantVariance(x, resultSet, number, dimension="both")
+additiveVariance(x, resultSet, number, dimension="both")
+multiplicativeVariance(x, resultSet, number, dimension="both")
+signVariance(x, resultSet, number, dimension="both")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{mat}{The data matrix from which biclusters were identified}
+  \item{x}{The data matrix from which biclusters were identified}
   \item{resultSet}{BiclustResult object with a bicluster result set where is the bicluster to measure}
   \item{number}{Number of the bicluster withing the result set}
   \item{dimension}{"both" for determining overall variance, "row" for gene variance and "col" for column variance. Default "both"}

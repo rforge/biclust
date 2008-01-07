@@ -36,7 +36,8 @@ exportClasses(
 		)
 
 exportMethods(
-		biclust
+		biclust,
+		show
 		)
 
 		

@@ -6,21 +6,21 @@
 \alias{biclust,matrix,BCCC-method}
 
 %- Also NEED an '\alias' for EACH other topic documented here.
-\description{This CC algorithm finds biclusters in a data matrix and is based on a framework by Cheng and Church.}
+\description{Performs CC Biclustering based on the framework by Cheng and Church (2000). Searches for submatrices with a score lower than a specific treshold ind a standardizes data matrix. }
 \usage{
-\S4method{biclust}{matrix,BCCC}(x,BCCC,delta,alpha=1.5,number=100)
+\S4method{biclust}{matrix,BCCC}(x, method=BCCC(), delta, alpha=1.5, number=100)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{Data matrix.}
-  \item{BCCC}{BiclustMethod}
+  \item{method}{Here BCCC, to perform CC algorithm}
   \item{delta}{Maximum of accepted score.}
   \item{alpha}{Scaling factor.}
   \item{number}{Number of bicluster to be found.}
 }
 
 \value{
-  Returns a object of class \code{Biclust}.
+  Returns an object of class \code{Biclust}.
 }
 \author{Sebastian Kaiser 
 \email{sebastian.kaiser@stat.uni-muenchen.de}
@@ -35,10 +35,10 @@ Proceedings of the Eighth International Conference on Intelligent Systems for Mo
 
 }
 
-\seealso{\code{\link{biclust}}}
+\seealso{\code{\link{biclust}}, \code{\link{Biclust}}}
 \examples{
-test<-matrix(rbinom(400,50,0.4),20,20)
-res<-biclust(test,BCCC,delta=1.5,alpha=1,number=10)
+test <- matrix(rbinom(400, 50, 0.4), 20, 20)
+res <- biclust(test, method=BCCC(), delta=1.5,  alpha=1, number=10)
 
 }
 

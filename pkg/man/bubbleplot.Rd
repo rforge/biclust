@@ -4,7 +4,7 @@
 \alias{star graph}
 
 \title{Bubbleplot}
-\description{ Draws a star graph where each bicluster is represented as a circle
+\description{ Draws a bubble plot where each bicluster is represented as a circle
   (bubble). Color represents the bicluster set to which bicluster pertains (up to three
     bicluster sets can be represented simultaneously). Brightness representes the bicluster homogeneity
     (darker, less homogeneous).
@@ -70,6 +70,7 @@ Position of circles depend on a
   %Aeisen=EisenYeast[,2:dim(EisenYeast)[2]]
 
   #Simplified yeast microarray data
+  \dontrun{ 
   data(BicatYeast)
   set.seed(1)
   bics1 <- biclust(BicatYeast,BCPlaid(), back.fit = 2, shuffle = 3, fit.model = ~m + a + b,
@@ -79,9 +80,9 @@ Position of circles depend on a
   bubbleplot(BicatYeast,bics1, showLabels=TRUE)
 
   bics2=biclust(BicatYeast,BCCC(),delta=1.5, alpha=1, number=10)
- bubbleplot(BicatYeast,bics1,bics2)
+  bubbleplot(BicatYeast,bics1,bics2)
   }
-             
+  }           
 
 \keyword{hplot}
 \keyword{cluster}
