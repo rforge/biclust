@@ -22,7 +22,6 @@ cbimax<- function(logicalmatrix,minr=2,minc=2,number=100,er=0)
 
 bimaxbiclust<- function(logicalmatrix,...){
 MYCALL<-match.call()
-print("Llamamos a bimax")
 flush.console()
 ausgabe<-cbimax(logicalmatrix,...)
 if (ausgabe[[10]]==1)
