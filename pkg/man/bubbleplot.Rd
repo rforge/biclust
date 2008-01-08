@@ -25,8 +25,7 @@ bubbleplot(mat, bicResult1, bicResult2=NULL, bicResult3=NULL, projection="mean",
                  'mean', 'isomds' and 'cmdscale' (default 'mean').
                   See details section for a broader explanation.}
   \item{showLabels}{ If 'TRUE', puts a label over each bubble that tells the number within the
-                  corresponding bicluster result (default 'FALSE'). Note that if the number of
-                  biclusters is high, the labels could clutter the visualization.}
+                  corresponding bicluster result (default 'FALSE').}
   }
 
 
@@ -65,10 +64,7 @@ Position of circles depend on a
   }
    
    \examples{
-  %Yeast data matrix
-  %data(EisenYeast)
-  %Aeisen=EisenYeast[,2:dim(EisenYeast)[2]]
-
+  
   #Simplified yeast microarray data
   \dontrun{ 
   data(BicatYeast)
@@ -79,7 +75,8 @@ Position of circles depend on a
   iter.layer = 30)
   bubbleplot(BicatYeast,bics1, showLabels=TRUE)
 
-  bics2=biclust(BicatYeast,BCCC(),delta=1.5, alpha=1, number=10)
+  loma=binarize(BicatYeast,2)
+  bics2=biclust(loma,BCBimax(), minr=4, minc=4, number=10)
   bubbleplot(BicatYeast,bics1,bics2)
   }
   }           

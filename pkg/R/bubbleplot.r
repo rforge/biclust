@@ -72,8 +72,6 @@ bubbleplot=function(mat, bicResult1, bicResult2=NULL, bicResult3=NULL, projectio
   xstep=1/m
 
   #1) Analysis of biclustering method 1
-  
-  #print("Analysis of bic method 1")
   numBic1=length(col1)
   ss1=c()
   gen1=matrix(NA,numBic1,n)
@@ -154,7 +152,6 @@ bubbleplot=function(mat, bicResult1, bicResult2=NULL, bicResult3=NULL, projectio
     for(i in etiquetas3)
       {
       Atemp=mat
-    #  print(cat(i, col3[[i]]))
       Atemp[,-col3[[i]]]=0
       ng=length(row3[[i]])
 
@@ -256,30 +253,18 @@ bubbleplot=function(mat, bicResult1, bicResult2=NULL, bicResult3=NULL, projectio
       }
 
   #4) Plotting
-#  library(MASS)
-#  library(stats)
 
-  oldpar=par()
+  oldmai=par("mai")
+  oldmar=par("mar")
   par(mai=c(0,0,0,0),mar=c(0,0,0,0))
 
   dupGen=row(gen)[duplicated(gen),1]
   dupGenVals=gen[dupGen,]
-  for(i in 1:length(dupGen))
-    {
-    
-    }
-  #NOTE: By now, if 
-#  distanciasGen=dist(unique(gen))
-#  print(length(dist(unique(gen))))
    distanciasGen=dist(gen)
    #Little trick to avoid zero distances, which some projection methods don't
    #treat. The proceeding of removing equal genes is easy, but then adding them
    #is harder, and the results are the same
   distanciasGen[distanciasGen==0] = 0.0000001
-  #dupCon=row(con)[duplicated(con),1]
-  #dupConVals=gen[dupCon,]
-  #distanciasCon=dist(unique(con))
-  #print(length(dist(unique(con))))
   distanciasCon=dist(con)
   distanciasCon[distanciasCon==0] = 0.0000001
   if(projection=="cmdscale")
@@ -317,21 +302,19 @@ bubbleplot=function(mat, bicResult1, bicResult2=NULL, bicResult3=NULL, projectio
     todo=cbind(smdCon, smdGen, sizes, ssFich, tipos)
     }
     
-#  write(t(todo),file=fichero, 5, append=FALSE)
   plot(puntos, cex=sizes/100, col=ssCol, pch=tipos)
   if(showLabels==TRUE)
     {
     if(projection=="mean" || projection=="cmdscale")
       {
-     # text(smdCon, smdGen,pos=3, labels=etiquetas, cex=(1.5))
       text(puntos[,1], puntos[,2],pos=3, labels=etiquetas, cex=(1.5))
       }
     else
       {
-     # text(smdCon$points, smdGen$points,pos=3, labels=etiquetas, cex=(1.5))
       text(puntos[,1], puntos[,2],pos=3, labels=etiquetas, cex=(1.5))
       }
     }
+  par(mai=oldmai,mar=oldmar)
   }
 
 

@@ -15,10 +15,13 @@ drawHeatmap=function(mat, bicResult=NULL, number=NA)
     bvect=array(0,dim=numColores)
     paleta=rgb(rvect, gvect, bvect, 255, maxColorValue=255)
 
-    oldpar=par()
-    par(mai=c(0,0,0,0),mar=c(0,0,0,0))
+     oldmai=par("mai")
+     oldmar=par("mar")
+     par(mai=c(0,0,0,0),mar=c(0,0,0,0))
 
     image(1:m,1:n, t(mat), col=paleta, axes=FALSE)
+    
+    par(mai=oldmai, mar=oldmar)
     }
   else
     {
@@ -38,7 +41,8 @@ drawHeatmap=function(mat, bicResult=NULL, number=NA)
       bvect=array(0,dim=numColores)
       paleta=rgb(rvect, gvect, bvect, 255, maxColorValue=255)
   
-      oldpar=par()
+      oldmai=par("mai")
+      oldmar=par("mar")
       par(mai=c(0,0,0,0),mar=c(0,0,0,0))
   
       bicRows=row(matrix(bicResult@RowxNumber[,number]))[bicResult@RowxNumber[,number]==T]
@@ -54,6 +58,8 @@ drawHeatmap=function(mat, bicResult=NULL, number=NA)
       grid.lines(x=unit(c(0,1),"npc"),y=unit(c(desp,desp),"npc"), gp=gpar(col="yellow"))
       desp=length(bicCols)/m
       grid.lines(y=unit(c(0,1),"npc"),x=unit(c(desp,desp),"npc"), gp=gpar(col="yellow"))
+      
+      par(mai=oldmai, mar=oldmar)
       }
     }
   }

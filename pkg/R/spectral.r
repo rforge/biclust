@@ -25,7 +25,7 @@ spectral=function(x,normalization="log", numberOfEigenvalues=3,
     if(normalization=="irrc")                   K=irrc(Ab)
     else if(normalization=="bistochastization") K=bistochastization(Ab)
     }
-    drawHeatmap(K)
+    #drawHeatmap(K)
     
   #2) SVD Decomposition
   desc=svd(K)
@@ -59,7 +59,7 @@ spectral=function(x,normalization="log", numberOfEigenvalues=3,
     }
 
   #5) Discarding non-relevant biclusters
-  srowsOK=list()
+ srowsOK=list()
   scolsOK=list()
   ss=c()
   ret=list()
@@ -85,13 +85,13 @@ spectral=function(x,normalization="log", numberOfEigenvalues=3,
       {
       rowxnumber=matrix(F, nrow=dim(A)[1], ncol=length(srowsOK))
       colxnumber=matrix(F, nrow=dim(A)[2], ncol=length(srowsOK))
-     
+    
       for(i in 1:length(srowsOK))
         {
         temp=rep(FALSE,dim(A)[1])
         temp[srowsOK[[i]]]=T
         rowxnumber[,i]=temp
-        
+       
         temp=rep(FALSE,dim(A)[2])
         temp[scolsOK[[i]]]=T
         colxnumber[,i]=temp

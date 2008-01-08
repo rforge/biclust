@@ -70,8 +70,7 @@
 
   #microarray matrix
   data(BicatYeast)
-  res<-biclust(BicatYeast, method=BCPlaid(), back.fit = 2, shuffle = 3, fit.model = ~m + a + b,
-  iter.startup = 5, iter.layer = 30,  verbose = TRUE)
+  res<-biclust(BicatYeast, method=BCPlaid(), verbose=FALSE)
   }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

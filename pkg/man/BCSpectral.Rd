@@ -9,9 +9,9 @@
 
 \title{The Spectral Bicluster algorithm}
 \description{ Performs Spectral Biclustering as described in
-  Kluger et al., 2003. Spectral biclustering supposed that normalized microarray
+  Kluger et al., 2003. Spectral biclustering supposes that normalized microarray
   data matrices have a checkerboard structure that can be discovered by the use
-  of svd decomposing in eigenvectors, applied to genes (rows) and conditions
+  of svd decomposition in eigenvectors, applied to genes (rows) and conditions
   (columns).}
 \usage{
 \S4method{biclust}{matrix,BCSpectral}(x, method=BCSpectral(), normalization="log", numberOfEigenvalues=3, 
@@ -20,17 +20,17 @@
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{The data matrix where biclusters have to be found}
+  \item{x}{The data matrix where biclusters are to be found}
   \item{method}{Here BCSpectral, to perform Spectral algorithm}
   \item{normalization}{Normalization method to apply to mat. Three methods are
                      allowed as described by Kluger et al.:
-                           "log" Logarithmic normalization. NOTE: if this
+                           "log" (Logarithmic normalization),
+                           "irrc" (Independent Rescaling of Rows and Columns) and
+                           "bistochastization". If "log" 
                                    normalization is used, be sure you can
-                                   apply logarithm to its values, if there are
+                                   apply logarithm to elements in data matrix, if there are
                                    values under 1, it automatically will sum
                                    to each element in mat (1+abs(min(mat))
-                           "irrc"  Independent Rescaling of Rows and Columns
-                           "bistochastization" Bistochastization
                    Default is "log", as recommended by Kluger et al.}
   \item{numberOfEigenvalues}{the number of eigenValues considered to find
                    biclusters. Each row (gene) eigenVector will be combined
@@ -38,7 +38,7 @@
                    numberOfEigenValues eigenvalues. Note that a high number could increase
                    dramatically time performance. Usually, only
                    the very first eigenvectors are used.
-                    NOTE: with "irrc" and "bistochastization" methods, first
+                    With "irrc" and "bistochastization" methods, first
                     eigenvalue contains background (irrelevant) information, so
                     it is ignored.}
   \item{minGenes}{minimum number of genes that biclusters must have. The algorithm
@@ -46,10 +46,9 @@
   \item{minConditions}{minimum number of genes that biclusters must have. The algorithm
                will not consider smaller biclusters.}
   \item{withinVar}{maximum within variation allowed. Since spectral biclustering
-          outputs a checkerboard structure despite of relvance of individual cells, a
-          filtering of only relevant cells is necessary.
-          NOTE: Maybe it's better just to return the checkerboards and let the user
-          apply her filters}
+          outputs a checkerboard structure despite of relevance of individual cells, a
+          filtering of only relevant cells is necessary by means of this within variation
+          threshold.}
 }
 %\details{}
 \value{
@@ -70,15 +69,9 @@
 \examples{
   #Random matrix with embedded bicluster  
   test <- matrix(rnorm(5000),100,50)
-  test[11:20,11:20] <- rnorm(100,3,0.3)
-  drawHeatmap(test)
+  test[11:20,11:20] <- rnorm(100,10,0.1)
   res1 <- biclust(test, method=BCSpectral(), numberOfEigenvalues=1)
-
-  #microarray matrix
-  data(BicatYeast)
-  res2 <- biclust(BicatYeast, method=BCSpectral())
-
-}
+  }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{cluster}

@@ -9,7 +9,6 @@ iterativeKmeans=function(x,minimum=2,maximum=10,choice=0.5)
   {
   n=length(x)
   
-  plot(sort(x))
   #Input checking
   if(minimum<2)
     {
