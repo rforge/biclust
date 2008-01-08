@@ -39,7 +39,7 @@ Proceedings of the Eighth International Conference on Intelligent Systems for Mo
 \examples{
 test <- matrix(rbinom(400, 50, 0.4), 20, 20)
 res <- biclust(test, method=BCCC(), delta=1.5,  alpha=1, number=10)
-
+res
 }
 
 \keyword{cluster}

@@ -67,10 +67,12 @@
   test[11:20,11:20] <- rnorm(100,3,0.3)
   res<-biclust(test, method=BCPlaid(), back.fit = 2, shuffle = 3, fit.model = ~m + a + b,
   iter.startup = 5, iter.layer = 30,  verbose = TRUE)
+  res
 
   #microarray matrix
   data(BicatYeast)
   res<-biclust(BicatYeast, method=BCPlaid(), verbose=FALSE)
+  res
   }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

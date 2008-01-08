@@ -71,7 +71,25 @@
   test <- matrix(rnorm(5000),100,50)
   test[11:20,11:20] <- rnorm(100,10,0.1)
   res1 <- biclust(test, method=BCSpectral(), numberOfEigenvalues=1)
+<<<<<<< .mine
+  res1
+
+  #microarray matrix
+  data(BicatYeast)
+  res2 <- biclust(BicatYeast, method=BCSpectral())
+  res2
+
+}
+=======
   }
+
+
+
+
+
+
+
+>>>>>>> .theirs
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{cluster}

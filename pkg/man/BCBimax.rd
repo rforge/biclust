@@ -43,7 +43,7 @@ Oxford Univ Press, 2006, 22, 1122-1129
  test[11:20,11:20] <- rnorm(100, 3, 0.3)
  loma <- binarize(test,2)
  res <- biclust(x=test, method=BCBimax(), minr=4, minc=4, number=10)
-
+ res
 }
 
 \keyword{cluster}

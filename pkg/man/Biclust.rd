@@ -6,6 +6,7 @@
 \alias{BiclustResult}
 \alias{show,Biclust-method}
 \alias{summary,Biclust-method}
+\alias{alle}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \description{Biclust is the class structure for results of a bicluster algorithm. It contains all information needed for further processing.
     The \code{show} Method gives the Name of the Algorithm used and the first Bicluster found.

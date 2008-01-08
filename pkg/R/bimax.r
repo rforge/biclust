@@ -27,5 +27,7 @@ ausgabe<-cbimax(logicalmatrix,...)
 if (ausgabe[[10]]==1)
 {warning("Too many biclusters found change number or minimal dimension of expected bicluster!")
 ausgabe}
+ausgabe[[6]] <- as.logical(ausgabe[[6]])
+ausgabe[[7]] <- as.logical(ausgabe[[7]])
 return(BiclustResult(as.list(MYCALL),matrix(ausgabe[[6]],nrow=nrow(logicalmatrix),ncol=ausgabe[[9]]),matrix(ausgabe[[7]], nrow=ausgabe[[9]], ncol=ncol(logicalmatrix)),ausgabe[[9]]))
 }

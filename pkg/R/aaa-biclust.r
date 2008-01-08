@@ -102,7 +102,7 @@ function(object)
     cat("\tcall:", deparse(object@Parameters$Method,0.75*getOption("width")),
         sep="\n\t\t")
     cat("\n\tNumber of Clusters found: ",object@Number, "\n")   
-    cat("\n\tBiggest Cluster size:\n")
+    cat("\n\tFirst Cluster size:\n")
     cat("\t\tNumber of Rows:",sum(object@RowxNumber[,1]),"\n")
     cat("\t\tNumber of Columns:",sum(object@NumberxCol[1,]),"\n\n") 
 })
@@ -123,3 +123,4 @@ function(object)
     cat("\t\tNumber of Columns:",sum(object@NumberxCol[i,]),"\n\n")
     }
 })
+
