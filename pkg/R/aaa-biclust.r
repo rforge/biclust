@@ -41,7 +41,7 @@ BiclustResult <- function(mypara, a, b, c) {
 setClass('BCBimax',
          contains = 'BiclustMethod',
          prototype = prototype(
-           biclustFunction = function(x,minr,minc,number){bimaxbiclust(x,minr=2,minc=2,number=100)}))
+           biclustFunction = function(x,minr=2,minc=2,number=100){bimaxbiclust(x,minr,minc,number)}))
 
 BCBimax <- function() {
   return(new('BCBimax'))
@@ -52,7 +52,7 @@ BCBimax <- function() {
 setClass('BCXmotifs',
          contains = 'BiclustMethod',
          prototype = prototype(
-           biclustFunction = function(x,ns,nd,sd,alpha,number=10){xmotifbiclust(x,ns=10,nd=10,sd=5,alpha=0.05,number)}))
+           biclustFunction = function(x,ns=10,nd=10,sd=5,alpha=0.05,number=10){xmotifbiclust(x,ns,nd,sd,alpha,number)}))
          
 BCXmotifs <- function() {
   return(new('BCXmotifs'))
@@ -61,7 +61,7 @@ BCXmotifs <- function() {
 setClass('BCCC',
          contains = 'BiclustMethod',
          prototype = prototype(
-           biclustFunction = function(x,delta,alpha,number){ccbiclust(x,delta,alpha=1.5,number=100)}))
+           biclustFunction = function(x,delta=1.0,alpha=1.5,number=100){ccbiclust(x,delta,alpha,number)}))
          
 BCCC <- function() {
   return(new('BCCC'))
@@ -103,9 +103,23 @@ function(object)
         sep="\n\t\t")
     cat("\n\tNumber of Clusters found: ",object@Number, "\n")   
     cat("\n\tBiggest Cluster size:\n")
-    cat("\t\tNumber of Rows:",sum(object@RowxNumber[1,]),"\n")
-    cat("\t\tNumber of Columns:",sum(object@NumberxCol[,1]),"\n\n") 
+    cat("\t\tNumber of Rows:",sum(object@RowxNumber[,1]),"\n")
+    cat("\t\tNumber of Columns:",sum(object@NumberxCol[1,]),"\n\n") 
 })
         
 
-
+setMethod("summary", "Biclust",
+function(object)
+{
+    cat("\n\tAn object of class",class(object),"\n\n")
+    cat("\tcall:", deparse(object@Parameters$Method,0.75*getOption("width")),
+        sep="\n\t\t")
+    cat("\n\tNumber of Clusters found: ",object@Number, "\n")   
+    cat("\n\tCluster sizes:\n")
+    for(i in 1:object@Number)
+    {
+    cat("\n\tCluster ",i,":\n")
+    cat("\t\tNumber of Rows:",sum(object@RowxNumber[,i]),"\n")
+    cat("\t\tNumber of Columns:",sum(object@NumberxCol[i,]),"\n\n")
+    }
+})

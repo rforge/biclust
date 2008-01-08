@@ -38,7 +38,6 @@ For some algorithms preproccessing is necessary, e.g. \code{BCBimax} only runs w
 \examples{
 test <- matrix(rbinom(400, 50, 0.4), 20, 20)
 res1 <- biclust(test, method=BCCC(), delta=1.5,  alpha=1, number=10)
-res2 <- biclust(test, method=BCXmotifs(), ns=10, nd=10, sd=5, alpha=0.05, number=10)
 
 }
 
