@@ -13,7 +13,7 @@
   This algorithm models data matrices to a sum of layers, the model is fitted
   to data through minimization of error. }
 \usage{
-\S4method{biclust}{matrix,BCPlaid}(x, method=BCPlaid(), cluster = "b", fit.model = y ~ m + a + b, 
+\S4method{biclust}{matrix,BCPlaid}(x, method=BCPlaid(), cluster="b", fit.model = y ~ m + a + b, 
   background = TRUE, row.release = 0.7, col.release = 0.7, 
   shuffle = 3, back.fit = 0, max.layers = 20,
   iter.startup = 5, iter.layer = 10, verbose = TRUE)
@@ -21,8 +21,8 @@
 
 \arguments{
   \item{x}{The data matrix where biclusters have to be found}
-  \item{method}{Here BCPlaid, to perform Plaid algorithm}
   \item{cluster}{'r', 'c' or 'b', to cluster rows, columns or both (default 'b')}
+  \item{method}{Here BCPlaid, to perform Plaid algorithm}
   \item{fit.model}{Model (formula) to fit each layer. Usually, a linear model is used, that
    stimates three parameters: m (constant for all elements in the bicluster),
    a(contant for all rows in the bicluster) and b (constant for all columns).
@@ -65,8 +65,7 @@
   #Random matrix with embedded bicluster  
   test <- matrix(rnorm(5000),100,50)
   test[11:20,11:20] <- rnorm(100,3,0.3)
-  res<-biclust(test, method=BCPlaid(), back.fit = 2, shuffle = 3, fit.model = ~m + a + b,
-  iter.startup = 5, iter.layer = 30,  verbose = TRUE)
+  res<-biclust(test, method=BCPlaid())
   res
 
   #microarray matrix

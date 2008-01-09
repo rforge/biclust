@@ -70,8 +70,8 @@ BCCC <- function() {
 setClass('BCSpectral',
          contains = 'BiclustMethod',
          prototype = prototype(
-           biclustFunction = function(x,normalization,numberOfEigenvalues,minGenes, minConditions, withinVar){spectral(x,normalization="log", numberOfEigenvalues=3, 
-            minGenes=2, minConditions=2, withinVar=1)}))
+           biclustFunction = function(x,normalization="log",numberOfEigenvalues=3,minGenes=2, minConditions=2, withinVar=1)
+           {spectral(x,normalization, numberOfEigenvalues, minGenes, minConditions, withinVar)}))
          
 BCSpectral <- function() {
   return(new('BCSpectral'))
@@ -81,12 +81,8 @@ BCSpectral <- function() {
 setClass('BCPlaid',
          contains = 'BiclustMethod',
          prototype = prototype(
-           biclustFunction = function(x,back.fit,shuffle,fit.model, search.model, row.release,col.release,verbose,max.layers,iter.startup,iter.layer){
-           plaid(x, back.fit = 2, shuffle = 3, fit.model = ~m + a + b,
-                  row.release = 0.7, col.release = 0.7,
-                  verbose = TRUE, max.layers = 10, iter.startup = 5,
-                  iter.layer = 30)
-                  }))
+           biclustFunction = function(x, cluster="b", fit.model= ~ m + a + b, background=TRUE, row.release=0.7,col.release=0.7,shuffle=3, back.fit=2,max.layers=10,iter.startup=5,iter.layer=30, verbose=TRUE)
+           {plaid(x, cluster, fit.model, background, row.release, col.release, shuffle, back.fit, max.layers, iter.startup, iter.layer, verbose) }))
          
 BCPlaid <- function() {
   return(new('BCPlaid'))
