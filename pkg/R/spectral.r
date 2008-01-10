@@ -25,13 +25,14 @@ spectral=function(x,normalization="log", numberOfEigenvalues=3,
     if(normalization=="irrc")                   K=irrc(Ab)
     else if(normalization=="bistochastization") K=bistochastization(Ab)
     }
-    #drawHeatmap(K)
     
   #2) SVD Decomposition
   desc=svd(K)
 
   #3) Vector processing: partitive clustering and reordering
-  result=postprocess(desc,maxeigen=numberOfEigenvalues,minCG=2,
+#  result=postprocess(desc,maxeigen=numberOfEigenvalues,minCG=max(2,floor(n/400)),
+#          maxCG=min(n/minGenes,100),minCE=max(2,floor(m/20)),maxCE=m/minConditions)
+   result=postprocess(desc,maxeigen=numberOfEigenvalues,minCG=2,
           maxCG=min(n/minGenes,100),minCE=2,maxCE=m/minConditions)
 
   #4) Taking biclusters of all possible eigenvector combinations
@@ -59,7 +60,7 @@ spectral=function(x,normalization="log", numberOfEigenvalues=3,
     }
 
   #5) Discarding non-relevant biclusters
- srowsOK=list()
+  srowsOK=list()
   scolsOK=list()
   ss=c()
   ret=list()
@@ -68,7 +69,7 @@ spectral=function(x,normalization="log", numberOfEigenvalues=3,
     ncols=length(scols[[i]])
     nrows=length(srows[[i]])
     wv=withinVar(A[srows[[i]],scols[[i]]],ncols,nrows)
-    if(wv<withinVar && ncols>1 && nrows>1)
+    if(wv<withinVar && ncols>minConditions && nrows>minGenes)
       {
        srowsOK=c(srowsOK, list(srows[[i]]))
        scolsOK=c(scolsOK, list(scols[[i]]))

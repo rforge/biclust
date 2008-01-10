@@ -33,7 +33,7 @@ iterativeKmeans=function(x,minimum=2,maximum=10,choice=0.5)
   ss=c()
   while(k<=maximum)
     {
-    ss=c(ss,mean(kmeans(x,k)$withinss))
+    ss=c(ss,mean(kmeans(x,k,iter.max=20)$withinss))
     k=k+1
     }
   diferencias=diff(ss)
@@ -48,5 +48,5 @@ iterativeKmeans=function(x,minimum=2,maximum=10,choice=0.5)
       }
     }
   optimo=optimo+minimum-1
-  kmeans(x,optimo)
+  kmeans(x,optimo,iter.max=20)
   }
