@@ -103,7 +103,7 @@ function(object)
     cat("\t\tNumber of Columns:",sum(object@NumberxCol[1,]),"\n\n") 
 })
         
-
+setGeneric( "summary")
 setMethod("summary", "Biclust",
 function(object)
 {

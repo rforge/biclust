@@ -39,7 +39,8 @@ exportClasses(
 
 exportMethods(
 		biclust,
-		show
+		show,
+		summary
 		)
 
 		
