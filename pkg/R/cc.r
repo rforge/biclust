@@ -167,5 +167,5 @@ y[i,]<-erg[[2]]
 mat[erg[[1]],erg[[2]]]<-runif(sum(erg[[1]])*sum(erg[[2]]),mi,ma)
 }
 }
-return(BiclustResult(as.list(MYCALL),x,y,number))
+return(BiclustResult(as.list(MYCALL),x[,1:i],y[1:i,],i))
 }     

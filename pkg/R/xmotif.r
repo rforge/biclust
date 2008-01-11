@@ -114,5 +114,5 @@ if(nrow(mat)<2)
 {break}
 }
 }
-return(BiclustResult(as.list(MYCALL),x,y,i))
+return(BiclustResult(as.list(MYCALL),x[,1:i],y[1:i,],i))
 }
