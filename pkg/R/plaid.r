@@ -9,23 +9,23 @@
 ## 27/04/2005
 ##### USER FUNCTIONS #####
 ## ’plaid’ to fit plaid model
-## ’summary’ to print summary of fitted plaid model
+## ’summary2’ to print summary of fitted plaid model
 ## Define plaid result object and corresponding summary method
 setClass("PlaidResult", representation("list"))
-setGeneric("summary")
-setMethod("summary","PlaidResult",
-function(object)
-{
-nr <- apply(object$rows, 2, sum)
-nk <- apply(object$cols, 2, sum)
-SS <- sapply(object$fits, function(x) sum(x^2))
-print(matrix(c(nr, nk, object$layer.df, round(SS, 2),
-round(SS/object$layer.df, 2), object$convergence,
-object$rows.released, object$cols.released), ncol = 8,
-dim = list(Layer = 1:length(nr) - object$background,
-c("Rows", "Cols", "Df", "SS", "MS", "Convergence",
-"Rows Released", "Cols Released"))), digits = 15)
-})
+#setGeneric("summary")
+#setMethod("summary","PlaidResult",
+#function(object)
+#{
+#nr <- apply(object$rows, 2, sum)
+#nk <- apply(object$cols, 2, sum)
+#SS <- sapply(object$fits, function(x) sum(x^2))
+#print(matrix(c(nr, nk, object$layer.df, round(SS, 2),
+#round(SS/object$layer.df, 2), object$convergence,
+#object$rows.released, object$cols.released), ncol = 8,
+#dim = list(Layer = 1:length(nr) - object$background,
+#c("Rows", "Cols", "Df", "SS", "MS", "Convergence",
+#"Rows Released", "Cols Released"))), digits = 15)
+#})
 ## Plaid model wrapper function - calls update function to fit layer
 plaid <- function(
 x, # array (matrix) to be clustered
