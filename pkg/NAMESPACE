@@ -15,6 +15,7 @@ export(
 	binarizeByPercentage,
 	densityOnes,
 	discretize,
+	jaccardind,
 	constantVariance,
 	additiveVariance,
 	multiplicativeVariance,

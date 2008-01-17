@@ -6,9 +6,9 @@ setGeneric('biclust', function(x,method, ...){standardGeneric('biclust')})
 
 setMethod('biclust', c('matrix','BiclustMethod'),
 function(x,method, ...) {
-
+  MYCALL<-match.call()
   ret<-method@biclustFunction(x,...)
-  ret@Parameters<-c(list(Data=x,Method=method),list(...))
+  ret@Parameters<-c(list(Call=MYCALL,Data=x,Method=method),list(...))
   return(ret)
 })
 
@@ -95,7 +95,7 @@ setMethod("show", "Biclust",
 function(object)
 {
     cat("\n\tAn object of class",class(object),"\n\n")
-    cat("\tcall:", deparse(object@Parameters$Method,0.75*getOption("width")),
+    cat("\tcall:", deparse(object@Parameters$Call,0.75*getOption("width")),
         sep="\n\t\t")
     cat("\n\tNumber of Clusters found: ",object@Number, "\n")   
     cat("\n\tFirst Cluster size:\n")
