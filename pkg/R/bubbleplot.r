@@ -112,7 +112,6 @@ bubbleplot=function(mat, bicResult1, bicResult2=NULL, bicResult3=NULL, projectio
   #2) Analysis of biclustering method 2
    if(!is.null(bicResult2))
     {
-    numBic2=length(col2)
     ss2=c()
     gen2=matrix(NA,numBic2,n)
     con2=matrix(NA,numBic2,m)
@@ -142,13 +141,11 @@ bubbleplot=function(mat, bicResult1, bicResult2=NULL, bicResult3=NULL, projectio
   #2b) Analysis of biclustering method 3
    if(!is.null(bicResult3))
     {
-    numBic3=length(col3)
     ss3=c()
     gen3=matrix(NA,numBic3,n)
     con3=matrix(NA,numBic3,m)
     sizes3=c()
     etiquetas3=1:numBic3
-
     for(i in etiquetas3)
       {
       Atemp=mat
