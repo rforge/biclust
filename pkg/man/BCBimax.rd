@@ -8,7 +8,7 @@
 
 
 %- Also NEED an '\alias' for EACH other topic documented here.
-\description{Performs Bimax Biclustering based on the framework by Prelic et. al.(2006). It searches for submatrices of ones in a logical matrix. Uses the original c code of the authors.}
+\description{Performs Bimax Biclustering based on the framework by Prelic et. al.(2006). It searches for submatrices of ones in a logical matrix. Uses the original C code of the authors.}
 \usage{
 \S4method{biclust}{matrix,BCBimax}(x, method=BCBimax(), minr=2, minc=2, number=100)
 }

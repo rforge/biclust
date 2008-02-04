@@ -7,13 +7,13 @@
 \title{Binarize}
 \description{ Methods to convert a real matrix to a binary matrix.}
 \usage{
-binarize(mat, threshold=NA)
-binarizeByPercentage(mat,percentage, error=0.2, gap=0.1)
-densityOnes(mat)
+binarize(x, threshold=NA)
+binarizeByPercentage(x,percentage, error=0.2, gap=0.1)
+densityOnes(x)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{mat}{The data matrix to be binarized.}
+  \item{x}{The data matrix to be binarized.}
   \item{threshold}{Threshold used to binarize. Values over threshold will be set to 1,
     the rest to 0. If threshold is NA, median is used as threshold. Default NA.}
   \item{percentage}{Percentage of ones against zeros desired in the binary matrix.}

@@ -6,10 +6,10 @@
 \description{Represents expression levels through gene or condition profiles in
   a bicluster as lines.}
 \usage{
-parallelCoordinates(mat,bicResult,number, plotConditions=TRUE, absoluteLimits=TRUE)
+parallelCoordinates(x,bicResult,number, plotConditions=TRUE, absoluteLimits=TRUE)
 }
 \arguments{
-  \item{mat}{The data matrix of the bicluster to be drawn}
+  \item{x}{The data matrix of the bicluster to be drawn}
   \item{bicResult}{BiclustResult object with a bicluster result set}
   \item{number}{Bicluster to be drawn from the result set 'bicResult'}
   \item{plotConditions}{If 'TRUE', condition profiles are drawn, so each line represents one of the conditions in the bicluster. Otherwise, gene profiles are drawn. Default 'TRUE'}

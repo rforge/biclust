@@ -7,11 +7,11 @@
   reordered so the rows and columns of the input bicluster will be at top-left
   of the matrix.}
 \usage{
-drawHeatmap(mat,bicResult=NULL,number=NA)
+drawHeatmap(x,bicResult=NULL,number=NA)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{mat}{The data matrix where the bicluster is to be drawn.}
+  \item{x}{The data matrix where the bicluster is to be drawn.}
   \item{bicResult}{BiclustResult object with a bicluster result set. If this value
     is set to NULL, the data matrix is drawn as a heatmap, without any reordering. Default NULL.}
   \item{number}{Bicluster to be drawn from the result set 'bicResult'. If bicResult is set to

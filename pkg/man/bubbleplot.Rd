@@ -13,11 +13,11 @@
     }
     
 \usage{
-bubbleplot(mat, bicResult1, bicResult2=NULL, bicResult3=NULL, projection="mean", showLabels=FALSE)
+bubbleplot(x, bicResult1, bicResult2=NULL, bicResult3=NULL, projection="mean", showLabels=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{mat}{The data matrix from which biclusters were identified.}
+  \item{x}{The data matrix from which biclusters were identified.}
   \item{bicResult1}{BiclustResult object with a bicluster result set whose biclusters will be drawn in green.}
   \item{bicResult2}{BiclustResult object with an optional second bicluster result set. Will be drawn in red (default NULL)}
   \item{bicResult3}{BiclustResult object with an optional third bicluster result set. Will be drawn in blue (default NULL)}
