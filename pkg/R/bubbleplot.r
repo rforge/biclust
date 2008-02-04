@@ -1,7 +1,7 @@
 library(MASS)
 # NOTE: sammon and shepard projections could be added, but require a treament
 #       of duplicated data
-bubbleplot=function(mat, bicResult1, bicResult2=NULL, bicResult3=NULL, projection="mean", showLabels=FALSE)
+bubbleplot=function(x, bicResult1, bicResult2=NULL, bicResult3=NULL, projection="mean", showLabels=FALSE)
   {
   #0) Length checking
   numBic2=0
@@ -64,8 +64,8 @@ bubbleplot=function(mat, bicResult1, bicResult2=NULL, bicResult3=NULL, projectio
     break
     }
 
-  n=dim(mat)[1]
-  m=dim(mat)[2]
+  n=dim(x)[1]
+  m=dim(x)[2]
 
   #0.5) Tick marks
   ystep=1/n
@@ -88,7 +88,7 @@ bubbleplot=function(mat, bicResult1, bicResult2=NULL, bicResult3=NULL, projectio
 
   for(i in etiquetas1)
     {
-    Atemp=mat
+    Atemp=x
     Atemp[,-col1[[i]]]=0
     ng=length(row1[[i]])
 
@@ -120,7 +120,7 @@ bubbleplot=function(mat, bicResult1, bicResult2=NULL, bicResult3=NULL, projectio
 
     for(i in etiquetas2)
       {
-      Atemp=mat
+      Atemp=x
       Atemp[,-col2[[i]]]=0
       ng=length(row2[[i]])
 
@@ -148,7 +148,7 @@ bubbleplot=function(mat, bicResult1, bicResult2=NULL, bicResult3=NULL, projectio
     etiquetas3=1:numBic3
     for(i in etiquetas3)
       {
-      Atemp=mat
+      Atemp=x
       Atemp[,-col3[[i]]]=0
       ng=length(row3[[i]])
 

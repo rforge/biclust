@@ -1,12 +1,12 @@
 library(grid)
 # Draws A as a heatmap, with rows and columns reordered as bicluster rows and
 # columns
-drawHeatmap=function(mat, bicResult=NULL, number=NA)
+drawHeatmap=function(x, bicResult=NULL, number=NA)
   {
   if(is.null(bicResult))
     {#draw just the matrix
-    n=dim(mat)[1]
-    m=dim(mat)[2]
+    n=dim(x)[1]
+    m=dim(x)[2]
 
     #Color palette
     numColores=255*2
@@ -19,7 +19,7 @@ drawHeatmap=function(mat, bicResult=NULL, number=NA)
      oldmar=par("mar")
      par(mai=c(0,0,0,0),mar=c(0,0,0,0))
 
-    image(1:m,1:n, t(mat), col=paleta, axes=FALSE)
+    image(1:m,1:n, t(x), col=paleta, axes=FALSE)
     
     par(mai=oldmai, mar=oldmar)
     }
@@ -31,8 +31,8 @@ drawHeatmap=function(mat, bicResult=NULL, number=NA)
       }
     else
       {
-      n=dim(mat)[1]
-      m=dim(mat)[2]
+      n=dim(x)[1]
+      m=dim(x)[2]
   
       #Color palette
       numColores=255*2
@@ -48,7 +48,7 @@ drawHeatmap=function(mat, bicResult=NULL, number=NA)
       bicRows=row(matrix(bicResult@RowxNumber[,number]))[bicResult@RowxNumber[,number]==T]
       bicCols=row(matrix(bicResult@NumberxCol[number,]))[bicResult@NumberxCol[number,]==T]
       image(1:m,1:n,
-             t(mat[c(setdiff(c(1:n),bicRows), bicRows),
+             t(x[c(setdiff(c(1:n),bicRows), bicRows),
                 c(bicCols,setdiff(c(1:m),bicCols))]),
             col=paleta, axes=FALSE)
   

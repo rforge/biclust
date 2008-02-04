@@ -1,7 +1,7 @@
-parallelCoordinates=function(mat, bicResult, number, plotConditions=TRUE, absoluteLimits=TRUE)
+parallelCoordinates=function(x, bicResult, number, plotConditions=TRUE, absoluteLimits=TRUE)
   {
-  n=dim(mat)[1]
-  m=dim(mat)[2]
+  n=dim(x)[1]
+  m=dim(x)[2]
     
   bicRows=row(matrix(bicResult@RowxNumber[,number]))[bicResult@RowxNumber[,number]==T]
   bicCols=row(matrix(bicResult@NumberxCol[number,]))[bicResult@NumberxCol[number,]==T]
@@ -9,13 +9,13 @@ parallelCoordinates=function(mat, bicResult, number, plotConditions=TRUE, absolu
 
   if(absoluteLimits)
     {
-    if(plotConditions)  matplot(mat[bicRows,bicCols],type='l',lty=1, ylab="Expression level", xlab="Gene", ylim=c(min(mat),max(mat)))
-    else                matplot(t(mat[bicRows,bicCols]),type='l',lty=1, ylab="Expression level", xlab="Condition", ylim=c(min(mat),max(mat)))
+    if(plotConditions)  matplot(x[bicRows,bicCols],type='l',lty=1, ylab="Expression level", xlab="Gene", ylim=c(min(x),max(x)))
+    else                matplot(t(x[bicRows,bicCols]),type='l',lty=1, ylab="Expression level", xlab="Condition", ylim=c(min(x),max(x)))
     }
   else
     {
-    if(plotConditions)  matplot(mat[bicRows,bicCols],type='l',lty=1, ylab="Expression level", xlab="Gene")
-    else                matplot(t(mat[bicRows,bicCols]),type='l',lty=1, ylab="Expression level", xlab="Condition")
+    if(plotConditions)  matplot(x[bicRows,bicCols],type='l',lty=1, ylab="Expression level", xlab="Gene")
+    else                matplot(t(x[bicRows,bicCols]),type='l',lty=1, ylab="Expression level", xlab="Condition")
     }
   if(plotConditions)
       title(main=paste("Expresion levels of conditions \nin Bicluster",number," across their genes\n",

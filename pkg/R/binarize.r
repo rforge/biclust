@@ -1,10 +1,10 @@
 #Binarize by the input threshold or using median if no treshold given
-binarize=function(mat,threshold=NA)
+binarize=function(x,threshold=NA)
   {
-  matd=mat
+  matd=x
   if(is.na(threshold))
     {
-    threshold=min(mat)+(max(mat)-min(mat))/2
+    threshold=min(x)+(max(x)-min(x))/2
     print(paste("Threshold: ",threshold))
     }
 
@@ -16,7 +16,7 @@ binarize=function(mat,threshold=NA)
 #Binarize to get the input percentage of 1s over 0s
 #The algorithm stops when it gets a density in [percentage-error, percentage+error]
 #Gap is the increment taken in iterative search
-binarizeByPercentage=function(mat,percentage,error=0.2,gap=0.1)
+binarizeByPercentage=function(x,percentage,error=0.2,gap=0.1)
   {
   if(error<=gap)
     {
@@ -24,11 +24,11 @@ binarizeByPercentage=function(mat,percentage,error=0.2,gap=0.1)
     }
   else
     {
-    threshold=min(mat)+(max(mat)-min(mat))/2
+    threshold=min(x)+(max(x)-min(x))/2
     dens=percentage
     repeat
       {
-      matd=binarize(mat,threshold)
+      matd=binarize(x,threshold)
       if(dens==densityOnes(matd))  {break}
       dens=densityOnes(matd)
       if(dens>percentage)
@@ -50,11 +50,11 @@ binarizeByPercentage=function(mat,percentage,error=0.2,gap=0.1)
 
 #---------------------- DENSITY -------------------------
 #Percentage of number of 1s over number of 0s
-densityOnes=function(mat)
+densityOnes=function(x)
   {
-  num1=length(mat[mat==1])
-  num0=length(mat[mat==0])
-  if((num1+num0)!=prod(dim(mat))) print("Error: mat must be a binary matrix")
+  num1=length(x[x==1])
+  num0=length(x[x==0])
+  if((num1+num0)!=prod(dim(x))) print("Error: x must be a binary matrix")
   else
     {
     den=(num1/num0)*100  #Density of 1s over 0s
