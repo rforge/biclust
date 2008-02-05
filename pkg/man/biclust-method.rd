@@ -13,15 +13,13 @@ For some algorithms preproccessing is necessary, e.g. \code{BCBimax} only runs w
 
 
 \usage{
-\S4method{biclust}{matrix,BiclustMethod}(x,BiclustMethod,...)
+\S4method{biclust}{matrix,BiclustMethod}(x,method,...)
 %\S4method{biclust}{matrix,function}(x,function,...)
-\S4method{biclust}{matrix,character}(x,character,...)
+\S4method{biclust}{matrix,character}(x,method,...)
 }
 \arguments{
 \item{x}{Data matrix.}
-\item{BiclustMethod}{An object of class \code{"BiclustMethod"}.}
-%\item{function}{An function from class \code{"BiclustMethod"}.}
-\item{character}{Name of a \code{"BiclustMethod"}-class.}
+\item{method}{An object of class \code{"BiclustMethod"} or a character string with the name of a \code{"BiclustMethod"}-class.}
 \item{\ldots}{Additional Parameters of the \code{"BiclustMethod"} }
 }
 \value{
