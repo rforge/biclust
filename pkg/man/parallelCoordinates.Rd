@@ -3,22 +3,24 @@
 \alias{parallel coordinates}
 
 \title{Parallel Coordinates}
-\description{Represents expression levels through gene or condition profiles in
+\description{Represents expression levels through gene and/or condition profiles in
   a bicluster as lines.}
 \usage{
-parallelCoordinates(x,bicResult,number, plotConditions=TRUE, absoluteLimits=TRUE)
+parallelCoordinates(x,bicResult,number, plotBoth=TRUE, plotConditions=TRUE, absoluteLimits=TRUE, GeneTitle=FALSE, ...)
 }
 \arguments{
   \item{x}{The data matrix of the bicluster to be drawn}
   \item{bicResult}{BiclustResult object with a bicluster result set}
   \item{number}{Bicluster to be drawn from the result set 'bicResult'}
+  \item{plotBoth}{If 'TRUE', Parallel Coordinates of rows (Genes) and columns (Conditions) were drawn one below the other.}
   \item{plotConditions}{If 'TRUE', condition profiles are drawn, so each line represents one of the conditions in the bicluster. Otherwise, gene profiles are drawn. Default 'TRUE'}
   \item{absoluteLimits}{If 'TRUE', absolute limits are used, so expression levels from the minimum to the maximum of the complete data matrix are considered. Otherwise, minimum and maximum are minimum and maximum expression levels grouped in the bicluster. Default 'TRUE'}
+  \item{GeneTitle}{If 'TRUE', a prepared Title for Gene/Condition Problems is drawn} 
   }
 
 
  \author{                       
-  Rodrigo Santamaria
+  Rodrigo Santamaria ans Sebastian Kaiser
   \email{rodri@usal.es}
   }
 

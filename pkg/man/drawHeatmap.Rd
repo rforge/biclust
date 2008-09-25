@@ -7,7 +7,7 @@
   reordered so the rows and columns of the input bicluster will be at top-left
   of the matrix.}
 \usage{
-drawHeatmap(x,bicResult=NULL,number=NA)
+drawHeatmap(x,bicResult=NULL,number=NA,plotAll=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -16,8 +16,9 @@ drawHeatmap(x,bicResult=NULL,number=NA)
     is set to NULL, the data matrix is drawn as a heatmap, without any reordering. Default NULL.}
   \item{number}{Bicluster to be drawn from the result set 'bicResult'. If bicResult is set to
     NULL, this value is ignored. Default NA}
+  \item{plotAll}{If TRUE, all Bicluster of result set 'bicResult' were drawn.}
   }
-%\details{}
+\details{'plotAll' only works if there is a exclusive rows and column Result!}
 %\value{}
 %\references{}
 

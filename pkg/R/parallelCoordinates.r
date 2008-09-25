@@ -1,45 +1,68 @@
-parallelCoordinates=function(x, bicResult, number, plotConditions=TRUE, absoluteLimits=TRUE,geneTitle=FALSE,...)
-  {
+parallelCoordinates=function(x, bicResult, number, plotConditions=TRUE, absoluteLimits=TRUE,GeneTitle=FALSE,...)
+{
   n=dim(x)[1]
   m=dim(x)[2]
-    
+   
   bicRows=row(matrix(bicResult@RowxNumber[,number]))[bicResult@RowxNumber[,number]==T]
   bicCols=row(matrix(bicResult@NumberxCol[number,]))[bicResult@NumberxCol[number,]==T]
-
-  if(geneTitle)
-  {
-  if(absoluteLimits)
+      
+  if(plotBoth)
     {
-    if(plotConditions)  matplot(x[bicRows,bicCols],type='l',lty=1, ylab="Expression level", xlab="Gene", ylim=c(min(x),max(x)))
-    else                matplot(t(x[bicRows,bicCols]),type='l',lty=1, ylab="Expression level", xlab="Condition", ylim=c(min(x),max(x)))
+    op<-par(mfrow=c(2,1))
+    if(absoluteLimits)
+        {
+        matplot(x[bicRows,bicCols],type='l',lty=1, ylim=c(min(x),max(x)),...)
+        matplot(t(x[bicRows,bicCols]),type='l',lty=1, ylim=c(min(x),max(x)),...)
+        }
+    else
+        {
+        matplot(x[bicRows,bicCols],type='l',lty=1,...)
+        matplot(t(x[bicRows,bicCols]),type='l',lty=1,...)
+        }
+    if(GeneTitle)
+      {
+       title(main=paste("Bicluster",number,"(genes=", length(bicRows),";", "conditions=",length(bicCols),")",sep=" "))
+      }
+      
+    
+    
     }
   else
     {
-    if(plotConditions)  matplot(x[bicRows,bicCols],type='l',lty=1, ylab="Expression level", xlab="Gene")
-    else                matplot(t(x[bicRows,bicCols]),type='l',lty=1, ylab="Expression level", xlab="Condition")
-    }
+   
+    if(GeneTitle)
+      {
+      if(absoluteLimits)
+        {
+        if(plotConditions)  matplot(x[bicRows,bicCols],type='l',lty=1, ylab="Expression level", xlab="Gene", ylim=c(min(x),max(x)))
+        else                matplot(t(x[bicRows,bicCols]),type='l',lty=1, ylab="Expression level", xlab="Condition", ylim=c(min(x),max(x)))
+        }
+      else
+        {
+        if(plotConditions)  matplot(x[bicRows,bicCols],type='l',lty=1, ylab="Expression level", xlab="Gene")
+        else                matplot(t(x[bicRows,bicCols]),type='l',lty=1, ylab="Expression level", xlab="Condition")
+        }
 
-  if(plotConditions)
-      title(main=paste("Expression levels of conditions \nin Bicluster",number," across their genes\n",
-        "(genes=", length(bicRows), "conditions=",length(bicCols),")",sep=" "))
-  else
-      title(main=paste("Expression levels of genes \nin Bicluster",number," across their conditions\n",
-        "(genes=", length(bicRows), "conditions=",length(bicCols),")",sep=" "))
+      if(plotConditions)
+        title(main=paste("Bicluster",number,"(genes=", length(bicRows),";", "conditions=",length(bicCols),")",sep=" "))
+      else
+        title(main=paste("Bicluster",number,"(genes=", length(bicRows),";", "conditions=",length(bicCols),")",sep=" "))
   
-  }
+      }
  
-else
-{
+    else
+      {
 
-if(absoluteLimits)
-    {
-    if(plotConditions)  matplot(x[bicRows,bicCols],type='l',lty=1, ylim=c(min(x),max(x)),...)
-    else                matplot(t(x[bicRows,bicCols]),type='l',lty=1, ylim=c(min(x),max(x)),...)
+      if(absoluteLimits)
+        {
+        if(plotConditions)  matplot(x[bicRows,bicCols],type='l',lty=1, ylim=c(min(x),max(x)),...)
+        else                matplot(t(x[bicRows,bicCols]),type='l',lty=1, ylim=c(min(x),max(x)),...)
+        }
+      else
+        {
+        if(plotConditions)  matplot(x[bicRows,bicCols],type='l',lty=1,...)
+        else                matplot(t(x[bicRows,bicCols]),type='l',lty=1,...)
+        }
+      }
     }
-  else
-    {
-    if(plotConditions)  matplot(x[bicRows,bicCols],type='l',lty=1,...)
-    else                matplot(t(x[bicRows,bicCols]),type='l',lty=1,...)
-    }
-}
 }

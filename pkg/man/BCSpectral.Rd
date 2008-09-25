@@ -30,7 +30,7 @@
                                    normalization is used, be sure you can
                                    apply logarithm to elements in data matrix, if there are
                                    values under 1, it automatically will sum
-                                   to each element in mat (1+abs(min(mat))
+                                   to each element in mat (1+abs(min(mat)))
                    Default is "log", as recommended by Kluger et al.}
   \item{numberOfEigenvalues}{the number of eigenValues considered to find
                    biclusters. Each row (gene) eigenVector will be combined
@@ -58,7 +58,7 @@
     Kluger et al., "Spectral Biclustering of Microarray Data: Coclustering Genes and
   	Conditions", Genome Research, 2003, vol. 13, pages 703-716
   }
-}
+
 \author{
   Rodrigo Santamaria
   \email{rodri@usal.es}

@@ -34,7 +34,7 @@ A Systematic Comparison and Evaluation of Biclustering Methods for Gene Expressi
 Oxford Univ Press, 2006, 22, 1122-1129
 }
 
-}
+
 
 \seealso{ \code{\link{biclust}}, \code{\link{Biclust}}}
 \examples{

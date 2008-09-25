@@ -88,6 +88,15 @@ BCPlaid <- function() {
   return(new('BCPlaid'))
 }
 
+setClass('BCQuest',
+         contains = 'BiclustMethod',
+         prototype = prototype(
+           biclustFunction = function(x,ns=10,nd=10,sd=5,alpha=0.05,number=10){questmotif(x,ns,nd,sd,alpha,number)}))
+         
+BCQuest <- function() {
+  return(new('BCQuest'))
+}
+
 
 ###**show and summary*******************************
 
