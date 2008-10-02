@@ -30,7 +30,8 @@ export(
 	BCQuest,
 	clustmember,
 	biclustmember,
-	plotclust
+	plotclust,
+	writeclust
 	)
 
 exportClasses(

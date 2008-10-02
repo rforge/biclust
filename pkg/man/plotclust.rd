@@ -2,7 +2,7 @@
 \alias{plotclust}
 \alias{plotclust}
 
-\title{Draw Heatmap}
+\title{Barplot of Bicluster}
 \description{ Draws a graph to compare the values inside the diffrent biclusters with the values outside the bicluster}
 \usage{
 plotclust(res,x,bicluster=TRUE,legende=FALSE,noC=5,wyld=3,Titel="Plotclust",...)
