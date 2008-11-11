@@ -158,4 +158,72 @@ else
 title(Titel)
 }
 
+# Converts a Biclust object to a list of bicluster objects
+# A bicluster object has rows and cols fields
+# Each one is a list of numbers that represents the rows and columns in the bicluster
+# in the same order that they appear in the Biclust object (that is, the order of the original matrix)
+# bicResult is a Biclust object
+convertclust=function(bicResult)
+{
+	setClass("bicluster", representation(rows="integer", cols="integer"))
+	
+	if(class(bicResult)!="Biclust")
+		{
+		stop("The argument 'bicResult' must be of class Biclust")
+		}
+	biclusters=c()
+	for (i in 1:(bicResult@Number)) 
+	{
+		listar = which(bicResult@RowxNumber[,i])
+		listac = which(bicResult@NumberxCol[i,])
+		if(length(listar)==0 || length(listac)==0)	{}
+		else{
+			bic=new("bicluster")
+			bic@rows=listar
+			bic@cols=listac
+			biclusters=c(biclusters,bic)
+		}
+	}	
+	biclusters
+}
+
+
+#Takes a list of biclusters and returns a list of the largest maxNumber biclusters
+#with less overlap than "overlapThreshold"  (or a number < maxNumber if there are not enough biclusters
+#that satisfy the overlap criterium). maxNumber default is 100.
+# overlapThreshold must be in [0,1], representing the percentage of overlap (default 0.25)
+# bics is a list of "bicluster" objects
+filterclust=function(bics, overlapThreshold=0.25, maxNumber=100)
+{
+	cont=0
+	sizes=as.numeric(lapply(1:length(bics), function(i) length(bics[[i]]@rows)*length(bics[[i]]@cols)))
+	bics2=c()
+	for(i in bics[order(sizes, decreasing=T)])
+	{
+		if(cont>=maxNumber)	break
+		insert=T
+		for(j in bics2)
+		{
+			if(overlap(i,j)>=overlapThreshold)
+			{
+				insert=F
+				break
+			}
+		}
+		if(insert)	
+		{
+			bics2=c(bics2,i)
+			cont=cont+1
+		}
+	}
+	bics2
+}
+
+#Returns the amount of overlap between two biclusters, measured in terms of 
+#percentage respect to bic1 (bic1 and bic2 are bicluster objects with fields rows and cols)
+overlap=function(bic1,bic2)
+{
+	length(intersect(bic1@rows,bic2@rows))/length(bic1@rows)*length(intersect(bic1@cols,bic2@cols))/length(bic1@cols)	
+}
+
 

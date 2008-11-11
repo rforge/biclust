@@ -1,11 +1,11 @@
-parallelCoordinates=function(x, bicResult, number, plotConditions=TRUE, absoluteLimits=TRUE,GeneTitle=FALSE,...)
+parallelCoordinates=function(x, bicResult, number, plotConditions=TRUE, absoluteLimits=TRUE,GeneTitle=FALSE,plotBoth=FALSE, ...)
 {
   n=dim(x)[1]
   m=dim(x)[2]
    
-  bicRows=row(matrix(bicResult@RowxNumber[,number]))[bicResult@RowxNumber[,number]==T]
-  bicCols=row(matrix(bicResult@NumberxCol[number,]))[bicResult@NumberxCol[number,]==T]
-      
+ 	bicRows=which(bicResult@RowxNumber[,number])
+	bicCols=which(bicResult@NumberxCol[number,]==T)
+	    
   if(plotBoth)
     {
     op<-par(mfrow=c(2,1))
