@@ -9,6 +9,7 @@ importFrom(MASS, sammon, isoMDS, Shepard)
 
 export(
 	drawHeatmap, 
+	drawHeatmap2, 
 	bubbleplot, 
 	parallelCoordinates,
 	BiclustResult,
