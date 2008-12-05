@@ -36,13 +36,13 @@ drawHeatmap=function(x, bicResult=NULL, number=NA, local=TRUE)
 		x2=x[bicRows,bicCols]
 		x3=length(paleta)*(x2-min(x))/(max(x)-min(x))
 		paleta2=paleta[min(x3):max(x3)]
-		par(mar=c(1,4,4,0)+0.1, mgp=c(0,1,0))
+		par(mar=c(1,6,7,0)+0.1, mgp=c(0,1,0))
 		#par(xpd=T)
 		
 		image(1:length(bicCols),1:length(bicRows), t(x2), col=paleta2, axes=F, 
 				xlab=paste("Bicluster ",number, " (size ", length(bicRows), "x", length(bicCols),")"), 
 				ylab="")
-		axis(side=3, 1L:length(bicCols), labels = colnames(x2), las = 1, line = -0.5, tick = 0)
+		axis(side=3, 1L:length(bicCols), labels = colnames(x2), las = 2, line = -0.5, tick = 0)
 		axis(side=2,  1L:length(bicRows), labels = rownames(x2), las = 2, line = -0.5, tick = 0)		
 		#mtext(colnames(x2), side=3, 1L:length(bicCols),  las = 2, line = -0.5, srt=45)
 		#mtext(rownames(x2), side=2,  1L:length(bicRows), las = 2, line = -0.5, srt=45)

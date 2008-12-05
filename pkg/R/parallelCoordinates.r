@@ -16,8 +16,8 @@ parallelCoordinates=function(x, bicResult, number,plotBoth=FALSE, plotConditions
         }
     else
         {
-        matplot(x[bicRows,bicCols],type='l',lty=1,...)
-        matplot(t(x[bicRows,bicCols]),type='l',lty=1,...)
+        matplot(x[bicRows,bicCols],type='l',lty=1,xlab=namen[1],ylab=ylabel,...)
+        matplot(t(x[bicRows,bicCols]),type='l',lty=1,xlab=namen[2],ylab=ylabel,...)
         }
     if(GeneTitle)
       {
