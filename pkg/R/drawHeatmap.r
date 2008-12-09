@@ -1,7 +1,7 @@
 library(grid)
 # Draws A as a heatmap, with rows and columns reordered as bicluster rows and
 # columns
-drawHeatmap=function(x, bicResult=NULL, number=NA, local=TRUE)
+drawHeatmap=function(x, bicResult=NULL, number=NA, local=TRUE, beamercolor=FALSE,paleta,...)
   {
   n=dim(x)[1]
   m=dim(x)[2]
@@ -11,7 +11,10 @@ drawHeatmap=function(x, bicResult=NULL, number=NA, local=TRUE)
   gvect=c(array(255:0),array(0,dim=255))
   rvect=c(array(0,dim=255),array(0:255))
   bvect=array(0,dim=numColores)
-  paleta=rgb(rvect, gvect, bvect, 255, maxColorValue=255)
+  if(beamercolor)
+  {paleta=paleta}
+  else
+  {paleta=rgb(rvect, gvect, bvect, 255, maxColorValue=255)}
   
   oldpar=par(c("mai", "mar", "mgp", "xpd"))
   	  	  

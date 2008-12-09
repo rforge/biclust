@@ -142,7 +142,7 @@ else
     mat[1,] <- colMeans(x[identper,])
     mat[2,] <- colMeans(x[!identper,])
     mat[3,] <- apply(x[!identper,],2,median)
-    rownames(mat) <- c("Value","Mean","Median")
+    rownames(mat) <- c("Value in Bicluster","Mean in remaining ","Median")
     colnames(mat) <- colnames(x)
         if(legende)
       {
@@ -153,6 +153,7 @@ else
       barplot(mat,beside=T,main=paste("Cluster",i,"Size:",anz),las=wyld,...)
       }
     }
+  
   par(op)
   }
 title(Titel)

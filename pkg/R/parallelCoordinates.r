@@ -36,13 +36,13 @@ parallelCoordinates=function(x, bicResult, number,plotBoth=FALSE, plotConditions
       {
       if(absoluteLimits)
         {
-        if(plotConditions)  matplot(x[bicRows,bicCols],type='l',lty=1, ylab=ylabel, xlab="Gene", ylim=c(min(x),max(x)))
-        else                matplot(t(x[bicRows,bicCols]),type='l',lty=1, ylab=ylabel, xlab="Condition", ylim=c(min(x),max(x)))
+        if(plotConditions)  matplot(x[bicRows,bicCols],type='l',lty=1, ylab=ylabel, xlab="Gene", ylim=c(min(x),max(x)),...)
+        else                matplot(t(x[bicRows,bicCols]),type='l',lty=1, ylab=ylabel, xlab="Condition", ylim=c(min(x),max(x)),...)
         }
       else
         {
-        if(plotConditions)  matplot(x[bicRows,bicCols],type='l',lty=1, ylab=ylabel, xlab="Gene")
-        else                matplot(t(x[bicRows,bicCols]),type='l',lty=1, ylab=ylabel, xlab="Condition")
+        if(plotConditions)  matplot(x[bicRows,bicCols],type='l',lty=1, ylab=ylabel, xlab="Gene",...)
+        else                matplot(t(x[bicRows,bicCols]),type='l',lty=1, ylab=ylabel, xlab="Condition",...)
         }
 
       if(plotConditions)
