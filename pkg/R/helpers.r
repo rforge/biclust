@@ -10,7 +10,7 @@ nj<-dim(x)[2]
 
 if(quant)
 {
-levels<-quantile(x,seq(0+1/10,1,by=1/10))
+levels<-quantile(x,seq(0+1/nof,1,by=1/nof))
 }
 else
 {

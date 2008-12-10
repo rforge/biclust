@@ -1,4 +1,4 @@
-
+library(vcd)
 
 
 clustmember<-function(res,x,mid=T,Titel="Cluster Membership Graph",...)
