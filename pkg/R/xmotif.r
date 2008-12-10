@@ -115,7 +115,7 @@ if(nrow(mat)<2)
 }
 }
 if(i<number)
-{return(BiclustResult(as.list(MYCALL),as.matrix(x[,1:(i-1)]),as.matrix(y[1:(i-1),],(i-1))))
+{return(BiclustResult(as.list(MYCALL),x[,1:(i-1)],y[1:(i-1),],(i-1)))
 }
 else{
 return(BiclustResult(as.list(MYCALL),x,y,i))
