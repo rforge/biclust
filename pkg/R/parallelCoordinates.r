@@ -57,13 +57,13 @@ parallelCoordinates=function(x, bicResult, number,plotBoth=FALSE, plotConditions
 
       if(absoluteLimits)
         {
-        if(plotConditions)  matplot(x[bicRows,bicCols],type='l',lty=1, ylim=c(min(x),max(x)),...)
-        else                matplot(t(x[bicRows,bicCols]),type='l',lty=1, ylim=c(min(x),max(x)),...)
+        if(plotConditions)  matplot(x[bicRows,bicCols],type='l',lty=1, ylim=c(min(x),max(x)),xlab=namen[1],ylab=ylabel,...)
+        else                matplot(t(x[bicRows,bicCols]),type='l',lty=1, ylim=c(min(x),max(x)),xlab=namen[1],ylab=ylabel,...)
         }
       else
         {
-        if(plotConditions)  matplot(x[bicRows,bicCols],type='l',lty=1,...)
-        else                matplot(t(x[bicRows,bicCols]),type='l',lty=1,...)
+        if(plotConditions)  matplot(x[bicRows,bicCols],type='l',lty=1,xlab=namen[1],ylab=ylabel,...)
+        else                matplot(t(x[bicRows,bicCols]),type='l',lty=1,xlab=namen[1],ylab=ylabel,...)
         }
       }
     }
