@@ -8,7 +8,7 @@
   reordered so the rows and columns of the input bicluster will be at top-left
   of the matrix.}
 \usage{
-drawHeatmap(x,bicResult=NULL,number=NA,local=FALSE)
+drawHeatmap(x,bicResult=NULL,number=NA,local=FALSE, beamercolor=FALSE,paleta)
 drawHeatmap2(x,bicResult=NULL,number=NA,plotAll=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -20,6 +20,8 @@ drawHeatmap2(x,bicResult=NULL,number=NA,plotAll=FALSE)
     NULL, this value is ignored. Default NA}
   \item{local}{If TRUE, only rows and columns of the bicluster were drawn.}
   \item{plotAll}{If TRUE, all Bicluster of result set 'bicResult' were drawn.}
+  \item{beamercolor}{If TRUE, palete colors are used.}
+  \item{paleta}{Colors}
   }
 \details{'plotAll' only works if there is a exclusive rows and column Result!}
 %\value{}
@@ -31,8 +33,8 @@ drawHeatmap2(x,bicResult=NULL,number=NA,plotAll=FALSE)
   }
 
 \seealso{
-  \item{\code{\link{bubbleplot}}}{ for simultaneous representation of biclusters.}
-  \item{\code{\link{parallelCoordinates}}}{for single representation of biclusters as lines of gene or condition profiles.}
+\code{\link{bubbleplot}} for simultaneous representation of biclusters.\\
+\code{\link{parallelCoordinates}}for single representation of biclusters as lines of gene or condition profiles.
   }
 \examples{
 %-- ==>  Define data, use random,
