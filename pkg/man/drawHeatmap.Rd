@@ -8,7 +8,7 @@
   reordered so the rows and columns of the input bicluster will be at top-left
   of the matrix.}
 \usage{
-drawHeatmap(x,bicResult=NULL,number=NA,local=FALSE, beamercolor=FALSE,paleta)
+drawHeatmap(x,bicResult=NULL,number=NA,local=TRUE, beamercolor=FALSE,paleta,...)
 drawHeatmap2(x,bicResult=NULL,number=NA,plotAll=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -22,14 +22,15 @@ drawHeatmap2(x,bicResult=NULL,number=NA,plotAll=FALSE)
   \item{plotAll}{If TRUE, all Bicluster of result set 'bicResult' were drawn.}
   \item{beamercolor}{If TRUE, palete colors are used.}
   \item{paleta}{Colors}
+  \item{...}{Additional plot options}
   }
 \details{'plotAll' only works if there is a exclusive rows and column Result!}
 %\value{}
 %\references{}
 
 \author{
-  Rodrigo Santamaria
-  \email{rodri@usal.es}
+  Rodrigo Santamaria \email{rodri@usal.es},
+  Sebastian Kaiser
   }
 
 \seealso{

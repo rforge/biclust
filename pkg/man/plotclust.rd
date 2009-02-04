@@ -12,9 +12,11 @@ plotclust(res,x,bicluster=TRUE,legende=FALSE,noC=5,wyld=3,Titel="Plotclust",...)
   \item{x}{The data matrix}
   \item{res}{BiclustResult object if bicluster=TRUE else a normal kcca object.}
   \item{bicluster}{If TRUE,res is treated as a BiclustResult object}
+  \item{legende}{Draws a legend.}
   \item{noC}{Number of Clusters drawn}
   \item{wyld}{Gives the distance between plot and axis.}
   \item{Titel}{Gives the title of the plot.}
+  \item{...}{Additional plot options}
   }
 \details{}
 %\value{}

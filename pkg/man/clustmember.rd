@@ -17,6 +17,7 @@ clustmember(res,x,mid=T,Titel="Cluster Membership Graph",...)
   \item{res}{Cluster Result (kcca object)}
   \item{mid}{If TRUE, shows the value of the remaining objects inside the cluster value, else shows both aside each other.}
   \item{Titel}{Gives the title of the plot}
+  \item{...}{Additional plot options}
   }
 \details{}
 %\value{}
@@ -33,7 +34,7 @@ clustmember(res,x,mid=T,Titel="Cluster Membership Graph",...)
   \item{\code{\link{drawHeatmap}}}{for Heatmap representation of biclusters}
   }
 \examples{
-
+  library(vcd)
   s2=matrix(rnorm(400),20,20)
   s2[12:16,12:16]=rnorm(25,3,0.3)
   set.seed(1)
