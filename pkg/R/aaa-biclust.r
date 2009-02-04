@@ -131,9 +131,9 @@ setGeneric("summary")
 setMethod("summary", "Biclust",
 function(object)
 {
-    cat("\n\tAn object of class",class(object),"\n\n")
-    cat("\tcall:", deparse(object@Parameters$Method,0.75*getOption("width")),
-        sep="\n\t\t")
+    cat("\nAn object of class",class(object),"\n\n")
+    cat("call:", deparse(object@Parameters$Method,0.75*getOption("width")),
+        sep="\n\t")
     n<-object@Number
 
     cat("\nNumber of Clusters found: ",object@Number, "\n")    
