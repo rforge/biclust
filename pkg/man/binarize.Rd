@@ -25,7 +25,6 @@ densityOnes(x)
    \item{binarize}{Returns a matrix binarize by input threshold, or by the median if no threshold is given.}
    \item{binarizeByPercentage}{Returns a matrix binarize by input percentage, given as desired density of ones against zeros.}
    \item{densityOnes}{Returns the percentage of ones against zeros in a logical matrix}
-\end{itemize}
 }
 }
 %\value{}
