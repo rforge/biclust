@@ -5,6 +5,7 @@ import(vcd)
 
 importFrom(grid, grid.lines, unit, gpar)
 importFrom(MASS, sammon, isoMDS, Shepard)
+importFrom(vcd, diverge_hcl)
 
 export(
 	drawHeatmap, 
