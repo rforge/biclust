@@ -150,7 +150,7 @@ c("Rows", "Cols", "Df", "SS", "MS",
 "Convergence", "Rows Released",
 "Cols Released"))), digits = 15)
 }
-if (layer > background)
+#if (layer > background)
   #new("PlaidResult",
   #list(residuals = drop(Z),fits = lapply(fits[1:layer], drop),
   #layer.df = layer.df[1:layer], rows = r[,1:layer],

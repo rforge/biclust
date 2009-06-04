@@ -1,5 +1,5 @@
 
-clustmember<-function(res,x,mid=T,Titel="Cluster Membership Graph",...)
+clustmember<-function(res,x,mid=T,cl_label="CL.",Titel="Cluster Membership Graph",...)
 {
 minx<-min(x)
 maxx<-max(x)
@@ -24,10 +24,8 @@ if(!mid)
         outclustercol<-(round(mean(x[!identper,j]),2)-minx)*(100/(maxx-minx)) +1
 
 
-        rect(xseq[i], yseq[j], xticks[i], yseq[j+1], density = NULL, angle = 45,
-        col = mycolor[inclustercol], border = NA, lty = par("lty"), lwd = par("lwd"),...)
-        rect(xticks[i], yseq[j], xseq[i+1], yseq[j+1], density = NULL, angle = 45,
-        col = mycolor[outclustercol], border = NA, lty = par("lty"), lwd = par("lwd"),...)
+        rect(xseq[i], yseq[j], xticks[i], yseq[j+1], col = mycolor[inclustercol],...)
+        rect(xticks[i], yseq[j], xseq[i+1], yseq[j+1], col = mycolor[outclustercol],...)
 
       }
     }
@@ -41,12 +39,9 @@ else
         identper <- res$cluster==i
         inclustercol<-(round(mean(x[identper,j]),2)-minx)*(100/(maxx-minx)) +1
         outclustercol<-(round(mean(x[!identper,j]),2)-minx)*(100/(maxx-minx)) +1
-        rect(xseq[i], yseq[j], xticks[i]-midl, yseq[j+1], density = NULL, angle = 45,
-        col = mycolor[inclustercol], border = NA, lty = par("lty"), lwd = par("lwd"),...)
-        rect(xticks[i]-midl, yseq[j], xticks[i]+midl, yseq[j+1], density = NULL, angle = 45,
-        col = mycolor[outclustercol], border = NA, lty = par("lty"), lwd = par("lwd"),...)
-        rect(xticks[i]+midl, yseq[j], xseq[i+1], yseq[j+1], density = NULL, angle = 45,
-        col = mycolor[inclustercol], border = NA, lty = par("lty"), lwd = par("lwd"),...)
+        rect(xseq[i], yseq[j], xticks[i]-midl, yseq[j+1], col = mycolor[inclustercol],...)
+        rect(xticks[i]-midl, yseq[j], xticks[i]+midl, yseq[j+1], col = mycolor[outclustercol],...)
+        rect(xticks[i]+midl, yseq[j], xseq[i+1], yseq[j+1], col = mycolor[inclustercol],...)
 
       }
     }
@@ -64,7 +59,7 @@ for(i in 1:length(yseq))
   lines(c(0,1),c(yseq[i],yseq[i]))
   }
 
-axis(1, at = xticks, labels = paste("Cluster",1:length(xticks)), tick = F,...)
+axis(1, at = xticks, labels = paste(,cl_label,1:length(xticks)), tick = F,...)
 
 axis(2, at = yticks, labels = colnames(x), tick = F,las=2,...)
 
@@ -77,7 +72,7 @@ title(Titel)
 
 
 ######## Biclustermembergraph ####
-biclustmember<-function(bicResult,x,mid=T,Titel="BiCluster Membership Graph",...)
+biclustmember<-function(bicResult,x,mid=T,cl_label="CL.",Titel="BiCluster Membership Graph",...)
 {
 minx<-min(x)
 maxx<-max(x)
@@ -104,10 +99,8 @@ if(!mid)
         outclustercol<-(round(mean(x[!identper,j]),2)-minx)*(100/(maxx-minx)) +1
 
 
-        rect(xseq[i], yseq[j], xticks[i], yseq[j+1], density = NULL, angle = 45,
-        col = mycolor[inclustercol], border = NA, lty = par("lty"), lwd = par("lwd"),...)
-        rect(xticks[i], yseq[j], xseq[i+1], yseq[j+1], density = NULL, angle = 45,
-        col = mycolor[outclustercol], border = NA, lty = par("lty"), lwd = par("lwd"),...)
+        rect(xseq[i], yseq[j], xticks[i], yseq[j+1], col = mycolor[inclustercol],...)
+        rect(xticks[i], yseq[j], xseq[i+1], yseq[j+1], col = mycolor[outclustercol],...)
         }
       }
     }
@@ -123,12 +116,12 @@ else
         identper <- bicResult@RowxNumber[,i]
         inclustercol<-(round(mean(x[identper,j]),2)-minx)*(100/(maxx-minx)) +1
         outclustercol<-(round(mean(x[!identper,j]),2)-minx)*(100/(maxx-minx)) +1
-        rect(xseq[i], yseq[j], xticks[i]-midl, yseq[j+1], density = NULL, angle = 45,
-        col = mycolor[inclustercol], border = NA, lty = par("lty"), lwd = par("lwd"),...)
-        rect(xticks[i]-midl, yseq[j], xticks[i]+midl, yseq[j+1], density = NULL, angle = 45,
-        col = mycolor[outclustercol], border = NA, lty = par("lty"), lwd = par("lwd"),...)
-        rect(xticks[i]+midl, yseq[j], xseq[i+1], yseq[j+1], density = NULL, angle = 45,
-        col = mycolor[inclustercol], border = NA, lty = par("lty"), lwd = par("lwd"),...)
+        rect(xseq[i], yseq[j], xticks[i]-midl, yseq[j+1],
+        col = mycolor[inclustercol],...)
+        rect(xticks[i]-midl, yseq[j], xticks[i]+midl, yseq[j+1],
+        col = mycolor[outclustercol],...)
+        rect(xticks[i]+midl, yseq[j], xseq[i+1], yseq[j+1],
+        col = mycolor[inclustercol],...)
         }
       }
     }
@@ -146,7 +139,7 @@ for(i in 1:length(yseq))
   lines(c(0,1),c(yseq[i],yseq[i]))
   }
 
-axis(1, at = xticks, labels = paste("Cluster",1:length(xticks)), tick = F,...)
+axis(1, at = xticks, labels = paste(cl_label,1:length(xticks)), tick = F,...)
 
 axis(2, at = yticks, labels = colnames(x), tick = F,las=2,...)
 
