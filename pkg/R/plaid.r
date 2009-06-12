@@ -137,6 +137,8 @@ distributeList(backFit(layer, back.fit, fits, r, k, Z, fit.model))
 }
 ## Create table summarising results - as in "summary" method
 if (!is.null(fix.layers)) layer <- fix.layers + background
+if(verbose)
+{
 if (layer == background) print("No clusters have been found")
 else
 {
@@ -149,6 +151,7 @@ ncol = 8, dim = list(Layer = 1:layer - background,
 c("Rows", "Cols", "Df", "SS", "MS",
 "Convergence", "Rows Released",
 "Cols Released"))), digits = 15)
+}
 }
 #if (layer > background)
   #new("PlaidResult",
