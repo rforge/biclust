@@ -29,6 +29,8 @@ export(
 	BCSpectral,
 	BCPlaid,
 	BCQuest,
+	BCQuestord,
+	BCQuestmet,
 	clustmember,
 	biclustmember,
 	plotclust,

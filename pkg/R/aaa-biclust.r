@@ -97,6 +97,23 @@ BCQuest <- function() {
   return(new('BCQuest'))
 }
 
+setClass('BCQuestord',
+         contains = 'BiclustMethod',
+         prototype = prototype(
+           biclustFunction = function(x,d=1,ns=10,nd=10,sd=5,alpha=0.05,number=10){questordmotif(x,d,ns,nd,sd,alpha,number)}))
+
+BCQuestord <- function() {
+  return(new('BCQuestord'))
+}
+
+setClass('BCQuestmet',
+         contains = 'BiclustMethod',
+         prototype = prototype(
+           biclustFunction = function(x,quant=0.25,vari=1,ns=10,nd=10,sd=5,alpha=0.05,number=10){questmetmotif(x,quant,vari,ns,nd,sd,alpha,number)}))
+
+BCQuestmet <- function() {
+  return(new('BCQuestmet'))
+}
 
 ###**show and summary*******************************
 
