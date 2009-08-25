@@ -59,7 +59,7 @@ for(i in 1:length(yseq))
   lines(c(0,1),c(yseq[i],yseq[i]))
   }
 
-axis(1, at = xticks, labels = paste(,cl_label,1:length(xticks)), tick = F,...)
+axis(1, at = xticks, labels = paste(cl_label,1:length(xticks)), tick = F,...)
 
 axis(2, at = yticks, labels = colnames(x), tick = F,las=2,...)
 
