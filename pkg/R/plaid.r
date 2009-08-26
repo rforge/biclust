@@ -162,9 +162,26 @@ c("Rows", "Cols", "Df", "SS", "MS",
   #cols.released = cols.released[1:layer],
   #background = background))
 #  return(BiclustResult(match.call(),r[,1:layer],k[,1:layer],layer-1,last.warning))
-  if(layer<=1)          return(BiclustResult(as.list(match.call()),matrix(NA,1,1),matrix(NA,1,1),0))
-  else if(layer==2)     return(BiclustResult(as.list(match.call()),matrix(r[,2:layer],n,1),t(matrix(k[,2:layer],p,1)),1))
-  else                  return(BiclustResult(as.list(match.call()),r[,2:layer],t(k[,2:layer]),layer-1))
+
+  if(layer<=1)          
+    {
+    #MATCHCALL<-list(as.list(match.call()),SS=0,MS=0)
+    return(BiclustResult(as.list(match.call()),matrix(NA,1,1),matrix(NA,1,1),0,list(SS=0,MS=0)))
+    }
+  else
+    {
+    if(layer==2)
+      {
+      #MATCHCALL<-list(as.list(match.call()),SS=SS[1:2],MS=SS[1:2] / layer.df[1:2])
+      return(BiclustResult(as.list(match.call()),matrix(r[,2:layer],n,1),t(matrix(k[,2:layer],p,1)),1,list(SS=SS[1:2],MS=SS[1:2] / layer.df[1:2])))
+      }
+    else
+      {
+      #MATCHCALL<-list(as.list(match.call()),SS=SS[1:layer],MS=SS[1:layer] / layer.df[1:layer])
+      return(BiclustResult(as.list(match.call()),r[,2:layer],t(k[,2:layer]),layer-1,list(SS=SS[1:layer],MS=SS[1:layer] / layer.df[1:layer])))
+      }
+    }
+
 
 # before conception for ColxNumber
 #  else if(layer==2)     return(BiclustResult(match.call(),matrix(r[,2:layer],n,1),matrix(k[,2:layer],p,1),1))

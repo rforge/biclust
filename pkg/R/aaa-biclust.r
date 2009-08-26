@@ -30,10 +30,12 @@ setClass('Biclust',
            Parameters = 'list',
            RowxNumber = 'matrix',
            NumberxCol = 'matrix',
-           Number = 'numeric'))
+           Number = 'numeric',
+           info = 'list')
+           )
 
-BiclustResult <- function(mypara, a, b, c) {
-  return(new('Biclust', Parameters=mypara, RowxNumber=a, NumberxCol=b, Number=c))
+BiclustResult <- function(mypara, a, b, c, d) {
+  return(new('Biclust', Parameters=mypara, RowxNumber=a, NumberxCol=b, Number=c, info=d))
 }
 
 
@@ -45,6 +47,15 @@ setClass('BCBimax',
 
 BCBimax <- function() {
   return(new('BCBimax'))
+}
+
+setClass('BCrepBimax',
+         contains = 'BiclustMethod',
+         prototype = prototype(
+           biclustFunction = function(x,minr=2,minc=2,number=100,maxc=12){repbimaxbiclust(x,minr,minc,number,maxc)}))
+
+BCrepBimax <- function() {
+  return(new('BCrepBimax'))
 }
          
 

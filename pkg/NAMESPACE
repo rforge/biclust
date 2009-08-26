@@ -24,6 +24,7 @@ export(
 	signVariance,
 	writeBiclusterResults,
 	BCBimax,
+	BCrepBimax,
 	BCCC,
 	BCXmotifs,
 	BCSpectral,

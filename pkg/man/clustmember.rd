@@ -5,9 +5,9 @@
 \title{Draw Heatmap}
 \description{ Draws a membership graph cluster x columns, to show which }
 \usage{
-biclustmember(bicResult,x,mid=T,Titel="BiCluster Membership Graph",...)
+biclustmember(bicResult, x, mid = T, cl_label = "CL.", Titel = "BiCluster Membership Graph",...)
 
-clustmember(res,x,mid=T,Titel="Cluster Membership Graph",...)
+clustmember(res, x, mid = T, cl_label = "CL.", Titel = "Cluster Membership Graph",...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -16,6 +16,7 @@ clustmember(res,x,mid=T,Titel="Cluster Membership Graph",...)
     is set to NULL, the data matrix is drawn as a heatmap, without any reordering. Default NULL.}
   \item{res}{Cluster Result (kcca object)}
   \item{mid}{If TRUE, shows the value of the remaining objects inside the cluster value, else shows both aside each other.}
+  \item{cl_label}{Ticks of x-axis}
   \item{Titel}{Gives the title of the plot}
   \item{...}{Additional plot options}
   }

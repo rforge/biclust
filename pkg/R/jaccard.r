@@ -34,7 +34,7 @@ for (i in 1:le1)
   }
   jacvec<-c(jacvec,jacvec2)
 }
-res<-sum(jacvec)/le2
+res<-sum(jacvec)/max(le1,le2)
 res
 }
 
