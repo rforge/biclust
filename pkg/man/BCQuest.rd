@@ -56,8 +56,7 @@ Pacific Symposium on Biocomputing, sullivan.bu.edu,
 }
 
 \seealso{ \code{\link{biclust}}, \code{\link{Biclust}}}
-\examples{
-}
+%\examples{}
 
 \keyword{cluster}
 \keyword{classif}

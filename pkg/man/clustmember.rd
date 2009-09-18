@@ -14,13 +14,13 @@ clustmember(res, x, mid = T, cl_label = "CL.", Titel = "Cluster Membership Graph
   \item{x}{The data matrix}
   \item{bicResult}{BiclustResult object with a bicluster result set. If this value
     is set to NULL, the data matrix is drawn as a heatmap, without any reordering. Default NULL.}
-  \item{res}{Cluster Result (kcca object)}
+  \item{res}{Cluster Result (is converted into a kcca object)}
   \item{mid}{If TRUE, shows the value of the remaining objects inside the cluster value, else shows both aside each other.}
   \item{cl_label}{Ticks of x-axis}
   \item{Titel}{Gives the title of the plot}
-  \item{...}{Additional plot options}
+  \item{...}{Additional plot options or if neccessary option for as.kcca}
   }
-\details{}
+%\details{}
 %\value{}
 %\references{}
 
