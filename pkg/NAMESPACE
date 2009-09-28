@@ -36,7 +36,8 @@ export(
 	clustmember,
 	biclustmember,
 	plotclust,
-	writeclust
+	writeclust,
+	bicorder
 	)
 
 exportClasses(

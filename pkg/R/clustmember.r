@@ -1,4 +1,4 @@
-clustmember<-function(res,x,mid=T,cl_label="",which=NA,main="Cluster Membership Graph",xlab="Cluster",...)
+clustmember<-function(res,x,mid=T,cl_label="",which=NA,main="Cluster Membership Graph",xlab="Cluster",color=diverge_hcl(101, h = c(0, 130)),...)
 {
 require(flexclust)
 if(class(res)!="kcca")
@@ -8,7 +8,7 @@ res<-as.kcca(res,x,...)
 
 minx<-min(x)
 maxx<-max(x)
-mycolor<-diverge_hcl(101, h = c(0, 130))
+mycolor<-color
 nx<-dim(res@centers)[1]
 ny<-dim(x)[2]
 xseq<-seq(0,1,length.out=nx+1)
