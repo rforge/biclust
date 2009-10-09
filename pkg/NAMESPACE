@@ -37,7 +37,8 @@ export(
 	biclustmember,
 	plotclust,
 	writeclust,
-	bicorder
+	bicorder,
+	predict.BCBimax
 	)
 
 exportClasses(
