@@ -1,8 +1,8 @@
-predict.BCBimax<-function(BCBimax,x)
+predictBimax<-function(BCrepBimax,x)
 {
 le<-dim(x)[1]
-count<-BCBimax@Number
-coln<-rowSums(BCBimax@NumberxCol)
+count<-BCrepBimax@Number
+coln<-rowSums(BCrepBimax@NumberxCol)
 res<-vector("integer",length=le)
 count
 for(i in 1:le)
@@ -10,7 +10,7 @@ for(i in 1:le)
   xtest<-x[i,]
   for(j in 1:count)
     {
-    if(sum(xtest[BCBimax@NumberxCol[j,]])==coln[j])
+    if(sum(xtest[BCrepBimax@NumberxCol[j,]])==coln[j])
       {
       res[i]<-j
       break

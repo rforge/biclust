@@ -1,6 +1,6 @@
 #### Function to order variables or objects that appear in a bicluster
 
-bicorder<-function(bicResult, cols=T, rev=F)
+bicorder<-function(bicResult, cols=TRUE, rev=FALSE)
 {
 le<-dim(bicResult@RowxNumber)[2]
 res<-c()
