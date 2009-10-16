@@ -262,24 +262,24 @@ void  writeBicluster(long  firstRow, long  lastRow, cs_t  columnSet, int * x, in
       *er = 1;
       biclusterCounter = 0;
       return;}
-  printf("\n%ld\n", biclusterCounter);
+  /* printf("\n%ld\n", biclusterCounter); */
   for (i = firstRow; i <= lastRow; i++)
-    printf("%ld\t", rows[i].originalRowNumber + 1L);
+  /* printf("%ld\t", rows[i].originalRowNumber + 1L); */
   for (i = firstRow; i <= lastRow; i++)
     x[rows[i].originalRowNumber + ((biclusterCounter-1)*noRows)]=1;
 /*  for (i = firstRow; i <= lastRow; i++)
     z[rows[i].originalRowNumber]+=pow(2,(biclusterCounter-1));  */
-  printf("\n");
+  /*printf("\n"); */
   for (i = 0; i < noColumns; i++)
     if (isSet(columnSet, i))
-      printf("%ld\t", i + 1L);
+     /* printf("%ld\t", i + 1L); */
   for (i = 0; i < noColumns; i++)
     if (isSet(columnSet, i))
       y[(biclusterCounter-1)+(i*a)]=1;
 /*  for (i = 0; i < noColumns; i++)
     if (isSet(columnSet, i))
       z[noRows+i]+=pow(2,(biclusterCounter-1));*/    
-  printf("\n");
+  /*printf("\n");*/
 } /* writeBicluster */
 
 void  conquer(long  firstRow, long  lastRow, long  level, long noMandatorySets, int * x, int * y, int * z,int * anzahl,int * er)
