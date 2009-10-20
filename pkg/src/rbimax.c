@@ -376,7 +376,7 @@ void  readInDataMatrix(int * daten)
   long  i, j, cell; 
   for (i = 0L; i < noRows; i++) {
     for (j = 0L; j < noColumns; j++) {
-      cell = daten[(j*noRows)+i];
+      cell = (long) daten[(j*noRows)+i];
       if (cell == 0)
 	unsetColumn(rows[i].columnSet, j);
       else
@@ -387,10 +387,10 @@ void  readInDataMatrix(int * daten)
 
 void  bimax(int * datenmatrix, int * nr, int * nc,int * minnr, int * minnc, int * x, int * y, int * z,int * anzahl,int * er)
 {
-  noRows = *nr;
-  noColumns = *nc;
-  minNoRows = *minnr;
-  minNoColumns = *minnc;
+  noRows = (long) *nr;
+  noColumns = (long) *nc;
+  minNoRows = (long) *minnr;
+  minNoColumns = (long) *minnc;
   
   if (minNoRows < 1L)
     minNoRows = 1L;
