@@ -10,7 +10,7 @@ predictBimax(BCrepBimax, x)
 }
 
 \arguments{
-  \item{BCBimax}{Result of biclust function with method BCrepBimax}
+  \item{BCrepBimax}{Result of biclust function with method BCrepBimax}
   \item{x}{The data matrix which clustermembership should be predicted}
   }
   
