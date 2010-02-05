@@ -38,7 +38,8 @@ export(
 	plotclust,
 	writeclust,
 	bicorder,
-	predictBimax
+	predictBimax,
+	isoverlapp
 	)
 
 exportClasses(

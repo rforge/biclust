@@ -145,7 +145,8 @@ function(object)
     rowcolsizes<-rbind(colSums(object@RowxNumber[,1:n]),rowSums(object@NumberxCol[1:n,]))
     rownames(rowcolsizes)<-c("Number of Rows:","Number of Columns:")
     colnames(rowcolsizes)<-paste("BC", 1:n) 
-    print.default(format(rowcolsizes, print.gap = 2, quote = FALSE))
+    #print.default(format(rowcolsizes, print.gap = 2, quote = FALSE))
+    print(rowcolsizes)
     }
     else
     {
@@ -170,6 +171,7 @@ function(object)
     rowcolsizes<-rbind(colSums(object@RowxNumber[,1:n]),rowSums(object@NumberxCol[1:n,]))
     rownames(rowcolsizes)<-c("Number of Rows:","Number of Columns:")
     colnames(rowcolsizes)<-paste("BC", 1:n) 
-    print.default(format(rowcolsizes, print.gap = 2, quote = FALSE))
+    #print.default(format(rowcolsizes, print.gap = 2, quote = FALSE))
+    print(rowcolsizes)
 })
 
