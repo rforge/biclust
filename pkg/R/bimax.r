@@ -55,7 +55,7 @@ return(BiclustResult(as.list(MYCALL),RowxNumber,NumberxCol,Number,list(0)))
 repbimaxbiclust<- function(logicalmatrix,minr=2,minc=2,number=30,maxc=12)
 {
   RowxNumber<-matrix(FALSE,nrow=nrow(logicalmatrix),ncol=number)
-  NumberxCol<-matrix(FALSE,nrow=number,ncol=45)
+  NumberxCol<-matrix(FALSE,nrow=number,ncol=ncol(logicalmatrix))
   daten<-logicalmatrix
   datenrows<-rep(TRUE,nrow(logicalmatrix))
 
