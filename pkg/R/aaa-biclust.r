@@ -165,13 +165,24 @@ function(object)
         sep="\n\t")
     n<-object@Number
 
-    cat("\nNumber of Clusters found: ",object@Number, "\n")
-    cat("\nCluster sizes:\n")
+    if(n>1)
+    {
+        cat("\nNumber of Clusters found: ",object@Number, "\n")
+        cat("\nCluster sizes:\n")
 
-    rowcolsizes<-rbind(colSums(object@RowxNumber[,1:n]),rowSums(object@NumberxCol[1:n,]))
-    rownames(rowcolsizes)<-c("Number of Rows:","Number of Columns:")
-    colnames(rowcolsizes)<-paste("BC", 1:n)
-    #print.default(format(rowcolsizes, print.gap = 2, quote = FALSE))
-    print(rowcolsizes)
+        rowcolsizes<-rbind(colSums(object@RowxNumber[,1:n]),rowSums(object@NumberxCol[1:n,]))
+        rownames(rowcolsizes)<-c("Number of Rows:","Number of Columns:")
+        colnames(rowcolsizes)<-paste("BC", 1:n)
+        #print.default(format(rowcolsizes, print.gap = 2, quote = FALSE))
+        print(rowcolsizes)
+    }
+    else
+    {
+    if(n==1) cat("\nThere was one cluster found with\n ",sum(object@RowxNumber[,1]), "Rows and ", sum(object@NumberxCol[1,]), "columns")
+    if(n==0) cat("\nThere was no cluster found")
+    }
+    cat("\n\n")
+
+
 })
 
