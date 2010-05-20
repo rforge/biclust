@@ -58,6 +58,7 @@ repbimaxbiclust<- function(logicalmatrix,minr=2,minc=2,number=30,maxc=12)
   NumberxCol<-matrix(FALSE,nrow=number,ncol=ncol(logicalmatrix))
   daten<-logicalmatrix
   datenrows<-rep(TRUE,nrow(logicalmatrix))
+  forstop <- TRUE
 
   for(j in 1:number)
     {
@@ -84,6 +85,7 @@ repbimaxbiclust<- function(logicalmatrix,minr=2,minc=2,number=30,maxc=12)
     #print(resbic)
     if(i>minc)
       {
+      forstop <- FALSE
       ind<-which.max(colSums(resbic@RowxNumber))
       RowxNumber[datenrows,j]<-resbic@RowxNumber[,ind]
       NumberxCol[j,]<-resbic@NumberxCol[ind,]
@@ -97,11 +99,24 @@ repbimaxbiclust<- function(logicalmatrix,minr=2,minc=2,number=30,maxc=12)
     }
   if(i>minc)
     {
-    bimaxbic<-BiclustResult(resbic@Parameters,RowxNumber[,1:j],NumberxCol[1:j,],j,list())
+
+    RowxNumber <-matrix(RowxNumber[,1:j],ncol=j)
+    NumberxCol <-matrix(NumberxCol[1:j,],nrow=j)
+    bimaxbic<-BiclustResult(resbic@Parameters,RowxNumber,NumberxCol,j,list())
     }
   else
     {
-    bimaxbic<-BiclustResult(resbic@Parameters,RowxNumber[,1:(j-1)],NumberxCol[1:(j-1),],(j-1),list())
+    if(forstop)
+      {
+      bimaxbic<-BiclustResult(res_bimax@Parameters,matrix(NA,1,1),matrix(NA,1,1),0,list())
+      }
+    else
+      {
+      RowxNumber <-matrix(RowxNumber[,1:(j-1)],ncol=(j-1))
+      NumberxCol <-matrix(NumberxCol[1:(j-1),],nrow=(j-1))
+
+      bimaxbic<-BiclustResult(resbic@Parameters,RowxNumber,NumberxCol,(j-1),list())
+      }
     }
 return(bimaxbic)
 }
