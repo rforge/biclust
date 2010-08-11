@@ -50,19 +50,36 @@ bimax.grid <- function(method="BCBimax", minr=c(10,11), minc=c(10,11), number=10
 
 
 
-ensemble <- function(x, confs, maxNum = 5, similar = jaccard2, thr = 0.8)
+ensemble <- function(x, confs, rep = 1, maxNum = 5, similar = jaccard2, thr = 0.8, subs = c(1,1))
 {
     MYCALL <- match.call()
-    bicRow <- c()
-    bicCol <- c()
+    le <- length(confs)
+    dims <- dim(x)
+    bicRow <- matrix(0, dims[1], rep*le*maxNum)
+    bicCol <- matrix(0, rep*le*maxNum, dims[2])
+    z <- 1
     ### Durch mcapply ersetzen
-    for(i in 1:length(confs))
+    for(j in 1:rep)
     {
-        res<- do.call("biclust", c(list(x),confs[[i]]))
-        bicRow <- cbind(bicRow, res@RowxNumber[,1:min(res@Number,maxNum)])
-        bicCol <- rbind(bicCol, res@NumberxCol[1:min(res@Number,maxNum),])
+      sub1 <- sample(1:dims[1], subs[1]*dims[1])
+      sub2 <- sample(1:dims[2], subs[2]*dims[2])
+    
+      for(i in 1:length(confs))
+      {
+        res <- do.call("biclust", c(list(x[sub1,sub2]),confs[[i]]))
+        ind <- min(res@Number,maxNum)
+        if(ind > 0)
+        {
+          z1 <- z + ind -1
+          bicRow[sub1,z:z1] <- res@RowxNumber[, 1:min(res@Number,maxNum)]
+          bicCol[z:z1,sub2] <- res@NumberxCol[1:min(res@Number,maxNum), ]
+          z <- z + ind
+        }
+      }
     }
 
+    bicRow <- bicRow[, 1:(z-1)]
+    bicCol <- bicCol[1:(z-1), ]
     sim <- similar(bicRow, bicCol)
 
     index <- which(apply(sim,2,max) < thr)
@@ -99,13 +116,13 @@ ensemble <- function(x, confs, maxNum = 5, similar = jaccard2, thr = 0.8)
     return(BiclustResult(as.list(MYCALL), RowxNumber>0.5, NumberxCol>0.5,number,list(Rowvalues=RowxNumber,Colvalues=NumberxCol)))
 }
 
-library(biclust)
-data(BicatYeast)
-test1 <- ensemble(BicatYeast,plaid.grid(),2, thr=0.5)
-test1
-x <- binarize(BicatYeast)
-test2 <- ensemble(x,bimax.grid(),2)
-test2
+#library(biclust)
+#data(BicatYeast)
+#test1 <- ensemble(BicatYeast,plaid.grid(),rep=3,maxNum=2, thr=0.5, subs = c(0.7,0.7))
+#test1
+#x <- binarize(BicatYeast)
+#test2 <- ensemble(x,bimax.grid(),rep=10,maxNum=2,thr=0.5, subs = c(0.8,0.8))
+#test2
 
 
 
