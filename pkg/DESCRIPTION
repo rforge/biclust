@@ -1,6 +1,6 @@
 Package: biclust
-Version: 0.9.2
-Date: 2010-02-24
+Version: 0.9.3
+Date: 2010-08-10
 Author: Sebastian Kaiser, Rodrigo Santamaria, Martin Sill, Roberto Theron, Luis Quintales and Friedrich Leisch.
 Maintainer: Sebastian Kaiser <Sebastian.Kaiser@stat.uni-muenchen.de>
 Title: BiCluster Algorithms

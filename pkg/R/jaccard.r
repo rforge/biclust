@@ -12,8 +12,13 @@ jaccardind_old<-function(bicres1,bicres2){
 
 }
 
+jaccardind <- function(bicres1, bicres2)
+{
+    jaccard1(bicres1,bicres2)/max(jaccard1(bicres1,bicres1), jaccard1(bicres2,bicres2))
+}
 
-jaccardind<-function(bicres1,bicres2){
+
+jaccard1<-function(bicres1,bicres2){
 le1<-bicres1@Number
 le2<-bicres2@Number
 jacvec<-c()
@@ -21,7 +26,7 @@ jacvec<-c()
 for (i in 1:le1)
  {
   jacvec2<-0
-  
+
   for (j in 1:le2)
   {
     alle1<-bicres1@RowxNumber[,i] %*% t(bicres1@NumberxCol[i,])
@@ -38,4 +43,4 @@ res<-sum(jacvec)/max(le1,le2)
 res
 }
 
- 
+

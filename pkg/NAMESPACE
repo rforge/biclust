@@ -8,10 +8,9 @@ import(colorspace)
 importFrom(grid, grid.lines, unit, gpar)
 importFrom(MASS, sammon, isoMDS, Shepard)
 
-export(
-	drawHeatmap, 
-	drawHeatmap2, 
-	bubbleplot, 
+export(	drawHeatmap,
+	drawHeatmap2,
+	bubbleplot,
 	parallelCoordinates,
 	BiclustResult,
 	binarize,
@@ -58,5 +57,5 @@ exportMethods(
 		summary
 		)
 
-		
-		
+
+

@@ -478,7 +478,7 @@ totdf <- n2 * p2 * t
 resdf <- totdf - (1 + is.element("a", model) * (n2 - 1)
 + is.element("b", model) * (p2 - 1)
 + is.element("c", model) * (t - 1))
-if (i == 1 & resdf == 0)
+if (i == 1 & resdf == 0 & verbose)
 print("Zero residual degrees of freedom")
 }
 ## update layer effects

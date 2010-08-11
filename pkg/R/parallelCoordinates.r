@@ -10,8 +10,8 @@ parallelCoordinates=function(x, bicResult, number,plotBoth=FALSE, plotcol=TRUE, 
             bicCols <- bicCols[order(colSums(x[bicRows,bicCols]))]
         }
         else {
-            bicRows <- bicRows[order(bicResult@info$probsR[[number]]))]
-            bicCols <- bicCols[order(bicResult@info$probsC[[number]]))]
+            bicRows <- bicRows[order(bicResult@info$probsR[[number]])]
+            bicCols <- bicCols[order(bicResult@info$probsC[[number]])]
         }
 
     }
