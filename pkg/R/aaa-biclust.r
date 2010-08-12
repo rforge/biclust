@@ -132,7 +132,7 @@ setMethod("show", "Biclust",
 function(object)
 {
     cat("\nAn object of class",class(object),"\n\n")
-    cat("call:", deparse(object@Parameters,0.75*getOption("width")),
+    cat("call:", deparse(object@Parameters$Call,0.75*getOption("width")),
         sep="\n\t")
 
     n<-object@Number
@@ -161,7 +161,7 @@ setMethod("summary", "Biclust",
 function(object)
 {
     cat("\nAn object of class",class(object),"\n\n")
-    cat("call:", deparse(object@Parameters$Method,0.75*getOption("width")),
+    cat("call:", deparse(object@Parameters$Call,0.75*getOption("width")),
         sep="\n\t")
     n<-object@Number
 

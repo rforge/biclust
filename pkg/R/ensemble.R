@@ -1,4 +1,4 @@
-
+#### Jaccard Similarity Matrix Function
 jaccard2<-function(Rows, Cols)
 {
   le<-dim(Rows)[2]
@@ -33,6 +33,9 @@ plaid.grid <- function(method="BCPlaid",cluster="b", fit.model = y ~ m + a + b, 
     res
 }
 
+
+
+### Grid for Bimax Function
 bimax.grid <- function(method="BCBimax", minr=c(10,11), minc=c(10,11), number=10)
 {
   resr <- expand.grid(method = method, minr = minr, minc = minc, number = number, stringsAsFactors = FALSE)
@@ -47,7 +50,7 @@ bimax.grid <- function(method="BCBimax", minr=c(10,11), minc=c(10,11), number=10
 }
 
 
-
+### Ensemble method for Biclustering
 ensemble <- function(x, confs, rep = 1, maxNum = 5, similar = jaccard2, thr = 0.8, subs = c(1,1))
 {
     MYCALL <- match.call()
@@ -84,12 +87,15 @@ ensemble <- function(x, confs, rep = 1, maxNum = 5, similar = jaccard2, thr = 0.
 
     number <- length(index)
 
+    sim <- sim + t(sim)
+
     diag(sim) <- 1
 
     RowxNumber <- matrix(0, dim(x)[1], number)
 
     NumberxCol <- matrix(0, number, dim(x)[2])
 
+    counter <- rep(0,number)
 
     for(i in 1:number)
     {
@@ -111,7 +117,7 @@ ensemble <- function(x, confs, rep = 1, maxNum = 5, similar = jaccard2, thr = 0.
 
     }
 
-    return(BiclustResult(as.list(MYCALL), RowxNumber>0.5, NumberxCol>0.5,number,list(Rowvalues=RowxNumber,Colvalues=NumberxCol)))
+    return(BiclustResult(c(Call=MYCALL,as.list(MYCALL)), RowxNumber>0.5, NumberxCol>0.5,number,list(Rowvalues=RowxNumber,Colvalues=NumberxCol)))
 }
 
 
