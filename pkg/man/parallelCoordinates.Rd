@@ -6,8 +6,9 @@
 \description{Represents expression levels through gene and/or condition profiles in
   a bicluster as lines.}
 \usage{
-parallelCoordinates(x, bicResult, number,plotBoth=FALSE, plotcol=TRUE,
-compare=TRUE,info=F,bothlab=c("Rows","Columns"), order=FALSE, order2 = 0,ylab="Value",col=1,...)
+parallelCoordinates(x, bicResult, number, plotBoth = FALSE, plotcol = TRUE,
+compare = TRUE, info = F, bothlab = c("Rows", "Columns"), order = FALSE,
+order2 = 0,ylab = "Value" , col=1,...)
 }
 \arguments{
   \item{x}{The data matrix of the bicluster to be drawn}
@@ -17,9 +18,9 @@ compare=TRUE,info=F,bothlab=c("Rows","Columns"), order=FALSE, order2 = 0,ylab="V
   \item{plotcol}{If 'TRUE', columns profiles are drawn, so each line represents one of the columns in the bicluster. Otherwise, row profiles are drawn. Default 'TRUE'}
   \item{compare}{If 'TRUE',  values of the complete data matrix are considered and drawn as shaded lines. Default 'TRUE'}
   \item{info}{If 'TRUE', a prepared Title is drawn}
-  \item{bothlab}{Names of the X-Axis if PlotBoth}
-  \item{order} Rows and/or Columns are in increasing order.
-  \item{order2} Which ordering.
+  \item{bothlab}{Names of the x Axis if PlotBoth}
+  \item{order}{Rows and/or Columns are in increasing order.}
+  \item{order2}{Which ordering.}
   \item{ylab}{ylab}
   \item{col}{col}
   \item{...}{Plot Parameters}

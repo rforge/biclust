@@ -1,3 +1,4 @@
+
 jaccard2<-function(Rows, Cols)
 {
   le<-dim(Rows)[2]
@@ -10,10 +11,7 @@ jaccard2<-function(Rows, Cols)
         alle1<-Rows[,i] %*% t(Cols[i,])
         alle2<-Rows[,j] %*% t(Cols[j,])
         alle<-alle1 + alle2
-        loalle<-alle>0
-        loalle1<-alle1>0
-        loalle2<-alle2>0
-        jaccardmat[i,j]<- (sum(loalle1)+sum(loalle2)-sum(loalle))/sum(loalle)
+        jaccardmat[i,j]<- sum(alle>1)/sum(alle>0)
       }
     }
      jaccardmat
@@ -63,7 +61,7 @@ ensemble <- function(x, confs, rep = 1, maxNum = 5, similar = jaccard2, thr = 0.
     {
       sub1 <- sample(1:dims[1], subs[1]*dims[1])
       sub2 <- sample(1:dims[2], subs[2]*dims[2])
-    
+
       for(i in 1:length(confs))
       {
         res <- do.call("biclust", c(list(x[sub1,sub2]),confs[[i]]))
@@ -116,13 +114,7 @@ ensemble <- function(x, confs, rep = 1, maxNum = 5, similar = jaccard2, thr = 0.
     return(BiclustResult(as.list(MYCALL), RowxNumber>0.5, NumberxCol>0.5,number,list(Rowvalues=RowxNumber,Colvalues=NumberxCol)))
 }
 
-#library(biclust)
-#data(BicatYeast)
-#test1 <- ensemble(BicatYeast,plaid.grid(),rep=3,maxNum=2, thr=0.5, subs = c(0.7,0.7))
-#test1
-#x <- binarize(BicatYeast)
-#test2 <- ensemble(x,bimax.grid(),rep=10,maxNum=2,thr=0.5, subs = c(0.8,0.8))
-#test2
+
 
 
 

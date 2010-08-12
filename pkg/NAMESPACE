@@ -36,7 +36,11 @@ export(	drawHeatmap,
 	writeclust,
 	bicorder,
 	predictBimax,
-	isoverlapp
+	isoverlapp,
+        ensemble,
+       jaccard2,
+       plaid.grid,
+       bimax.grid
 	)
 
 exportClasses(
