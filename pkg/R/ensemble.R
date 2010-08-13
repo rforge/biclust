@@ -51,7 +51,7 @@ bimax.grid <- function(method="BCBimax", minr=c(10,11), minc=c(10,11), number=10
 
 
 ### Ensemble method for Biclustering
-ensemble <- function(x, confs, rep = 1, maxNum = 5, similar = jaccard2, thr = 0.8, subs = c(1,1))
+ensemble <- function(x, confs, rep = 1, maxNum = 5, similar = jaccard2, thr = 0.8, simthr =0.7, subs = c(1,1))
 {
     MYCALL <- match.call()
     le <- length(confs)
@@ -99,25 +99,32 @@ ensemble <- function(x, confs, rep = 1, maxNum = 5, similar = jaccard2, thr = 0.
 
     for(i in 1:number)
     {
-        if(sum(sim[,index[i]]>thr)>1)
+        ind <- sim[,index[i]]>thr
+        counter[i] <- sum(ind)
+        if(counter[i]>1)
         {
-            Row <- rowSums(bicRow[,sim[,index[i]]>thr])
+            Row <- rowSums(bicRow[,ind])
             RowxNumber[,i] <- Row/max(Row)
-            Col <- colSums(bicCol[sim[,index[i]]>thr,])
+            Col <- colSums(bicCol[ind,])
             NumberxCol[i,] <- Col/max(Col)
         }
         else
         {
-            Row <- bicRow[,sim[,index[i]]>thr]
+            Row <- bicRow[,ind]
             RowxNumber[,i] <- Row/max(Row)
-            Col <- bicCol[sim[,index[i]]>thr,]
+            Col <- bicCol[ind,]
             NumberxCol[i,] <- Col/max(Col)
         }
 
 
     }
 
-    return(BiclustResult(c(Call=MYCALL,as.list(MYCALL)), RowxNumber>0.5, NumberxCol>0.5,number,list(Rowvalues=RowxNumber,Colvalues=NumberxCol)))
+    counter <- sort(counter, decreasing=TRUE, index.return=TRUE)
+    RowxNumber <- RowxNumber[,counter$ix]
+    NumberxCol <- NumberxCol[counter$ix,]
+
+
+    return(BiclustResult(c(Call=MYCALL,as.list(MYCALL)), RowxNumber>simthr, NumberxCol>simthr,number,list(Rowvalues=RowxNumber,Colvalues=NumberxCol, Counts = counter$x)))
 }
 
 

@@ -9,7 +9,7 @@ Ensemble Methods for Bicluster Algorithms
   possible different bicluster algorithms. 
 }
 \usage{
-ensemble(x, confs, rep = 1, maxNum = 5, similar = jaccard2, thr = 0.8, subs = c(1, 1))
+ensemble(x, confs, rep = 1, maxNum = 5, similar = jaccard2, thr = 0.8, simthr =0.7, subs = c(1, 1))
 }
 
 \arguments{
@@ -28,17 +28,22 @@ Maximum number of biclusters taken from each run
 Function to produce a similarity matrix of bicluster
 }
   \item{thr}{
-Threshold
+Threshold for similarity
+}
+  \item{simthr}{
+Proportion of row column combinations in bicluster
 }
   \item{subs}{
-%%     ~~Describe \code{subs} here~~
+Vector of proportion of rows and columns for subsampling. Default c(1,1)
+  means no subsampling.
 }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+Two different kinds (or both combined) of ensebmbling is
+  possible. Ensemble of repeated runs or ensemble of runs on subsamples. 
 }
 \value{
-Return an object of class 
+Return an object of class Biclust
 }
 
 \author{
