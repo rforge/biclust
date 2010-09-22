@@ -150,7 +150,7 @@ function(object)
     }
     else
     {
-    if(n==1) cat("\nThere was one cluster found with\n ",sum(object@RowxNumber[,1]), "Rows and ", sum(object@NumberxCol[1,]), "columns")
+    if(n==1) cat("\nThere was one cluster found with\n ",sum(object@RowxNumber[,1]), "Rows and ", sum(object@NumberxCol), "columns")
     if(n==0) cat("\nThere was no cluster found")
     }
     cat("\n\n")
@@ -178,7 +178,7 @@ function(object)
     }
     else
     {
-    if(n==1) cat("\nThere was one cluster found with\n ",sum(object@RowxNumber[,1]), "Rows and ", sum(object@NumberxCol[1,]), "columns")
+    if(n==1) cat("\nThere was one cluster found with\n ",sum(object@RowxNumber[,1]), "Rows and ", sum(object@NumberxCol), "columns")
     if(n==0) cat("\nThere was no cluster found")
     }
     cat("\n\n")
