@@ -55,12 +55,15 @@ MYCALL <- match.call()
 x<-matrix(FALSE,nrow=nrow(mat),ncol=number)
 y<-matrix(FALSE,nrow=number,ncol=ncol(mat))
 matstore<-mat
+Stop <- FALSE
 logr<-rep(TRUE,nrow(mat))
 for(i in 1:number)
 {
 erg<-bigquestordmotif(mat,d,ns,nd,sd,alpha)
 if(sum(erg[[1]])==0)
-{break
+{
+    Stop <- TRUE
+    break
 }
 else{
 x[logr,i]<-erg[[1]]
@@ -68,10 +71,12 @@ y[i,]<-erg[[2]]
 logr[logr][erg[[1]]]<-FALSE
 mat<-matstore[logr,]
 if(nrow(mat)<(sd+1))
-{break}
+{
+    Stop <- TRUE
+    break}
 }
 }
-if(i<number)
+if(Stop)
 {return(BiclustResult(as.list(MYCALL),as.matrix(x[,1:(i-1)]),as.matrix(y[1:(i-1),]),(i-1),list(0)))
 }
 else{
