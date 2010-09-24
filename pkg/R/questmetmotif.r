@@ -8,9 +8,10 @@
 bigquestmetmotif<-function(mat,quant,vari,ns,nd,sd,alpha)
 {
 d<-qnorm(1-quant,0,vari)
+size<-4
 nr<-nrow(mat)
-person<- rep(FALSE,ncol(mat))
-quest<- rep(FALSE,nrow(mat))
+ques<- rep(FALSE,ncol(mat))
+pers<- rep(FALSE,nrow(mat))
 for(i in 1:ns)
 {
 ri<-sample(1:nr,1)
@@ -25,22 +26,25 @@ gri<-mat[ri,]
 griD<-c(D,ri)
 cS<-rowSums(t(mat[griD,])>=gri-d & t(mat[griD,])<=gri+d)
 gij<-cS==length(griD)
-if(sum(gij)>(sum(person)+1) & sum(gij)>2)
+
+if(sum(gij)>= max(sum(ques),2))
 {
 rri<-mat[ri,gij]
-rS<-colSums(t(mat[,gij])>=rri-d & t(mat[,gij])>=rri+d)
+rS<-colSums(t(mat[,gij])>=rri-d & t(mat[,gij])<=rri+d)
 rij<-rS==sum(gij)
-if(sum(rij)>=(alpha*nr)&sum(gij)>sum(person))
+
+if((sum(rij)>=(alpha*nr)) & ((sum(gij)*sum(rij))>size) )
 {
-person<-gij
-quest<-rij
+ques<-gij
+pers<-rij
+size <- sum(ques)*sum(pers)
 }
 
 }
 }
 
 }
-erg<-list(quest,person)
+erg<-list(pers,ques)
 erg
 }
 

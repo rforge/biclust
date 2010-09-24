@@ -7,10 +7,11 @@
 
 bigquestordmotif<-function(mat,d,ns,nd,sd,alpha)
 {
-
+    if(length(d)==1) d[2] <- d
+size<-4
 nr<-nrow(mat)
-person<- rep(FALSE,ncol(mat))
-quest<- rep(FALSE,nrow(mat))
+ques<- rep(FALSE,ncol(mat))
+pers<- rep(FALSE,nrow(mat))
 for(i in 1:ns)
 {
 ri<-sample(1:nr,1)
@@ -23,24 +24,26 @@ D<-sample(1:nr,sd,prob=logr)
 
 gri<-mat[ri,]
 griD<-c(D,ri)
-cS<-rowSums(t(mat[griD,])>=gri-d & t(mat[griD,])<=gri+d)
+cS<-rowSums((t(mat[griD,])>=(gri-d[1])) & (t(mat[griD,])<=(gri+d[2])))
 gij<-cS==length(griD)
-if(sum(gij)>(sum(person)+1) & sum(gij)>2)
+
+if(sum(gij)>= max(sum(ques),2))
 {
 rri<-mat[ri,gij]
-rS<-colSums(t(mat[,gij])>=rri-d & t(mat[,gij])>=rri+d)
+rS<-colSums((t(mat[,gij])>=(rri-d[1])) & (t(mat[,gij])<=(rri+d[2])))
 rij<-rS==sum(gij)
-if(sum(rij)>=(alpha*nr)&sum(gij)>sum(person))
+
+if((sum(rij)>=(alpha*nr)) & ((sum(gij)*sum(rij))>size) )
 {
-person<-gij
-quest<-rij
+ques<-gij
+pers<-rij
+size <- sum(ques)*sum(pers)
+}
+}
 }
 
 }
-}
-
-}
-erg<-list(quest,person)
+erg<-list(pers,ques)
 erg
 }
 

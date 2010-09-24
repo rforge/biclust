@@ -40,7 +40,8 @@ export(	drawHeatmap,
         ensemble,
        jaccard2,
        plaid.grid,
-       bimax.grid
+       bimax.grid,
+       bicluster
 	)
 
 exportClasses(
