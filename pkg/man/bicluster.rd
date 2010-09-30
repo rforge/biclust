@@ -1,11 +1,14 @@
 \name{bicluster}
 \alias{bicluster}
+\alias{biclusternumber}
 
 
 \title{Extract Bilcuster}
-\description{ Function to extract the bicluster from a given bicluster result}
+\description{ Function to extract the bicluster or the row and column numbers from a given bicluster result}
 \usage{
 bicluster(x, BicRes, number= 1:BicRes@Number)
+biclusternumber(BicRes, number= 1:BicRes@Number)
+
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -33,6 +36,8 @@ bicluster(x, BicRes, number= 1:BicRes@Number)
   bics <- biclust(s2,BCPlaid(), back.fit = 2, shuffle = 3, fit.model = ~m + a + b,
   iter.startup = 5, iter.layer = 30,  verbose = TRUE)
   bicluster(s2, bics)
+  biclusternumber(bics)
+
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

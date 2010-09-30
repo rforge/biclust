@@ -9,6 +9,7 @@ bigxmotif<-function(mat,ns,nd,sd,alpha)
 {
 #Preprocess Data step not yet implemented
 #statemat<-makestatemat(mat)
+size<-4
 nc<-ncol(mat)
 gen<- rep(FALSE,nrow(mat))
 co<- rep(FALSE,ncol(mat))
@@ -27,15 +28,17 @@ gciD<-c(D,ci)
 rS<-rowSums(mat[,gciD]==gci)
 gij<-rS==length(gciD)
 
-if(sum(gij)>(sum(gen)+1) & sum(gij)>2)
+if(sum(gij) >= max(sum(gen),2))
 {
 cci<-mat[gij,ci]
 cS<-colSums(mat[gij,]==cci)
 cij<-cS==sum(gij)
-if(sum(cij)>=(alpha*nc)&sum(gij)>sum(gen))
+
+if(sum(cij)>=(alpha*nc) & ((sum(gij)*sum(cij))>size) )
 {
 gen<-gij
 co<-cij
+size <- sum(gij) * sum(cij)
 }
 
 }
@@ -98,32 +101,36 @@ MYCALL <- match.call()
 x<-matrix(FALSE,nrow=nrow(mat),ncol=number)
 y<-matrix(FALSE,nrow=number,ncol=ncol(mat))
 matstore<-mat
+Stop <- FALSE
 logr<-rep(TRUE,nrow(mat))
-erg<-bigxmotif(mat,ns,nd,sd,alpha)
 for(i in 2:number)
 {
 
-if(sum(erg[[1]])==0)
-{break
+    erg<-bigxmotif(mat,ns,nd,sd,alpha)
+    if(sum(erg[[1]])==0)
+    {
+        Stop <- TRUE
+        break
+    }
+    else
+    {
+        x[logr,(i-1)]<-erg[[1]]
+        y[(i-1),]<-erg[[2]]
+        logr[logr][erg[[1]]]<-FALSE
+        mat<-as.matrix(matstore[logr,])
+        if(sum(logr) < 2)
+        {
+            Stop <- TRUE
+            break
+        }
+    }
 }
-else{
-x[logr,(i-1)]<-erg[[1]]
-y[(i-1),]<-erg[[2]]
-logr[logr][erg[[1]]]<-FALSE
-mat<-as.matrix(matstore[logr,])
-if(nrow(mat)<2 | ncol(mat)<sd)
-{break}
-erg<-bigxmotif(mat,ns,nd,sd,alpha)
+if(Stop)
+{
+    return(BiclustResult(as.list(MYCALL),as.matrix(x[,1:(i-1)]),as.matrix(y[1:(i-1),]),(i-1),list(0)))
 }
-}
-if(i==2)
-{return(BiclustResult(as.list(MYCALL),as.matrix(x[,1:(i-1)]),t(as.matrix(y[1:(i-1),])),(i-1),list(0)))
-}
-
-if(i<number)
-{return(BiclustResult(as.list(MYCALL),as.matrix(x[,1:(i-1)]),as.matrix(y[1:(i-1),]),(i-1),list(0)))
-}
-else{
-return(BiclustResult(as.list(MYCALL),as.matrix(x),as.matrix(y),i,list(0)))
+else
+{
+    return(BiclustResult(as.list(MYCALL),as.matrix(x),as.matrix(y),i,list(0)))
 }
 }

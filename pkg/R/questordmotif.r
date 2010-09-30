@@ -73,7 +73,7 @@ x[logr,i]<-erg[[1]]
 y[i,]<-erg[[2]]
 logr[logr][erg[[1]]]<-FALSE
 mat<-matstore[logr,]
-if(nrow(mat)<(sd+1))
+if(sum(logr)<(sd+1))
 {
     Stop <- TRUE
     break}

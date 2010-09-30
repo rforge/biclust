@@ -41,7 +41,8 @@ export(	drawHeatmap,
        jaccard2,
        plaid.grid,
        bimax.grid,
-       bicluster
+       bicluster,
+       biclusternumber
 	)
 
 exportClasses(
