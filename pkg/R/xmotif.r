@@ -103,9 +103,13 @@ y<-matrix(FALSE,nrow=number,ncol=ncol(mat))
 matstore<-mat
 Stop <- FALSE
 logr<-rep(TRUE,nrow(mat))
-for(i in 2:number)
+for(i in 1:number)
 {
-
+    if(sum(logr) < 2)
+        {
+            Stop <- TRUE
+            break
+        }
     erg<-bigxmotif(mat,ns,nd,sd,alpha)
     if(sum(erg[[1]])==0)
     {
@@ -114,15 +118,10 @@ for(i in 2:number)
     }
     else
     {
-        x[logr,(i-1)]<-erg[[1]]
-        y[(i-1),]<-erg[[2]]
+        x[logr,i]<-erg[[1]]
+        y[i,]<-erg[[2]]
         logr[logr][erg[[1]]]<-FALSE
         mat<-as.matrix(matstore[logr,])
-        if(sum(logr) < 2)
-        {
-            Stop <- TRUE
-            break
-        }
     }
 }
 if(Stop)
