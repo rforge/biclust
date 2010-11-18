@@ -9,7 +9,7 @@ Ensemble Methods for Bicluster Algorithms
   possible different bicluster algorithms. 
 }
 \usage{
-ensemble(x, confs, rep = 1, maxNum = 5, similar = jaccard2, thr = 0.8, simthr =0.7, subs = c(1, 1))
+ensemble(x, confs, rep = 1, maxNum = 5, similar = jaccard2, thr = 0.8, simthr =0.7, subs = c(1, 1), bootstrap = FALSE, support = 0, combine=firstcome, ...)
 }
 
 \arguments{
@@ -37,6 +37,19 @@ Proportion of row column combinations in bicluster
 Vector of proportion of rows and columns for subsampling. Default c(1,1)
   means no subsampling.
 }
+  \item{bootstrap}{
+Should bootstrap sampling be used (logical: replace=bootstrap).
+}
+  \item{support}{
+Wich proportion of the runs must contain the bicluster to have enough support to report it (between 0 and 1).
+}
+  \item{combine}{
+Function to combine the single bicluster only firstcome and hcl for hierarchical clustering are possible at the moment.
+}
+  \item{...}{
+Arguments past to the combine function.
+}
+
 }
 \details{
 Two different kinds (or both combined) of ensebmbling is
