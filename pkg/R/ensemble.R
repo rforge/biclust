@@ -51,7 +51,7 @@ bimax.grid <- function(method="BCBimax", minr=c(10,11), minc=c(10,11), number=10
 
 
 ### Ensemble method for Biclustering
-ensemble <- function(x, confs, rep = 1, maxNum = 5, similar = jaccard2, thr = 0.8, simthr =0.7, subs = c(1,1))
+ensemble <- function(x, confs, rep = 1, maxNum = 5, similar = jaccard2, thr = 0.8, simthr =0.7, subs = c(1,1), bootstrap = FALSE, support = 0, clust="")
 {
     MYCALL <- match.call()
     le <- length(confs)
@@ -62,8 +62,8 @@ ensemble <- function(x, confs, rep = 1, maxNum = 5, similar = jaccard2, thr = 0.
     ### Durch mcapply ersetzen
     for(j in 1:rep)
     {
-      sub1 <- sample(1:dims[1], subs[1]*dims[1])
-      sub2 <- sample(1:dims[2], subs[2]*dims[2])
+      sub1 <- sample(1:dims[1], subs[1]*dims[1], replace = bootstrap)
+      sub2 <- sample(1:dims[2], subs[2]*dims[2], replace = bootstrap)
 
       for(i in 1:length(confs))
       {
@@ -72,8 +72,8 @@ ensemble <- function(x, confs, rep = 1, maxNum = 5, similar = jaccard2, thr = 0.
         if(ind > 0)
         {
           z1 <- z + ind -1
-          bicRow[sub1,z:z1] <- res@RowxNumber[, 1:min(res@Number,maxNum)]
-          bicCol[z:z1,sub2] <- res@NumberxCol[1:min(res@Number,maxNum), ]
+          bicRow[unique(sub1),z:z1] <- res@RowxNumber[!duplicated(sub1), 1:min(res@Number,maxNum)]
+          bicCol[z:z1,unique(sub2)] <- res@NumberxCol[1:min(res@Number,maxNum),!duplicated(sub2)]
           z <- z + ind
         }
       }
@@ -81,38 +81,67 @@ ensemble <- function(x, confs, rep = 1, maxNum = 5, similar = jaccard2, thr = 0.
 
     bicRow <- bicRow[, 1:(z-1)]
     bicCol <- bicCol[1:(z-1), ]
-    sim <- similar(bicRow, bicCol)
 
-    index <- which(apply(sim,2,max) < thr)
+    if(clust=="hcl")
+    {
+      sim <- similar(bicRow, bicCol)
+      sim <- sim + t(sim)
+      diag(sim) <- 1
+      hc <- hclust(as.dist(-sim+1))
+      plot(hc)
+      hcres <-cutree(hc, h=1-thr)
+      hcres <- as.numeric(hcres)
+      print(hcres)
+      number <- max(hcres) 
+      counter <- rep(0,number)
+      ind <- list()
+      for(i in 1:number)
+      {
+        ind[[i]] <- hcres==i
+        counter[i] <- sum(ind[[i]])
+      }
+    }
+    else
+    {
+      if(clust=="qtc")
+      {
+      }
+      else
+      {
+        sim <- similar(bicRow, bicCol)
+        index <- which(apply(sim,2,max) < thr)
+        number <- length(index)
+        sim <- sim + t(sim)
+        diag(sim) <- 1
+        counter <- rep(0,number)
+        ind <- list()
+        for(i in 1:number)
+        {
+          ind[[i]] <- sim[,index[i]]>thr
+          counter[i] <- sum(ind[[i]])
+        }
+      }
+    }
 
-    number <- length(index)
-
-    sim <- sim + t(sim)
-
-    diag(sim) <- 1
-
+    
     RowxNumber <- matrix(0, dim(x)[1], number)
-
     NumberxCol <- matrix(0, number, dim(x)[2])
 
-    counter <- rep(0,number)
 
     for(i in 1:number)
     {
-        ind <- sim[,index[i]]>thr
-        counter[i] <- sum(ind)
         if(counter[i]>1)
         {
-            Row <- rowSums(bicRow[,ind])
+            Row <- rowSums(bicRow[,ind[[i]]])
             RowxNumber[,i] <- Row/max(Row)
-            Col <- colSums(bicCol[ind,])
+            Col <- colSums(bicCol[ind[[i]],])
             NumberxCol[i,] <- Col/max(Col)
         }
         else
         {
-            Row <- bicRow[,ind]
+            Row <- bicRow[,ind[[i]]]
             RowxNumber[,i] <- Row/max(Row)
-            Col <- bicCol[ind,]
+            Col <- bicCol[ind[[i]],]
             NumberxCol[i,] <- Col/max(Col)
         }
 
@@ -120,12 +149,57 @@ ensemble <- function(x, confs, rep = 1, maxNum = 5, similar = jaccard2, thr = 0.
     }
 
     counter <- sort(counter, decreasing=TRUE, index.return=TRUE)
-    RowxNumber <- RowxNumber[,counter$ix]
-    NumberxCol <- NumberxCol[counter$ix,]
+    support <- support * (z-1)/maxNum
+    RowxNumber <- RowxNumber[,counter$ix][,counter$x>=support]
+    NumberxCol <- NumberxCol[counter$ix,][counter$x>=support,]
+    number <- sum(counter$x>=support)
 
 
     return(BiclustResult(c(Call=MYCALL,as.list(MYCALL)), RowxNumber>simthr, NumberxCol>simthr,number,list(Rowvalues=RowxNumber,Colvalues=NumberxCol, Counts = counter$x)))
 }
+
+
+
+hcl <- function(bicRow, bicCol, similar=jaccard2, thr = 0.8)
+{
+      sim <- similar(bicRow, bicCol)
+      sim <- sim + t(sim)
+      diag(sim) <- 1
+      hc <- hclust(as.dist(-sim+1))
+      plot(hc)
+      hcres <-cutree(hc, h=1-thr)
+      hcres <- as.numeric(hcres)
+      print(hcres)
+      number <- max(hcres) 
+      counter <- rep(0,number)
+      ind <- list()
+      for(i in 1:number)
+      {
+        ind[[i]] <- hcres==i
+        counter[i] <- sum(ind[[i]])
+      }
+  return(list(ind=ind, counter=counter, number=number)     
+}
+
+firstcome <- function(bicRow, bicCol, similar=jaccard2, thr = 0.8)
+{
+ sim <- similar(bicRow, bicCol)
+ index <- which(apply(sim,2,max) < thr)
+ number <- length(index)
+ sim <- sim + t(sim)
+ diag(sim) <- 1
+ RowxNumber <- matrix(0, dim(x)[1], number)
+ NumberxCol <- matrix(0, number, dim(x)[2])
+ counter <- rep(0,number)
+ ind <- list()
+ for(i in 1:number)
+ {
+   ind[[i]] <- sim[,index[i]]>thr
+   counter[i] <- sum(ind[[i]])
+ }
+  return(list(ind=ind, counter=counter, number=number)    
+}
+
 
 
 
