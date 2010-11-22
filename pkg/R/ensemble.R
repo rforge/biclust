@@ -49,6 +49,49 @@ bimax.grid <- function(method="BCBimax", minr=c(10,11), minc=c(10,11), number=10
     res
 }
 
+### Grid for Xmotifs
+Xmotif.grid <- function(method="BCXmotifs", ns=200, nd=200,sd=3:6,alpha=c(0.04,0.05, 0.06),number=10)
+{
+  resr <- expand.grid(method = method, ,ns=ns,nd=nd,sd=sd,alpha=alpha,number=number, stringsAsFactors = FALSE)
+
+    res <- list()
+
+    for(i in 1:dim(resr)[1])
+    {
+        res[[i]] <- as.list(resr[i,])
+    }
+    res
+}
+
+### Grid for CC
+CC.grid <- function(method="BCCC", delta=c(0.5, 1.0, 1.5), alpha=c(0.5, 1.0, 1.5), number=10)
+{
+  resr <- expand.grid(method = method, delta = delta, alpha = alpha, number=number , stringsAsFactors = FALSE)
+
+    res <- list()
+
+    for(i in 1:dim(resr)[1])
+    {
+        res[[i]] <- as.list(resr[i,])
+    }
+    res
+}
+
+### Grid for Spectral
+Spectral.grid <- function(method="BCCC", normalization="log",numberOfEigenvalues=5, minr=c(10,11), minc=c(10,11), withinVar=c(0.1, 0.5, 1))
+{
+  resr <- expand.grid(method = method, normalization=normalization, numberOfEigenvalues=numberOfEigenvalues, minr = minr, minc=minc, withinVar = withinVar, stringsAsFactors = FALSE)
+
+    res <- list()
+
+    for(i in 1:dim(resr)[1])
+    {
+        res[[i]] <- as.list(resr[i,])
+    }
+    res
+}
+
+
 
 ### Ensemble method for Biclustering
 ensemble <- function(x, confs, rep = 1, maxNum = 5, similar = jaccard2, thr = 0.8, simthr =0.7, subs = c(1,1), bootstrap = FALSE, support = 0, combine=firstcome, ...)
@@ -83,11 +126,11 @@ ensemble <- function(x, confs, rep = 1, maxNum = 5, similar = jaccard2, thr = 0.
     bicCol <- bicCol[1:(z-1), ]
 
     com <- combine(bicRow, bicCol, similar=similar, thr = thr, ...)
-    
+
     ind <- com$ind
     number <- com$number
     counter <- com$counter
-    
+
     RowxNumber <- matrix(0, dim(x)[1], number)
     NumberxCol <- matrix(0, number, dim(x)[2])
 
@@ -134,7 +177,7 @@ hcl <- function(bicRow, bicCol, similar=jaccard2, thr = 0.8, ...)
       hcres <-cutree(hc, h=1-thr)
       hcres <- as.numeric(hcres)
       print(hcres)
-      number <- max(hcres) 
+      number <- max(hcres)
       counter <- rep(0,number)
       ind <- list()
       for(i in 1:number)
@@ -142,7 +185,7 @@ hcl <- function(bicRow, bicCol, similar=jaccard2, thr = 0.8, ...)
         ind[[i]] <- hcres==i
         counter[i] <- sum(ind[[i]])
       }
-  return(list(ind=ind, counter=counter, number=number))     
+  return(list(ind=ind, counter=counter, number=number))
 }
 
 firstcome <- function(bicRow, bicCol, similar=jaccard2, thr = 0.8)
@@ -159,7 +202,7 @@ firstcome <- function(bicRow, bicCol, similar=jaccard2, thr = 0.8)
    ind[[i]] <- sim[,index[i]]>thr
    counter[i] <- sum(ind[[i]])
  }
-  return(list(ind=ind, counter=counter, number=number))    
+  return(list(ind=ind, counter=counter, number=number))
 }
 
 
