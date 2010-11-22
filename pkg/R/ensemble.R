@@ -162,7 +162,7 @@ ensemble <- function(x, confs, rep = 1, maxNum = 5, similar = jaccard2, thr = 0.
     number <- sum(counter$x>=support)
 
 
-    return(BiclustResult(c(Call=MYCALL,as.list(MYCALL)), RowxNumber>simthr, NumberxCol>simthr,number,list(Rowvalues=RowxNumber,Colvalues=NumberxCol, Counts = counter$x)))
+    return(BiclustResult(c(Call=MYCALL,as.list(MYCALL)), matrix(RowxNumber>simthr, nrow=number), matrix(NumberxCol>simthr, ncol=number), number, list(Rowvalues=RowxNumber,Colvalues=NumberxCol, Counts = counter$x)))
 }
 
 
