@@ -50,9 +50,9 @@ bimax.grid <- function(method="BCBimax", minr=c(10,11), minc=c(10,11), number=10
 }
 
 ### Grid for Xmotifs
-Xmotif.grid <- function(method="BCXmotifs", ns=200, nd=200,sd=3:6,alpha=c(0.04,0.05, 0.06),number=10)
+xmotif.grid <- function(method="BCXmotifs", ns=200, nd=200,sd=3:6,alpha=c(0.04,0.05, 0.06),number=10)
 {
-  resr <- expand.grid(method = method, ,ns=ns,nd=nd,sd=sd,alpha=alpha,number=number, stringsAsFactors = FALSE)
+  resr <- expand.grid(method = method, ns=ns,nd=nd,sd=sd,alpha=alpha,number=number, stringsAsFactors = FALSE)
 
     res <- list()
 
@@ -64,7 +64,7 @@ Xmotif.grid <- function(method="BCXmotifs", ns=200, nd=200,sd=3:6,alpha=c(0.04,0
 }
 
 ### Grid for CC
-CC.grid <- function(method="BCCC", delta=c(0.5, 1.0, 1.5), alpha=c(0.5, 1.0, 1.5), number=10)
+cc.grid <- function(method="BCCC", delta=c(0.8, 0.9, 1.0), alpha=c(0.8, 0.9, 1.0), number=10)
 {
   resr <- expand.grid(method = method, delta = delta, alpha = alpha, number=number , stringsAsFactors = FALSE)
 
@@ -78,7 +78,7 @@ CC.grid <- function(method="BCCC", delta=c(0.5, 1.0, 1.5), alpha=c(0.5, 1.0, 1.5
 }
 
 ### Grid for Spectral
-Spectral.grid <- function(method="BCCC", normalization="log",numberOfEigenvalues=5, minr=c(10,11), minc=c(10,11), withinVar=c(0.1, 0.5, 1))
+spectral.grid <- function(method="BCSpectral", normalization="log",numberOfEigenvalues=5, minr=c(10,11), minc=c(10,11), withinVar=c(0.1, 0.5, 1))
 {
   resr <- expand.grid(method = method, normalization=normalization, numberOfEigenvalues=numberOfEigenvalues, minr = minr, minc=minc, withinVar = withinVar, stringsAsFactors = FALSE)
 

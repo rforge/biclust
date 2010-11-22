@@ -41,6 +41,9 @@ export(	drawHeatmap,
        jaccard2,
        plaid.grid,
        bimax.grid,
+       xmotif.grid,
+       spectral.grid,
+       cc.grid,
        bicluster,
        biclusternumber
 	)
