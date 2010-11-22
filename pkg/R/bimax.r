@@ -76,7 +76,7 @@ repbimaxbiclust<- function(logicalmatrix,minr=2,minc=2,number=30,maxc=12)
     while(res2>0 & i>minc)
       {
       resbic<-res_bimax
-      res_bimax <- bimaxbiclust(daten[datenrows,], minr=minr+k, minc=i, number=30)
+      res_bimax <- bimaxbiclust(daten[datenrows,], minr=minr+k, minc=i, number=100)
       k<-k+1
       res2<-res_bimax@Number
       #print(bicluster28_bimax)
