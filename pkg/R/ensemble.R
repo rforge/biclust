@@ -157,13 +157,16 @@ ensemble <- function(x, confs, rep = 1, maxNum = 5, similar = jaccard2, thr = 0.
 
     counter <- sort(counter, decreasing=TRUE, index.return=TRUE)
     support <- support * (z-1)/maxNum
+    print("Support:")
+    print(support)
     RowxNumber <- RowxNumber[,counter$ix][,counter$x>=support]
     NumberxCol <- NumberxCol[counter$ix,][counter$x>=support,]
     number <- sum(counter$x>=support)
+    print(counter$x)
 
     if(number<2)
     {
-        return(BiclustResult(c(Call=MYCALL,as.list(MYCALL)), matrix(RowxNumber>simthr, nrow=number), matrix(NumberxCol>simthr, ncol=number), number, list(Rowvalues=RowxNumber,Colvalues=NumberxCol, Counts = counter$x)))
+        return(BiclustResult(c(Call=MYCALL,as.list(MYCALL)), matrix(RowxNumber>simthr, ncol=number), matrix(NumberxCol>simthr, nrow=number), number, list(Rowvalues=RowxNumber,Colvalues=NumberxCol, Counts = counter$x)))
     }
     else
     {
