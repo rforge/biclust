@@ -161,8 +161,15 @@ ensemble <- function(x, confs, rep = 1, maxNum = 5, similar = jaccard2, thr = 0.
     NumberxCol <- NumberxCol[counter$ix,][counter$x>=support,]
     number <- sum(counter$x>=support)
 
+    if(number<2)
+    {
+        return(BiclustResult(c(Call=MYCALL,as.list(MYCALL)), matrix(RowxNumber>simthr, nrow=number), matrix(NumberxCol>simthr, ncol=number), number, list(Rowvalues=RowxNumber,Colvalues=NumberxCol, Counts = counter$x)))
+    }
+    else
+    {
+        return(BiclustResult(c(Call=MYCALL,as.list(MYCALL)), RowxNumber>simthr, nrow=number, NumberxCol>simthr, number, list(Rowvalues=RowxNumber,Colvalues=NumberxCol, Counts = counter$x)))
+    }
 
-    return(BiclustResult(c(Call=MYCALL,as.list(MYCALL)), matrix(RowxNumber>simthr, nrow=number), matrix(NumberxCol>simthr, ncol=number), number, list(Rowvalues=RowxNumber,Colvalues=NumberxCol, Counts = counter$x)))
 }
 
 
@@ -176,7 +183,7 @@ hcl <- function(bicRow, bicCol, similar=jaccard2, thr = 0.8, ...)
       plot(hc)
       hcres <-cutree(hc, h=1-thr)
       hcres <- as.numeric(hcres)
-      print(hcres)
+      #print(hcres)
       number <- max(hcres)
       counter <- rep(0,number)
       ind <- list()
