@@ -162,15 +162,24 @@ ensemble <- function(x, confs, rep = 1, maxNum = 5, similar = jaccard2, thr = 0.
     RowxNumber <- RowxNumber[,counter$ix][,counter$x>=support]
     NumberxCol <- NumberxCol[counter$ix,][counter$x>=support,]
     number <- sum(counter$x>=support)
+    print("Number of Bicluster:")
     print(counter$x)
 
-    if(number<2)
+    if(number==1)
     {
         return(BiclustResult(c(Call=MYCALL,as.list(MYCALL)), matrix(RowxNumber>simthr, ncol=number), matrix(NumberxCol>simthr, nrow=number), number, list(Rowvalues=RowxNumber,Colvalues=NumberxCol, Counts = counter$x)))
     }
     else
     {
-        return(BiclustResult(c(Call=MYCALL,as.list(MYCALL)), RowxNumber>simthr, nrow=number, NumberxCol>simthr, number, list(Rowvalues=RowxNumber,Colvalues=NumberxCol, Counts = counter$x)))
+        if(number==0)
+        {
+            return(BiclustResult(c(Call=MYCALL,as.list(MYCALL)), ,matrix(NA,dim(x)[1],1),matrix(NA,1,dim(x)[2]), 0, list(Rowvalues=RowxNumber,Colvalues=NumberxCol, Counts = counter$x)))
+        }
+        else
+        {
+            return(BiclustResult(c(Call=MYCALL,as.list(MYCALL)), RowxNumber>simthr, NumberxCol>simthr, number, list(Rowvalues=RowxNumber,Colvalues=NumberxCol, Counts = counter$x)))
+        }
+
     }
 
 }
@@ -215,6 +224,74 @@ firstcome <- function(bicRow, bicCol, similar=jaccard2, thr = 0.8)
   return(list(ind=ind, counter=counter, number=number))
 }
 
+
+
+biggest <- function(bicRow, bicCol, similar=jaccard2, thr = 0.8)
+{
+ sim <- similar(bicRow, bicCol)
+ sim <- sim + t(sim)
+ diag(sim) <- 1
+ thrsim <- sim > thr
+ ind <- list()
+ number<-0
+ index <- rep(TRUE,dim(sim)[1])
+ indexf <- rep(FALSE,dim(sim)[1])
+ counter <- c()
+ while(sum(index)>1)
+ {
+     number <- number + 1
+     ind[[number]] <- indexf
+     ind1 <- which.max(colSums(thrsim[index,index]))[1]
+     print(ind1)
+     ind[[number]][index][thrsim[index,][ind1]] <- TRUE
+     print(ind[[number]])
+     index[ind[[number]]] <- FALSE
+     counter <- c(counter,sum(ind[[number]]))
+ }
+ if(sum(index)==1)
+ {
+    number <- number + 1
+    ind[[number]] <- index
+    counter <- c(counter,sum(ind[[number]]))
+ }
+  return(list(ind=ind, counter=counter, number=number))
+}
+
+
+qtbiggest <- function(bicRow, bicCol, similar=jaccard2, thr = 0.8)
+{
+ sim <- similar(bicRow, bicCol)
+ sim <- sim + t(sim)
+ diag(sim) <- 1
+ thrsim <- sim > thr
+ ind <- list()
+ number<-0
+ index <- rep(TRUE,dim(sim)[1])
+ indexf <- rep(FALSE,dim(sim)[1])
+ counter <- c()
+ while(sum(index)>1)
+ {
+     number <- number + 1
+     ind[[number]] <- indexf
+     ind2 <- colSums(thrsim[index,index])
+     ind1 <- sample(1:sum(index),1,prob=ind2)
+     ind[[number]][index][thrsim[index,][ind1]] <- TRUE
+     index[ind[[number]]] <- FALSE
+     counter <- c(counter,sum(ind[[number]]))
+ }
+ if(sum(index)==1)
+ {
+    number <- number + 1
+    ind[[number]] <- index
+    counter <- c(counter,sum(ind[[number]]))
+ }
+  return(list(ind=ind, counter=counter, number=number))
+}
+
+
+
+#res <- ensemble(x=artdata, plaid.grid(max.layer=2), rep=20, thr = 0.1, maxNum=2, bootstrap=FALSE, support=0.05, simthr=0.1, combine = biggest)
+#res2 <- ensemble(x=artdata, plaid.grid(max.layer=2), rep=20, thr = 0.1, maxNum=2, bootstrap=FALSE, support=0.05, simthr=0.1, combine = qtbiggest)
 
 
 
