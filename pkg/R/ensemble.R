@@ -241,9 +241,10 @@ biggest <- function(bicRow, bicCol, similar=jaccard2, thr = 0.8)
  {
      number <- number + 1
      ind[[number]] <- indexf
-     ind1 <- which.max(colSums(thrsim[index,index]))[1]
+     print(ind[[number]])
+     ind1 <- as.numeric(which.max(colSums(thrsim[index,index]))[1])
      print(ind1)
-     ind[[number]][index][thrsim[index,][ind1]] <- TRUE
+     ind[[number]][index][thrsim[index,index][ind1,]] <- TRUE
      print(ind[[number]])
      index[ind[[number]]] <- FALSE
      counter <- c(counter,sum(ind[[number]]))
@@ -274,10 +275,13 @@ qtbiggest <- function(bicRow, bicCol, similar=jaccard2, thr = 0.8)
      number <- number + 1
      ind[[number]] <- indexf
      ind2 <- colSums(thrsim[index,index])
-     ind1 <- sample(1:sum(index),1,prob=ind2)
-     ind[[number]][index][thrsim[index,][ind1]] <- TRUE
+     print(ind2)
+     ind1 <- sample(1:length(ind2),1,prob=ind2)
+     print(ind1)
+     ind[[number]][index][thrsim[index,index][ind1,]] <- TRUE
      index[ind[[number]]] <- FALSE
      counter <- c(counter,sum(ind[[number]]))
+     print(counter)
  }
  if(sum(index)==1)
  {
@@ -289,9 +293,6 @@ qtbiggest <- function(bicRow, bicCol, similar=jaccard2, thr = 0.8)
 }
 
 
-
-#res <- ensemble(x=artdata, plaid.grid(max.layer=2), rep=20, thr = 0.1, maxNum=2, bootstrap=FALSE, support=0.05, simthr=0.1, combine = biggest)
-#res2 <- ensemble(x=artdata, plaid.grid(max.layer=2), rep=20, thr = 0.1, maxNum=2, bootstrap=FALSE, support=0.05, simthr=0.1, combine = qtbiggest)
 
 
 
