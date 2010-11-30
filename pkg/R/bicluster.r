@@ -25,3 +25,22 @@ biclusternumber <- function(BicRes, number=1:BicRes@Number)
     return(res)
 }
 
+biclusterES <- function(bicres, number, plot=FALSE, ...)
+{
+    res <- bicres@info$Rowvalues[,number] %*% t(bicres@info$Colvalues[number,])
+    if(plot==1)
+    {
+        biclust:::heatmapBC(res, bicres, number=number, ...)
+    }
+    else
+    {
+        if(plot==2)
+        {
+            biclust:::drawHeatmap(res, bicres, number=number, ...)
+        }
+    }
+
+
+    return(res)
+}
+

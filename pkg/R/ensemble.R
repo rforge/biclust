@@ -243,9 +243,7 @@ biggest <- function(bicRow, bicCol, similar=jaccard2, thr = 0.8)
      ind[[number]] <- indexf
      print(ind[[number]])
      ind1 <- as.numeric(which.max(colSums(thrsim[index,index]))[1])
-     print(ind1)
      ind[[number]][index][thrsim[index,index][ind1,]] <- TRUE
-     print(ind[[number]])
      index[ind[[number]]] <- FALSE
      counter <- c(counter,sum(ind[[number]]))
  }
@@ -275,13 +273,10 @@ qtbiggest <- function(bicRow, bicCol, similar=jaccard2, thr = 0.8)
      number <- number + 1
      ind[[number]] <- indexf
      ind2 <- colSums(thrsim[index,index])
-     print(ind2)
      ind1 <- sample(1:length(ind2),1,prob=ind2)
-     print(ind1)
      ind[[number]][index][thrsim[index,index][ind1,]] <- TRUE
      index[ind[[number]]] <- FALSE
      counter <- c(counter,sum(ind[[number]]))
-     print(counter)
  }
  if(sum(index)==1)
  {
