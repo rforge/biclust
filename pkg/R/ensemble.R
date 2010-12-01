@@ -173,7 +173,7 @@ ensemble <- function(x, confs, rep = 1, maxNum = 5, similar = jaccard2, thr = 0.
     {
         if(number==0)
         {
-            return(BiclustResult(c(Call=MYCALL,as.list(MYCALL)), ,matrix(NA,dim(x)[1],1),matrix(NA,1,dim(x)[2]), 0, list(Rowvalues=RowxNumber,Colvalues=NumberxCol, Counts = counter$x)))
+            return(BiclustResult(c(Call=MYCALL,as.list(MYCALL)) ,matrix(NA,dim(x)[1],1),matrix(NA,1,dim(x)[2]), 0, list(Rowvalues=RowxNumber,Colvalues=NumberxCol, Counts = counter$x)))
         }
         else
         {
@@ -241,7 +241,6 @@ biggest <- function(bicRow, bicCol, similar=jaccard2, thr = 0.8)
  {
      number <- number + 1
      ind[[number]] <- indexf
-     print(ind[[number]])
      ind1 <- as.numeric(which.max(colSums(thrsim[index,index]))[1])
      ind[[number]][index][thrsim[index,index][ind1,]] <- TRUE
      index[ind[[number]]] <- FALSE

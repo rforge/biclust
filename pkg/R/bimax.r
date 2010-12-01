@@ -129,6 +129,7 @@ maxbimaxbiclust <- function(logicalmatrix,minr=2,minc=2,number=5, backfit=5)
   daten<-logicalmatrix
   datenrows<-rep(TRUE,nrow(logicalmatrix))
   forstop <- TRUE
+  sums <- rowSums(logicalmatrix)
 
   for(j in 1:number)
   {
@@ -139,12 +140,22 @@ maxbimaxbiclust <- function(logicalmatrix,minr=2,minc=2,number=5, backfit=5)
     size <- 0
     RUN <- TRUE
     FOUND <- FALSE
+    i_found <- minc
     while(RUN)
     {
       print(i)
       i<-i+1
-      res_bimax <- bimaxbiclust(daten[datenrows,], minr=max(floor(size/i),minr), minc=i, number=10)
-      res1<-res_bimax@Number
+      scountb <- sums >= i
+      if(sum(scountb)<max(floor(size/i),minr))
+      {
+          res1 =0
+      }
+      else
+      {
+          res_bimax <- bimaxbiclust(daten[(datenrows&scountb),], minr=max(floor(size/i),minr), minc=i, number=10)
+          res1<-res_bimax@Number
+      }
+
       if(res1==0)
       {
           k <- k + 1
@@ -164,6 +175,7 @@ maxbimaxbiclust <- function(logicalmatrix,minr=2,minc=2,number=5, backfit=5)
               ind <- which.max(si)
               resbic <- res_bimax
               size <- sizeb
+              scount <- scountb
               i_found <- i
               if(k2) i <- i_found - 1
           }
@@ -190,9 +202,9 @@ maxbimaxbiclust <- function(logicalmatrix,minr=2,minc=2,number=5, backfit=5)
 
     if(FOUND)
     {
-      RowxNumber[datenrows,j] <- resbic@RowxNumber[,ind]
+      RowxNumber[(datenrows&scount),j] <- resbic@RowxNumber[,ind]
       NumberxCol[j,] <- resbic@NumberxCol[ind,]
-      datenrows[datenrows][resbic@RowxNumber[,ind]]  <- FALSE
+      datenrows[(datenrows&scount)][resbic@RowxNumber[,ind]]  <- FALSE
     }
     else
     {
