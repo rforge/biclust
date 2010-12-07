@@ -172,7 +172,7 @@ maxbimaxbiclust <- function(logicalmatrix,minr=2,minc=2,number=5, backfit=5)
           {
               print("da")
               k <- 0
-              ind <- which.max(si)
+              ind <- which.max(si)[1]
               resbic <- res_bimax
               size <- sizeb
               scount <- scountb
