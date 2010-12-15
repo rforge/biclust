@@ -17,6 +17,42 @@ jaccard2<-function(Rows, Cols)
      jaccardmat
 }
 
+
+### Correlation Similarity Approach
+
+corappr<-function(Rows, Cols, method="both")
+{
+  le<-dim(Rows)[2]
+  corapprmat <- matrix(0,nrow=le,ncol=le)
+  rowcor <- cor(Rows, method="pearson")
+  colcor <- cor(t(Cols), method="pearson")
+    for(i in 1:(le-1))
+    {
+      for(j in (i+1):le)
+      {
+        if(method=="both")
+        {
+            corapprmat[i,j] <- (rowcor[i,j] + colcor[i,j])/2
+        }
+        else
+        {
+            if(method=="max")
+            {
+                corapprmat[i,j] <- min(rowcor[i,j],colcor[i,j])
+            }
+            else
+            {
+                corapprmat[i,j] <- max(rowcor[i,j],colcor[i,j])
+            }
+        }
+      }
+    }
+  corapprmat <- (corapprmat +1) /2
+  corapprmat
+}
+
+
+
 ### Grid for Bicluster Algorithms
 #Plaid
 plaid.grid <- function(method="BCPlaid",cluster="b", fit.model = y ~ m + a + b, background = TRUE, background.layer = NA, background.df = 1, row.release = c(0.5, 0.6, 0.7), col.release = c(0.5, 0.6, 0.7), shuffle = 3, back.fit = 0, max.layers = 20, iter.startup = 5, iter.layer = 10, verbose = FALSE)
@@ -155,19 +191,29 @@ ensemble <- function(x, confs, rep = 1, maxNum = 5, similar = jaccard2, thr = 0.
 
     }
 
-    counter <- sort(counter, decreasing=TRUE, index.return=TRUE)
-    support <- support * (z-1)/maxNum
+    support <- support * le
     print("Support:")
     print(support)
-    RowxNumber <- RowxNumber[,counter$ix][,counter$x>=support]
-    NumberxCol <- NumberxCol[counter$ix,][counter$x>=support,]
-    number <- sum(counter$x>=support)
-    print("Number of Bicluster:")
-    print(counter$x)
+
+    if(length(counter)>1)
+    {
+        counter <- sort(counter, decreasing=TRUE, index.return=TRUE)
+        RowxNumber <- RowxNumber[,counter$ix][,counter$x>=support]
+        NumberxCol <- NumberxCol[counter$ix,][counter$x>=support,]
+        number <- sum(counter$x>=support)
+        print("Number of Bicluster:")
+        print(counter$x)
+    }
+    else
+    {
+        number <- sum(counter>=support)
+        print("Number of Bicluster:")
+        print(counter)
+    }
 
     if(number==1)
     {
-        return(BiclustResult(c(Call=MYCALL,as.list(MYCALL)), matrix(RowxNumber>simthr, ncol=number), matrix(NumberxCol>simthr, nrow=number), number, list(Rowvalues=RowxNumber,Colvalues=NumberxCol, Counts = counter$x)))
+        return(BiclustResult(c(Call=MYCALL,as.list(MYCALL)), matrix(RowxNumber>simthr, ncol=number), matrix(NumberxCol>simthr, nrow=number), number, list(Rowvalues=RowxNumber,Colvalues=NumberxCol, Counts = counter[1])))
     }
     else
     {
