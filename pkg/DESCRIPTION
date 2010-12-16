@@ -1,7 +1,7 @@
 Package: biclust
 Version: 0.9.3-1
 Date: 2010-11-18
-Author: Sebastian Kaiser, Rodrigo Santamaria, Martin Sill, Roberto Theron, Luis Quintales and Friedrich Leisch.
+Author: Sebastian Kaiser, Rodrigo Santamaria, Tatsiana, Khamiakova, Martin Sill, Roberto Theron, Luis Quintales and Friedrich Leisch.
 Maintainer: Sebastian Kaiser <Sebastian.Kaiser@stat.uni-muenchen.de>
 Title: BiCluster Algorithms
 Depends: MASS, grid, colorspace

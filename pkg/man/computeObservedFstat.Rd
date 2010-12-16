@@ -2,7 +2,7 @@
 \alias{computeObservedFstat}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Compute row, column and interaction effect
+Diagnostic F Statistic Calculation
 }
 \description{
 Functions for obtaining F statistics within bicluster and the significance levels. The main effects considered are row, column and interaction effect.
@@ -62,8 +62,8 @@ plaidmab <- biclust(x=xmat, method=BCPlaid(), cluster="b", fit.model = y ~ m + a
 background = TRUE, row.release = 0.6, col.release = 0.7, shuffle = 50, back.fit = 5, 
 max.layers = 1, iter.startup = 100, iter.layer = 100, verbose = TRUE)
 
-#Run boosotrap procedure:
-Structure <- diagnoseColRow(x=xmat, bicResult = plaidmab, number = 1)
+#Run bootstrap procedure:
+Structure <- computeObservedFstat(x=xmat, bicResult = plaidmab, number = 1)
 
 
 }

@@ -2,7 +2,7 @@
 \alias{diagnosticPlot}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Diagnostic F Statistics Visualization
 }
 \description{
 Plots distributions of bootstrap replicates of F-statistics for row and column effect and highlights the observed statistics

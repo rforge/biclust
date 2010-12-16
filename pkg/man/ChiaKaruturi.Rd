@@ -64,7 +64,7 @@ background = TRUE, row.release = 0.6, col.release = 0.7, shuffle = 50, back.fit 
 max.layers = 1, iter.startup = 100, iter.layer = 100, verbose = TRUE)
 
 #Get Chia and Karuturi scores:
-ChiaKaruturi(x=xmat bicResult = plaidmab, number = 1))
+ChiaKaruturi(x=xmat, bicResult = plaidmab, number = 1)
 }
 
 \keyword{cluster}

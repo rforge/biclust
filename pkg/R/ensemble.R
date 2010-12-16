@@ -191,7 +191,7 @@ ensemble <- function(x, confs, rep = 1, maxNum = 5, similar = jaccard2, thr = 0.
 
     }
 
-    support <- support * le
+    support <- support * le * rep
     print("Support:")
     print(support)
 

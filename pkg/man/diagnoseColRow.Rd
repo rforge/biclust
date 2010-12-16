@@ -2,7 +2,7 @@
 \alias{diagnoseColRow}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+  Bootstrap Procedure for Bicluster Diagnostics
 }
 \description{
 Calculate the signifiance of the discovered patter in the data based on the bootstrapping procedure.
@@ -32,7 +32,11 @@ diagnoseColRow(x, bicResult, number, nResamplings, replace = TRUE)
 The function computes observed F statistics for row and column effect based on two-way ANOVA model. Bootstrap procedure is used to evaluate the significance of discovered bicluster.
 Based on \code{nResamplings} replicates, the disribution of F statistics for row and column effects are obtained. The p-value is computed as
 
-\deqn{P(A) = \frac{ \# \left \{ F^{*}(A)_{b} > F(A)^{obs} \right \} }{nResamplings+1} }{%P(A) =  F^*(A)_b > F(A)^{obs}  /(nResamplings+1)}
+\deqn{
+  P(A) =
+  \frac{ \# \left \{ F^{*}(A)_{b} > F(A)^{obs} \right \} }
+  {nResamplings+1}
+}{P(A) =  F^*(A)_b > F(A)^{obs}  /(nResamplings+1)}
 
 
 Low p-values denote non-random selection of columns for a given bicluster. Large p-values show that in other columns for a given set of genes in the bicluster structure is similar. 
@@ -49,10 +53,10 @@ Hence, bicluster columns were just randomly picked by an algorithm for a set of 
 	\item{observedFstatCol}{
 	observed F-statistics for the column effect
 }
-	\item{bootstrapPvalueRow} {
+	\item{bootstrapPvalueRow}{
 	bootstrap p value for row effect
 }
-	\item{bootstrapPvalueCol} {
+	\item{bootstrapPvalueCol}{
 	bootstrap p value for column effect
 }
 }
@@ -86,8 +90,6 @@ diagnosticPlot(bootstrapOutput = Bootstrap) 	# plotting distribution of bootstra
 
 }
 
-
-}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{bicluster}
