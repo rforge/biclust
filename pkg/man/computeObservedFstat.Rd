@@ -2,10 +2,10 @@
 \alias{computeObservedFstat}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Compute row, column and interaction effect
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Functions for obtaining F statistics within bicluster and the significance levels. The main effects considered are row, column and interaction effect.
 }
 \usage{
 computeObservedFstat(x, bicResult, number)
@@ -13,87 +13,57 @@ computeObservedFstat(x, bicResult, number)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-%%     ~~Describe \code{x} here~~
+Data Matrix
+
 }
   \item{bicResult}{
-%%     ~~Describe \code{bicResult} here~~
+ \code{Biclust} object from \code{biclust} package
 }
   \item{number}{
-%%     ~~Describe \code{number} here~~
+Number of bicluster in the output for computing observed statistics 
 }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+F-statistics are calculated from the two-way ANOVA mode with row anc column effect. The full model with interaction is undentifiable, thus, Tukey's test for non-additivity is used to detect an  interaction within a bicluster. 
+p-values are obtained from assymptotic F distributions.
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+Data frame with three rows ("Row Effect", "Column Effect", "Tukey test") and 2 columns for corresponding statistics (Fstat) and their p-values (PValue).
+2
+
 }
 \references{
 %% ~put references to the literature/web site here ~
 }
 \author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
+Tatsiana KHAMIAKOVA \email{tatsiana.khamiakova@uhasselt.be}
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{ChiaKaruturi}}, \code{\link{diagnoseColRow}}
 }
-\examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
 
-## The function is currently defined as
-function(x, bicResult, number){ 
-	coreBiclusterSamples <- which(bicResult@NumberxCol[number,])
-	coreBiclusterGenes <- which(bicResult@RowxNumber[,number]) 
-	xmat <- x[coreBiclusterGenes, ]
-	xA <- as.vector((xmat[, coreBiclusterSamples]))
-	
-	roweff<-rep(c(1:length(coreBiclusterGenes)), length(coreBiclusterSamples))
-	coleff<-sort(rep(c(1:length(coreBiclusterSamples)), length(coreBiclusterGenes) ))
-	
-	xx1 <- anova(aov(xA ~ as.factor(roweff) + as.factor(coleff)))
-	
-	fval.row.obs <- xx1[1, "F value"]
-	fval.col.obs <- xx1[2, "F value"]
-	
-	pval.row.obs <- xx1[1, "Pr(>F)"]
-	pval.col.obs <- xx1[2, "Pr(>F)"]
-	
-	xmat2 <- x[coreBiclusterGenes, coreBiclusterSamples]
-	
-	y.bar.j<-colMeans(xmat2)
-	y.bar.i<-rowMeans(xmat2)
-	x.vec<-as.vector(xmat2)
-	y.bar <- mean(x.vec)
-	B <- sum((y.bar.i - y.bar)^2)
-	C <- sum((y.bar.j - y.bar)^2)
-	A <- 0
-	for(i in 1: length(coreBiclusterGenes )){
-		for(j in 1: length(coreBiclusterSamples)){
-			A <- A + xmat2[i,j]*(y.bar.i[i]-y.bar)*(y.bar.j[j]-y.bar)
-		}
-	}
-	F.interaction <- (A^2)/(B*C)
-	pval.Tukey.obs <- 1 - pf(q=F.interaction, df1=1, df2=(length(coreBiclusterGenes)*length(coreBiclusterSamples) -(length(coreBiclusterGenes)+length(coreBiclusterSamples))))
-	retval <- data.frame(Fstat = c(fval.row.obs, fval.col.obs, F.interaction), 
-			PValue = c(pval.row.obs, pval.col.obs, pval.Tukey.obs))
-	rownames(retval) <- c("Row Effect", "Column Effect", "Tukey test")
-	return(retval)
-	
-  }
+\examples{
+#---simulate dataset with 1 bicluster ---#
+xmat<-matrix(rnorm(20*50,0,0.25),50,50) # background noise only 
+rowSize <- 20 #number of rows in a bicluster 
+colSize <- 10 #number of columns in a bicluster
+a1<-rnorm(rowSize,1,0.1) #sample row effect from N(0,0.1) #adding a coherent values bicluster:
+b1<-rnorm((colSize),2,0.25)  #sample column effect from N(0,0.05)
+mu<-0.01 #constant value signal
+ for ( i in 1 : rowSize){
+ 	for(j in 1: (colSize)){
+ 		xmat[i,j] <- xmat[i,j] + mu + a1[i] + b1[j] 	
+ 	}
+ }
+ #--obtain a bicluster by running an algorithm---# 
+plaidmab <- biclust(x=xmat, method=BCPlaid(), cluster="b", fit.model = y ~ m + a+ b,  
+background = TRUE, row.release = 0.6, col.release = 0.7, shuffle = 50, back.fit = 5, 
+max.layers = 1, iter.startup = 100, iter.layer = 100, verbose = TRUE)
+
+#Run boosotrap procedure:
+Structure <- diagnoseColRow(x=xmat, bicResult = plaidmab, number = 1)
+
+
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

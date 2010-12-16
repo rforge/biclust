@@ -5,7 +5,7 @@
 %%  ~~function to do ... ~~
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Calculate the signifiance of the discovered patter in the data based on the bootstrapping procedure.
 }
 \usage{
 diagnoseColRow(x, bicResult, number, nResamplings, replace = TRUE)
@@ -13,93 +13,82 @@ diagnoseColRow(x, bicResult, number, nResamplings, replace = TRUE)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-%%     ~~Describe \code{x} here~~
+	data matrix, which \code{biclust} function was applied to
 }
   \item{bicResult}{
-%%     ~~Describe \code{bicResult} here~~
+	object of class \code{biclust}, containing result of a biclustering algorithm
 }
   \item{number}{
-%%     ~~Describe \code{number} here~~
+	number of bicluster from the output for the diagnostics
 }
   \item{nResamplings}{
-%%     ~~Describe \code{nResamplings} here~~
+	number of bootstrap replicates
 }
   \item{replace}{
-%%     ~~Describe \code{replace} here~~
+	logical flag for bootstrap (TRUE), or sampling without replacement (FALSE)
 }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+The function computes observed F statistics for row and column effect based on two-way ANOVA model. Bootstrap procedure is used to evaluate the significance of discovered bicluster.
+Based on \code{nResamplings} replicates, the disribution of F statistics for row and column effects are obtained. The p-value is computed as
+
+\deqn{P(A) = \frac{ \# \left \{ F^{*}(A)_{b} > F(A)^{obs} \right \} }{nResamplings+1} }{%P(A) =  F^*(A)_b > F(A)^{obs}  /(nResamplings+1)}
+
+
+Low p-values denote non-random selection of columns for a given bicluster. Large p-values show that in other columns for a given set of genes in the bicluster structure is similar. 
+Hence, bicluster columns were just randomly picked by an algorithm for a set of co-regulated genes.
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+	\item{bootstrapFstats}{
+	matrix with two columns, containing values of bootstrap F-statistics. The first column corresponds to row, the second column corresponds to column.
+	
 }
-\references{
-%% ~put references to the literature/web site here ~
+	\item{observedFstatRow}{
+	observed F-statistics for the row effect
+} 
+	\item{observedFstatCol}{
+	observed F-statistics for the column effect
+}
+	\item{bootstrapPvalueRow} {
+	bootstrap p value for row effect
+}
+	\item{bootstrapPvalueCol} {
+	bootstrap p value for column effect
+}
 }
 \author{
-%%  ~~who you are~~
+Tatsiana KHAMIAKOVA \email{tatsiana.khamiakova@uhasselt.be}
 }
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{diagnosticPlot}}, \code{\link{computeObservedFstat}}, \code{\link{ChiaKaruturi}}
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+#---simulate dataset with 1 bicluster ---#
+xmat<-matrix(rnorm(20*50,0,0.25),50,50) # background noise only 
+rowSize <- 20 #number of rows in a bicluster 
+colSize <- 10 #number of columns in a bicluster
+a1<-rnorm(rowSize,1,0.1) #sample row effect from N(0,0.1) #adding a coherent values bicluster:
+b1<-rnorm((colSize),2,0.25)  #sample column effect from N(0,0.05)
+mu<-0.01 #constant value signal
+ for ( i in 1 : rowSize){
+ 	for(j in 1: (colSize)){
+ 		xmat[i,j] <- xmat[i,j] + mu + a1[i] + b1[j] 	
+ 	}
+ }
+ #--obtain a bicluster by running an algorithm---# 
+plaidmab <- biclust(x=xmat, method=BCPlaid(), cluster="b", fit.model = y ~ m + a+ b,  
+background = TRUE, row.release = 0.6, col.release = 0.7, shuffle = 50, back.fit = 5, 
+max.layers = 1, iter.startup = 100, iter.layer = 100, verbose = TRUE)
 
-## The function is currently defined as
-function(x, bicResult, number, nResamplings, replace = TRUE){
-	
-	coreBiclusterSamples <- which(bicResult@NumberxCol[number,])
-	coreBiclusterGenes <- which(bicResult@RowxNumber[,number]) 
-	
-	B <- nResamplings
-	fval.row <- fval.col <- rep(NA, nResamplings)
-	N <- ncol(x)
-	
-	outCols <- c(1:N)[-coreBiclusterSamples] # columns outside bicluster
-	xmat <- x[coreBiclusterGenes, ]
-	xA <- as.vector((xmat[, coreBiclusterSamples]))
-	
-	roweff <- rep(c(1:length(coreBiclusterGenes)), length(coreBiclusterSamples))
-	coleff <- sort(rep(c(1:length(coreBiclusterSamples)), length(coreBiclusterGenes) ))
-	
-	xx1 <- anova(aov(xA ~ as.factor(roweff) + as.factor(coleff)))
-	
-	fval.row.obs <- xx1[1, "F value"]
-	fval.col.obs <- xx1[2, "F value"]
-	
-	for (b in 1:B){
-		
-		index <- sample(outCols, size = length(coreBiclusterSamples), replace=replace) #sampling without replacement from original data
-		xB <- as.vector((xmat[, index])) # converting data from matrix to the vector form
-		
-		xx2 <- anova(aov(xB ~ as.factor(roweff) + as.factor(coleff)))
-		fval.row[b] <- xx2[1,4]
-		fval.col[b] <- xx2[2,4]
-	}
-	pval.row <- sum(fval.row > fval.row.obs)/(nResamplings + 1)
-	pval.col <- sum(fval.col > fval.col.obs)/(nResamplings + 1)
-	retval <- cbind(fval.row, fval.col)
+#Run boosotrap procedure:
+Bootstrap <- diagnoseColRow(x=xmat, bicResult = plaidmab, number = 1, nResamplings = 999, replace = TRUE)
+diagnosticPlot(bootstrapOutput = Bootstrap) 	# plotting distribution of bootstrap replicates
 
-	retval <- list(bootstrapFstats = retval, observedFstatRow = fval.row.obs, observedFstatCol = fval.col.obs,
-					bootstrapPvalueRow = pval.row, bootstrapPvalueCol = pval.col)
-	
-	return(retval)
-  }
+}
+
+
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{bicluster}
+\keyword{bootstrap}
