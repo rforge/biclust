@@ -5,6 +5,7 @@ import(methods)
 importFrom(colorspace, diverge_hcl)
 importFrom(grid, grid.lines, unit, gpar)
 importFrom(MASS, sammon, isoMDS, Shepard)
+importFrom(lattice, barchart)
 
 export(	drawHeatmap,
 	drawHeatmap2,
@@ -49,7 +50,8 @@ export(	drawHeatmap,
        ChiaKaruturi,
        computeObservedFstat,
        diagnoseColRow,
-       diagnosticPlot
+       diagnosticPlot,
+       biclustbarchart
 	)
 
 exportClasses(
