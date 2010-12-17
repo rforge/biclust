@@ -32,9 +32,6 @@ Data frame with three rows ("Row Effect", "Column Effect", "Tukey test") and 2 c
 2
 
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
 \author{
 Tatsiana KHAMIAKOVA \email{tatsiana.khamiakova@uhasselt.be}
 }
@@ -62,8 +59,7 @@ plaidmab <- biclust(x=xmat, method=BCPlaid(), cluster="b", fit.model = y ~ m + a
 background = TRUE, row.release = 0.6, col.release = 0.7, shuffle = 50, back.fit = 5, 
 max.layers = 1, iter.startup = 100, iter.layer = 100, verbose = TRUE)
 
-#Run bootstrap procedure:
+#Calculate statistics and their p-values to infer about the structure within bicluster:
 Structure <- computeObservedFstat(x=xmat, bicResult = plaidmab, number = 1)
-
 
 }

@@ -20,9 +20,7 @@ diagnosticPlot(bootstrapOutput)
 \value{
 No value is returned. The plot is constructed in a current device.
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
+
 \author{
 Tatsiana KHAMIAKOVA \email{tatsiana.khamiakova@uhasselt.be}
 }
@@ -50,7 +48,7 @@ plaidmab <- biclust(x=xmat, method=BCPlaid(), cluster="b", fit.model = y ~ m + a
 background = TRUE, row.release = 0.6, col.release = 0.7, shuffle = 50, back.fit = 5, 
 max.layers = 1, iter.startup = 100, iter.layer = 100, verbose = TRUE)
 
-#Run boosotrap procedure:
+#Run bootsrap procedure:
 Bootstrap <- diagnoseColRow(x=xmat, bicResult = plaidmab, number = 1, nResamplings = 999, replace = TRUE)
 
 # plotting distribution of bootstrap replicates

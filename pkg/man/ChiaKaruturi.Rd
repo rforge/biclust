@@ -37,10 +37,6 @@ Chia, B. K. H. and Karuturi, R. K. M. (2010) Differential co-expression framewor
 \author{
 Tatsiana KHAMIAKOVA \email{tatsiana.khamiakova@uhasselt.be}
 }
-\note{
-%%  ~~further notes~~
-}
-
 
 \seealso{
 \code{\link{diagnosticPlot}}, \code{\link{computeObservedFstat}}, \code{\link{diagnoseColRow}}
