@@ -8,7 +8,8 @@ setMethod('biclust', c('matrix','BiclustMethod'),
 function(x,method, ...) {
   MYCALL<-match.call()
   ret<-method@biclustFunction(x,...)
-  ret@Parameters<-c(list(Call=MYCALL,Data=x,Method=method),list(...))
+  #ret@Parameters<-c(list(Call=MYCALL,Data=x,Method=method),list(...))
+  ret@Parameters<-c(list(Call=MYCALL,Method=method))
   return(ret)
 })
 

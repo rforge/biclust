@@ -151,26 +151,43 @@ ret
 ccbiclust<-function(mat,delta,alpha=1.5,number=100)
 {
 MYCALL <- match.call()
-ma<-max(mat)
-mi<-min(mat)
+#ma<-max(mat)
+#mi<-min(mat)
 x<-matrix(FALSE,nrow=nrow(mat),ncol=number)
-y<-matrix(FALSE,nrow=number,ncol=ncol(mat))
+y<-matrix(FALSE,nrow=number,ncol=ncol(mat)) 
+logr<-rep(TRUE,nrow(mat))
+STOP <- FALSE
+logr<-rep(TRUE,nrow(mat))
 for(i in 1:number)
 {
-erg<-bigcc(mat,delta,alpha)
-if(sum(erg[[1]])==0)
-{break
+  if(sum(logr)<2)
+  {
+    Stop <- TRUE
+    break
+  }
+  erg<-bigcc(mat[logr,],delta,alpha)
+  if(sum(erg[[1]])==0)
+  {
+    Stop <- TRUE
+    break
+  } 
+  else
+  {
+    x[logr,i]<-erg[[1]]
+    y[i,]<-erg[[2]]
+    logr[logr][erg[[1]]] <- FALSE
+    #mat[erg[[1]],erg[[2]]]<-runif(sum(erg[[1]])*sum(erg[[2]]),mi,ma)
+  }
 }
-else{
-x[,i]<-erg[[1]]
-y[i,]<-erg[[2]]
-mat[erg[[1]],erg[[2]]]<-runif(sum(erg[[1]])*sum(erg[[2]]),mi,ma)
+
+if(Stop)
+{
+    return(BiclustResult(as.list(MYCALL),as.matrix(x[,1:(i-1)]),as.matrix(y[1:(i-1),]),(i-1),list(0)))
 }
+else
+{
+    return(BiclustResult(as.list(MYCALL),as.matrix(x),as.matrix(y),i,list(0)))
 }
-if(i<number)
-{return(BiclustResult(as.list(MYCALL),x[,1:(i-1)],y[1:(i-1),],(i-1),list(0)))
-}
-else{
-return(BiclustResult(as.list(MYCALL),x,y,i,list(0)))
-}
+
+
 }     
