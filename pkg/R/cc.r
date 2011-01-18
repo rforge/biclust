@@ -85,7 +85,7 @@ if(sum(logc)>100){
 dj<-colscore(mat[logr,logc])
 mdj<-dj>(alpha*h)
 logc[logc][mdj]<-FALSE
-}                                      
+}
 else{mdj<-0}
 }
 
@@ -154,9 +154,9 @@ MYCALL <- match.call()
 #ma<-max(mat)
 #mi<-min(mat)
 x<-matrix(FALSE,nrow=nrow(mat),ncol=number)
-y<-matrix(FALSE,nrow=number,ncol=ncol(mat)) 
+y<-matrix(FALSE,nrow=number,ncol=ncol(mat))
 logr<-rep(TRUE,nrow(mat))
-STOP <- FALSE
+Stop <- FALSE
 logr<-rep(TRUE,nrow(mat))
 for(i in 1:number)
 {
@@ -170,7 +170,7 @@ for(i in 1:number)
   {
     Stop <- TRUE
     break
-  } 
+  }
   else
   {
     x[logr,i]<-erg[[1]]
@@ -190,4 +190,4 @@ else
 }
 
 
-}     
+}
