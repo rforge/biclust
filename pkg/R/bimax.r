@@ -122,7 +122,7 @@ return(bimaxbic)
 }
 
 
-maxbimaxbiclust <- function(logicalmatrix,minr=2,minc=2,number=5, backfit=5)
+maxbimaxbiclust <- function(logicalmatrix,minr=2,minc=2,number=5, backfit=2, n2=30)
 {
   RowxNumber<-matrix(FALSE,nrow=nrow(logicalmatrix),ncol=number)
   NumberxCol<-matrix(FALSE,nrow=number,ncol=ncol(logicalmatrix))
@@ -143,7 +143,7 @@ maxbimaxbiclust <- function(logicalmatrix,minr=2,minc=2,number=5, backfit=5)
     i_found <- minc
     while(RUN)
     {
-      print(i)
+      #print(i)
       i<-i+1
       scountb <- sums >= i
       if(sum(scountb)<max(floor(size/i),minr))
@@ -152,7 +152,7 @@ maxbimaxbiclust <- function(logicalmatrix,minr=2,minc=2,number=5, backfit=5)
       }
       else
       {
-          res_bimax <- bimaxbiclust(daten[(datenrows&scountb),], minr=max(floor(size/i),minr), minc=i, number=10)
+          res_bimax <- bimaxbiclust(daten[(datenrows&scountb),], minr=max(floor(size/i),minr), minc=i, number=n2)
           res1<-res_bimax@Number
       }
 
@@ -170,22 +170,23 @@ maxbimaxbiclust <- function(logicalmatrix,minr=2,minc=2,number=5, backfit=5)
 
           if(sizeb > size)
           {
-              print("da")
+              #print("da")
               k <- 0
+              k2 <- FALSE
               ind <- which.max(si)[1]
               resbic <- res_bimax
               size <- sizeb
               scount <- scountb
               i_found <- i
-              if(k2) i <- i_found - 1
           }
           else
           {
               k <- k + 1
           }
+
       }
-      print(k)
-      print(k2)
+      #print(k)
+      #print(k2)
       if(k>=backfit)
       {
           if(k2)
@@ -195,7 +196,8 @@ maxbimaxbiclust <- function(logicalmatrix,minr=2,minc=2,number=5, backfit=5)
           else
           {
               k2 <- TRUE
-              i <- max(i_found - 1, minc - 1)
+              i <- max(i_found - k - 1, minc - 1)
+              k <- 0
           }
       }
     }
