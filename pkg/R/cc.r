@@ -60,7 +60,7 @@ ifelse(di[mdi]>dj[mdj] ,logr[logr][mdi]<-FALSE ,logc[logc][mdj]<-FALSE)
 if (!(sum(logr)>1 & sum(logc)>1))
 break
 }
-ifelse(sum(logr)>1 & sum(logc)>1,ret<-list(logr,logc),ret<-list(0,warning(paste('Keine Matrix mit Score kleiner', delta,'gefunden'))))
+ifelse(sum(logr)>1 & sum(logc)>1,ret<-list(logr,logc),ret<-list(0,warning(paste('No matirx with score smaller', delta,'found'))))
 ret
 }
 
@@ -72,19 +72,38 @@ mdj<-1
 while((h<-ccscore(mat[logr,logc]))>delta & (sum(mdi)+sum(mdj))>0)
 {
 
-if(sum(logr)>100){
-di<-rowscore(mat[logr,logc])
-mdi<-di>(alpha*h)
-logr[logr][mdi]<-FALSE
-h<-ccscore(mat[logr,logc])}
+if(sum(logr)>100)
+{
+    di<-rowscore(mat[logr,logc])
+    mdi<-di>(alpha*h)
+    if(sum(mdi) < (sum(logr)-1))
+    {
+        logr[logr][mdi]<-FALSE
+        h<-ccscore(mat[logr,logc])
+    }
+    else
+    {
+        print(warning(paste('Alpha', alpha,'to small!')))
+        mdi <- 0
+    }
+}
 else{mdi<-0}
 
 
+if(sum(logc)>100)
+{
+    dj<-colscore(mat[logr,logc])
+    mdj<-dj>(alpha*h)
+    if(sum(mdj) < (sum(logc)-1))
+    {
+        logc[logc][mdj]<-FALSE
+    }
+    else
+    {
 
-if(sum(logc)>100){
-dj<-colscore(mat[logr,logc])
-mdj<-dj>(alpha*h)
-logc[logc][mdj]<-FALSE
+        print(warning(paste('Alpha', alpha,'to small!')))
+        mdi <- 0
+    }
 }
 else{mdj<-0}
 }
@@ -137,7 +156,7 @@ logc<-rep(TRUE,ncol(mat))
 step1<-cc2(mat,logr,logc,delta,alpha)
 step2<-cc1(mat,step1[[1]],step1[[2]],delta)
 if(sum(step2[[1]])==0)
-{ret<-list(0,warning(paste('Keine Matrix mit Score kleiner', delta,'gefunden')))
+{ret<-list(0,warning(paste('Mo matrix with score smaller than', delta,'found')))
 }
 else{
 ret<-cc3(mat,step2[[1]],step2[[2]])
@@ -148,7 +167,7 @@ ret
 
 ## Algorithm to find the number biggest bicluster.
 
-ccbiclust<-function(mat,delta,alpha=1.5,number=100)
+ccbiclust<-function(mat,delta,alpha=1.5,number=100, rand=FALSE)
 {
 MYCALL <- match.call()
 #ma<-max(mat)
@@ -175,8 +194,14 @@ for(i in 1:number)
   {
     x[logr,i]<-erg[[1]]
     y[i,]<-erg[[2]]
-    logr[logr][erg[[1]]] <- FALSE
-    #mat[erg[[1]],erg[[2]]]<-runif(sum(erg[[1]])*sum(erg[[2]]),mi,ma)
+    if(rand)
+    {
+        mat[erg[[1]],erg[[2]]]<-runif(sum(erg[[1]])*sum(erg[[2]]),mi,ma)
+    }
+    else
+    {
+        logr[logr][erg[[1]]] <- FALSE
+    }
   }
 }
 
@@ -191,3 +216,5 @@ else
 
 
 }
+
+
