@@ -51,7 +51,8 @@ export(	drawHeatmap,
        computeObservedFstat,
        diagnoseColRow,
        diagnosticPlot,
-       biclustbarchart
+       biclustbarchart,
+       heatmapBC
 	)
 
 exportClasses(
