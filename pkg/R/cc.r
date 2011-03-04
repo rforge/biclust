@@ -170,8 +170,8 @@ ret
 ccbiclust<-function(mat,delta,alpha=1.5,number=100, rand=FALSE)
 {
 MYCALL <- match.call()
-#ma<-max(mat)
-#mi<-min(mat)
+ma<-max(mat)
+mi<-min(mat)
 x<-matrix(FALSE,nrow=nrow(mat),ncol=number)
 y<-matrix(FALSE,nrow=number,ncol=ncol(mat))
 logr<-rep(TRUE,nrow(mat))
