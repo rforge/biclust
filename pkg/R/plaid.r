@@ -162,7 +162,7 @@ nk <- colSums(k[,1:layer, drop = FALSE])
 print(matrix(c(nr, nk, layer.df[1:layer], round(SS[1:layer], 2),
 round(SS[1:layer]/layer.df[1:layer], 2), status[1:layer],
 rows.released[1:layer], cols.released[1:layer]),
-ncol = 8, dim = list(Layer = 1:layer - background,
+ncol = 8, dimnames = list(Layer = 1:layer - background,
 c("Rows", "Cols", "Df", "SS", "MS",
 "Convergence", "Rows Released",
 "Cols Released"))), digits = 15)
@@ -178,22 +178,33 @@ c("Rows", "Cols", "Df", "SS", "MS",
   #background = background))
 #  return(BiclustResult(match.call(),r[,1:layer],k[,1:layer],layer-1,last.warning))
 
-  if(layer<=1)
-    {
+  	if(layer<=1){
     #MATCHCALL<-list(as.list(match.call()),SS=0,MS=0)
     return(BiclustResult(as.list(match.call()),matrix(NA,1,1),matrix(NA,1,1),0,list(SS=0,MS=0)))
-    }
-  else
-    {
-    if(layer==2)
-      {
-      #MATCHCALL<-list(as.list(match.call()),SS=SS[1:2],MS=SS[1:2] / layer.df[1:2])
-      return(BiclustResult(as.list(match.call()),matrix(r[,2:layer],n,1),t(matrix(k[,2:layer],p,1)),1,list(SS=SS[1:2],MS=SS[1:2] / layer.df[1:2])))
-      }
-    else
-      {
-      #MATCHCALL<-list(as.list(match.call()),SS=SS[1:layer],MS=SS[1:layer] / layer.df[1:layer])
-      return(BiclustResult(as.list(match.call()),r[,2:layer],t(k[,2:layer]),layer-1,list(SS=SS[1:layer],MS=SS[1:layer] / layer.df[1:layer])))
+	}
+	else{
+		if(layer==2){
+      	#MATCHCALL<-list(as.list(match.call()),SS=SS[1:2],MS=SS[1:2] / layer.df[1:2])
+			if(background){
+				return(BiclustResult(as.list(match.call()),matrix(r[,2:layer],n,1),t(matrix(k[,2:layer],p,1)),1,list(SS=SS[2],MS=SS[2] / layer.df[2])))
+			
+			}
+			else{
+				return(BiclustResult(as.list(match.call()),matrix(r[,1:layer],n,1),t(matrix(k[,1:layer],p,1)),2,list(SS=SS[1:2],MS=SS[1:2] / layer.df[1:2])))
+			
+			}
+     	}
+    	else  {
+     		#MATCHCALL<-list(as.list(match.call()),SS=SS[1:layer],MS=SS[1:layer] / layer.df[1:layer])
+			if(background){
+				return(BiclustResult(as.list(match.call()),r[,2:layer],t(k[,2:layer]),layer-1,list(SS=SS[2:layer],MS=SS[2:layer] / layer.df[2:layer])))
+			
+			}
+			else{
+			return(BiclustResult(as.list(match.call()),r[,1:layer],t(k[,1:layer]),layer,list(SS=SS[1:layer],MS=SS[1:layer] / layer.df[1:layer])))
+			
+			}
+		
       }
     }
 
@@ -296,7 +307,7 @@ r <- rowMeans(apply(Z, 3, kmeansStart, iter.startup)) >= 0.5
 if (!is.null(row.classes))
 {
 temp.r <- (tabulate(r * row.classes,
-nbin = max(row.classes)) >=
+nbins = max(row.classes)) >=
 0.5 * row.grouped)[row.classes]
 if (sum(temp.r) != 0) r <- temp.r
 else
@@ -327,7 +338,7 @@ TRUE)) >= 0.5
 if (!is.null(col.classes))
 {
 temp.k <- (tabulate(k * col.classes,
-nbin = max(col.classes)) >=
+nbins = max(col.classes)) >=
 0.5 * col.grouped)[col.classes]
 if (sum(temp.k) != 0) k <- temp.k
 else
