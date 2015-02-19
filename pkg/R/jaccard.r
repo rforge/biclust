@@ -23,7 +23,7 @@ jaccard1<-function(bicres1,bicres2){
 	jacvec <- c()
 	
 	for (i in 1:le1) {
-		jacvec2 <- 0
+		jacvec2 <- c()
 		for (j in 1:le2) {
 			
 			# Taking into account the case when NUMBER=1 and the output is in WRONG FORMAT
@@ -41,7 +41,7 @@ jaccard1<-function(bicres1,bicres2){
 				
 			}
 			else{
-				res2.NumberxCol <- bicres2@NumberxCol[i,]
+				res2.NumberxCol <- bicres2@NumberxCol[j,]
 			}
 			
 			
@@ -52,9 +52,9 @@ jaccard1<-function(bicres1,bicres2){
 			loalle <- alle > 0
 			loalle1 <- alle1 > 0
 			loalle2 <- alle2 > 0
-			jacvec2 <- jacvec2 + ((sum(loalle1) + sum(loalle2) -sum(loalle))/sum(loalle))
+			jacvec2 <- c(jacvec2,((sum(loalle1) + sum(loalle2) -sum(loalle))/sum(loalle))) 
 		}
-		jacvec <- c(jacvec, jacvec2)
+		jacvec <- c(jacvec, sum(jacvec2,na.rm=TRUE))
 	}
 	
 	res <- sum(jacvec)/max(le1, le2)
