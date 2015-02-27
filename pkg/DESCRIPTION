@@ -1,7 +1,7 @@
 Package: biclust
-Version: 1.0.3
-Date: 2011-03-15
-Author: Sebastian Kaiser, Rodrigo Santamaria, Tatsiana, Khamiakova,
+Version: 1.0.4
+Date: 2015-02-27
+Author: Sebastian Kaiser, Rodrigo Santamaria, Tatsiana Khamiakova,
         Martin Sill, Roberto Theron, Luis Quintales, Friedrich
         Leisch and Ewoud De Troyer.
 Maintainer: Sebastian Kaiser <Sebastian.Kaiser@stat.uni-muenchen.de>
