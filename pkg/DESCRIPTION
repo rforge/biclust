@@ -1,6 +1,6 @@
 Package: biclust
-Version: 1.0.4
-Date: 2015-02-27
+Version: 1.1.0
+Date: 2015-03-18
 Author: Sebastian Kaiser, Rodrigo Santamaria, Tatsiana Khamiakova,
         Martin Sill, Roberto Theron, Luis Quintales, Friedrich
         Leisch and Ewoud De Troyer.
@@ -15,11 +15,10 @@ Description: The main function biclust provides several algorithms to
         package provides methods for data preprocessing (normalization
         and discretisation), visualisation, and validation of bicluster
         solutions.
-License: GPL-2
+License: GPL-3
 LazyLoad: yes
 Repository: CRAN
 Repository/R-Forge/Project: biclust
 Repository/R-Forge/Revision: 212
 Date/Publication: 2013-03-10 17:24:22
-Packaged: 2013-03-10 16:20:04 UTC; ripley
 NeedsCompilation: yes
