@@ -3,14 +3,14 @@
 # paper:
 # Biclustering Models for Structured Microarray Data
 # Heather L. Turner, Trevor C. Bailey, Wojtek J. Krzanowski and Cheryl A. Hemingway
-# IEEE/ACM Transactions on Computational Biology and Bioinformatics vol 2., nº 4.
+# IEEE/ACM Transactions on Computational Biology and Bioinformatics vol 2., n 4.
 #
 ## R 2.1.0 (http://www.r-project.org/)
 ## Heather Turner
 ## 27/04/2005
 ##### USER FUNCTIONS #####
-## ’plaid’ to fit plaid model
-## ’summary2’ to print summary of fitted plaid model
+## 'plaid' to fit plaid model
+## 'summary2' to print summary of fitted plaid model
 ## Define plaid result object and corresponding summary method
 setClass("PlaidResult", representation("list"))
 #setGeneric("summary")
@@ -602,13 +602,13 @@ if (is.array(temp))
 {
 if (is.null(margin))
 stop(message = "Must specify array margin as well as index")
-## put in ind’th position in appropriate margin
+## put in ind'th position in appropriate margin
 indString <- character(length(dim(temp)))
 indString[margin] <- paste("c(", toString(ind), ")")
 eval(parse(text = paste("temp[",toString(indString),
 "] <- x[[i]]")))
 }
-## else put in default ind’th position of object
+## else put in default ind'th position of object
 else temp[[ind]] <- x[[i]]
 assign(names(x)[i], temp, parent.frame())
 }
