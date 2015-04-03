@@ -70,6 +70,8 @@ cs_t   *consideredColumns;
 cs_t   *mandatoryColumns;
 cs_t   columnIntersection;
 
+static int  biclusterCounter = 0; // przemek
+
 int  isSet(cs_t  columnSet, int  column)
 {
   bitvector_t  bv;
@@ -253,7 +255,8 @@ int  selectRows(int  firstRow, int  lastRow, int  level, int  *overlapping)
 
 void  writeBicluster(int  firstRow, int  lastRow, cs_t  columnSet, int * x, int * y, int * z,int * anzahl,int * er)
 {
-  static int  biclusterCounter = 0;
+  //static int  biclusterCounter = 0; // przemek
+
   int  i;
   int a;
   a = *anzahl;
@@ -392,6 +395,7 @@ void  bimax(int * datenmatrix, int * nr, int * nc,int * minnr, int * minnc, int 
   minNoRows = *minnr;
   minNoColumns = *minnc;*/
 
+  biclusterCounter = 0; // przemek
 
   noRows = *nr;
     fflush(stdin);
